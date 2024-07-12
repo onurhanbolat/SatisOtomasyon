@@ -26,4 +26,4 @@ Bu proje, birden fazla kategorili çerçevelerin ve dekorasyon ürünlerinin yö
 - **Entegrasyon ve Framework**: .NET Framework veya .NET Core
 - **Veri Tabanı Yönetimi**: Entity Framework
 - **Kullanıcı Arayüzü**: ASP.NET MVC veya WinForms
-- **Veri Tabanı**: SQL Server veya MySQL
+- **Veri Tabanı**: MSSQL Server
