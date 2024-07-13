@@ -34,7 +34,6 @@ namespace AhsapSanatEvi
             this.FullScreenButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.CompanyText = new System.Windows.Forms.Label();
-            this.jDragControl1 = new JDragControl.JDragControl(this.components);
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.BtnAyarlar = new System.Windows.Forms.Button();
             this.BtnBilanco = new System.Windows.Forms.Button();
@@ -47,6 +46,7 @@ namespace AhsapSanatEvi
             this.BtnSatis = new System.Windows.Forms.Button();
             this.BtnAnaMenu = new System.Windows.Forms.Button();
             this.AnaMenuArkaPanel = new System.Windows.Forms.Panel();
+            this.jDragControl1 = new JDragControl.JDragControl(this.components);
             this.TopPanel.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.SuspendLayout();
@@ -106,11 +106,6 @@ namespace AhsapSanatEvi
             this.CompanyText.Size = new System.Drawing.Size(94, 16);
             this.CompanyText.TabIndex = 0;
             this.CompanyText.Text = "Ahşap Sanat Evi";
-            // 
-            // jDragControl1
-            // 
-            this.jDragControl1.GetForm = this;
-            this.jDragControl1.TargetControl = this.TopPanel;
             // 
             // LeftPanel
             // 
@@ -282,6 +277,11 @@ namespace AhsapSanatEvi
             this.AnaMenuArkaPanel.Size = new System.Drawing.Size(1021, 637);
             this.AnaMenuArkaPanel.TabIndex = 2;
             // 
+            // jDragControl1
+            // 
+            this.jDragControl1.GetForm = this;
+            this.jDragControl1.TargetControl = this.TopPanel;
+            // 
             // FrmAnaMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
@@ -309,7 +309,6 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.Panel TopPanel;
         private System.Windows.Forms.Label CompanyText;
         private System.Windows.Forms.Button ExitButton;
-        private JDragControl.JDragControl jDragControl1;
         private System.Windows.Forms.Button FullScreenButton;
         private System.Windows.Forms.Panel LeftPanel;
         private System.Windows.Forms.Button BtnEkle;
@@ -323,6 +322,7 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.Button BtnBilanco;
         private System.Windows.Forms.Panel AnaMenuArkaPanel;
         private System.Windows.Forms.Button BtnUrunler;
+        private JDragControl.JDragControl jDragControl1;
     }
 }
 

@@ -46,7 +46,7 @@
     <Reference Include="DevExpress.Xpo.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="JDragControl">
-      <HintPath>C:\Users\onurh\AppData\Local\Temp\Rar$DRa2460.13539\JDragControl.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\JDragControl.dll</HintPath>
     </Reference>
     <Reference Include="JGradient Panel">
       <HintPath>C:\Users\onurh\AppData\Local\Temp\Rar$DRa2460.13539\JGradient Panel.dll</HintPath>
