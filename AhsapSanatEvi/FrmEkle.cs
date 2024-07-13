@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace AhsapSanatEvi
 {
@@ -17,6 +18,11 @@ namespace AhsapSanatEvi
             InitializeComponent();
             this.Resize += new EventHandler(Form_Resize);
         }
+
+        SqlConnection connection = new SqlConnection(@"Data Source=BOLAT\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True ");
+
+        //Babamın Db Kodu: Data Source=BOLAT\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True 
+        //Benim Db Kodum: Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True
 
         private void Form_Resize(object sender, EventArgs e)
         {
@@ -39,5 +45,6 @@ namespace AhsapSanatEvi
             }
             
         }
+
     }
 }

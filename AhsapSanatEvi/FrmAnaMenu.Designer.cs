@@ -46,7 +46,6 @@ namespace AhsapSanatEvi
             this.BtnSatis = new System.Windows.Forms.Button();
             this.BtnAnaMenu = new System.Windows.Forms.Button();
             this.AnaMenuArkaPanel = new System.Windows.Forms.Panel();
-            this.jDragControl1 = new JDragControl.JDragControl(this.components);
             this.TopPanel.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.SuspendLayout();
@@ -280,8 +279,6 @@ namespace AhsapSanatEvi
             // 
             // jDragControl1
             // 
-            this.jDragControl1.GetForm = this;
-            this.jDragControl1.TargetControl = this.TopPanel;
             // 
             // FrmAnaMenu
             // 
@@ -323,7 +320,6 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.Button BtnBilanco;
         private System.Windows.Forms.Panel AnaMenuArkaPanel;
         private System.Windows.Forms.Button BtnUrunler;
-        private JDragControl.JDragControl jDragControl1;
     }
 }
 
