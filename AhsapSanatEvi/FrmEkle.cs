@@ -15,11 +15,29 @@ namespace AhsapSanatEvi
         public FrmEkle()
         {
             InitializeComponent();
+            this.Resize += new EventHandler(Form_Resize);
         }
 
-        private void ExitButton_Click(object sender, EventArgs e)
+        private void Form_Resize(object sender, EventArgs e)
         {
-            this.Close();
+            CenterGroupBox();
+        }
+
+        private void CenterGroupBox()
+        {
+            FrmAnaMenu frm = new FrmAnaMenu();
+
+            if (GrpBoxGenel != null )
+            {
+                int formWidth = this.ClientSize.Width;
+                int formHeight = this.ClientSize.Height;
+                int groupBoxWidth = GrpBoxGenel.Width;
+                int groupBoxHeight = GrpBoxGenel.Height;
+                int startX = (formWidth - groupBoxWidth) / 2;
+                int startY = (formHeight - groupBoxHeight) / 2-28;
+                GrpBoxGenel.Location = new Point(startX, startY);
+            }
+            
         }
     }
 }

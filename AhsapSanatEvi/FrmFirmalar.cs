@@ -113,7 +113,7 @@ namespace AhsapSanatEvi
 
         private void BtnFirmaGuncelle_Click(object sender, EventArgs e)
         {
-            if (TxtBxFirmaID.Text != "")
+            if (TxtBxFirmaID.Text != " ")
             {
                 connection.Open();
                 SqlCommand upd = new SqlCommand("update TBLFIRMALAR set FIRMAAD=@p1 where FIRMAID=@p2", connection);
@@ -131,5 +131,6 @@ namespace AhsapSanatEvi
             }
           
         }
+
     }
 }

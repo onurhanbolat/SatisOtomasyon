@@ -239,6 +239,7 @@ namespace AhsapSanatEvi
             this.BtnCerceveler.TabIndex = 7;
             this.BtnCerceveler.Text = "Çerçeveler";
             this.BtnCerceveler.UseVisualStyleBackColor = false;
+            this.BtnCerceveler.Click += new System.EventHandler(this.BtnCerceveler_Click);
             // 
             // BtnSatis
             // 
