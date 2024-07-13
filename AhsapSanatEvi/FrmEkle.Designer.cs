@@ -107,7 +107,7 @@ namespace AhsapSanatEvi
             // 
             // GrpBoxGenel
             // 
-            this.GrpBoxGenel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GrpBoxGenel.BackColor = System.Drawing.Color.White;
             this.GrpBoxGenel.Controls.Add(this.groupBox4);
             this.GrpBoxGenel.Controls.Add(this.groupBox8);
             this.GrpBoxGenel.Controls.Add(this.groupBox1);
