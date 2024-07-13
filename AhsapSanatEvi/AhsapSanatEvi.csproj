@@ -82,6 +82,12 @@
     <Compile Include="FrmAnaMenu.Designer.cs">
       <DependentUpon>FrmAnaMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCerceveler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCerceveler.Designer.cs">
+      <DependentUpon>FrmCerceveler.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmEkle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAnaMenu.resx">
       <DependentUpon>FrmAnaMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCerceveler.resx">
+      <DependentUpon>FrmCerceveler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmEkle.resx">
       <DependentUpon>FrmEkle.cs</DependentUpon>

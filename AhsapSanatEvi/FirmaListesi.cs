@@ -15,7 +15,6 @@ namespace AhsapSanatEvi
         public FirmaListesi()
         {
             InitializeComponent();
-
         }
 
         public void LblListeFirmaId_Click(object sender, EventArgs e)

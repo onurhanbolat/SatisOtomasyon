@@ -49,13 +49,6 @@ namespace AhsapSanatEvi
 
         private void BtnEkle_Click(object sender, EventArgs e)
         {
-            //this.AnaMenuArkaPanel.Controls.Clear();//Eğer öncesinde bir panel açıksa onu kapatır
-            //FrmEkle ekle = new FrmEkle();
-            //ekle.TopLevel = false; // Formun en üst düzeyde olmasını engeller
-            //ekle.Dock = DockStyle.Fill; // Formu kapsayıcı kontrolün tamamını kaplayacak şekilde ayarlar
-            //this.AnaMenuArkaPanel.Controls.Add(ekle); // Formu bir panel içine ekler
-            //ekle.Show();
-
             FrmEkle firmaForm = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
 
             if (firmaForm == null)
@@ -91,5 +84,25 @@ namespace AhsapSanatEvi
                 firmaForm.BringToFront(); // Formu ön plana getirir
             }
         }
+
+        private void BtnCerceveler_Click(object sender, EventArgs e)
+        {
+            FrmCerceveler firmaForm = Application.OpenForms.OfType<FrmCerceveler>().FirstOrDefault();
+
+            if (firmaForm == null)
+            {
+                firmaForm = new FrmCerceveler();
+                firmaForm.TopLevel = false;
+                firmaForm.Dock = DockStyle.Fill;
+                this.AnaMenuArkaPanel.Controls.Add(firmaForm);
+                firmaForm.Show();
+                firmaForm.BringToFront(); // Formu ön plana getirir
+            }
+            else
+            {
+                firmaForm.BringToFront(); // Formu ön plana getirir
+            }
+        }
     }
-}
+    }
+
