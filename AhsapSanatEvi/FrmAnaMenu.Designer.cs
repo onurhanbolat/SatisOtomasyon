@@ -39,15 +39,20 @@ namespace AhsapSanatEvi
             this.BtnBilanco = new System.Windows.Forms.Button();
             this.BtnMusteriler = new System.Windows.Forms.Button();
             this.BtnFirmalar = new System.Windows.Forms.Button();
+            this.EkleContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnEkle = new System.Windows.Forms.Button();
+            this.BtnEkleCerceve = new System.Windows.Forms.Button();
+            this.BtnEkleUrun = new System.Windows.Forms.Button();
             this.BtnSepet = new System.Windows.Forms.Button();
             this.BtnUrunler = new System.Windows.Forms.Button();
             this.BtnCerceveler = new System.Windows.Forms.Button();
             this.BtnSatis = new System.Windows.Forms.Button();
             this.BtnAnaMenu = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.AnaMenuArkaPanel = new System.Windows.Forms.Panel();
             this.TopPanel.SuspendLayout();
             this.LeftPanel.SuspendLayout();
+            this.EkleContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopPanel
@@ -113,7 +118,7 @@ namespace AhsapSanatEvi
             this.LeftPanel.Controls.Add(this.BtnBilanco);
             this.LeftPanel.Controls.Add(this.BtnMusteriler);
             this.LeftPanel.Controls.Add(this.BtnFirmalar);
-            this.LeftPanel.Controls.Add(this.BtnEkle);
+            this.LeftPanel.Controls.Add(this.EkleContainer);
             this.LeftPanel.Controls.Add(this.BtnSepet);
             this.LeftPanel.Controls.Add(this.BtnUrunler);
             this.LeftPanel.Controls.Add(this.BtnCerceveler);
@@ -122,7 +127,7 @@ namespace AhsapSanatEvi
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.LeftPanel.Location = new System.Drawing.Point(0, 34);
             this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(209, 637);
+            this.LeftPanel.Size = new System.Drawing.Size(209, 689);
             this.LeftPanel.TabIndex = 1;
             // 
             // BtnAyarlar
@@ -135,7 +140,7 @@ namespace AhsapSanatEvi
             this.BtnAyarlar.Location = new System.Drawing.Point(0, 513);
             this.BtnAyarlar.Name = "BtnAyarlar";
             this.BtnAyarlar.Size = new System.Drawing.Size(209, 57);
-            this.BtnAyarlar.TabIndex = 9;
+            this.BtnAyarlar.TabIndex = 14;
             this.BtnAyarlar.Text = "Ayarlar";
             this.BtnAyarlar.UseVisualStyleBackColor = false;
             // 
@@ -149,7 +154,7 @@ namespace AhsapSanatEvi
             this.BtnBilanco.Location = new System.Drawing.Point(0, 456);
             this.BtnBilanco.Name = "BtnBilanco";
             this.BtnBilanco.Size = new System.Drawing.Size(209, 57);
-            this.BtnBilanco.TabIndex = 2;
+            this.BtnBilanco.TabIndex = 12;
             this.BtnBilanco.Text = "Bilanço";
             this.BtnBilanco.UseVisualStyleBackColor = false;
             // 
@@ -163,7 +168,7 @@ namespace AhsapSanatEvi
             this.BtnMusteriler.Location = new System.Drawing.Point(0, 399);
             this.BtnMusteriler.Name = "BtnMusteriler";
             this.BtnMusteriler.Size = new System.Drawing.Size(209, 57);
-            this.BtnMusteriler.TabIndex = 3;
+            this.BtnMusteriler.TabIndex = 13;
             this.BtnMusteriler.Text = "Müşteriler";
             this.BtnMusteriler.UseVisualStyleBackColor = false;
             // 
@@ -177,25 +182,67 @@ namespace AhsapSanatEvi
             this.BtnFirmalar.Location = new System.Drawing.Point(0, 342);
             this.BtnFirmalar.Name = "BtnFirmalar";
             this.BtnFirmalar.Size = new System.Drawing.Size(209, 57);
-            this.BtnFirmalar.TabIndex = 8;
+            this.BtnFirmalar.TabIndex = 11;
             this.BtnFirmalar.Text = "Firmalar";
             this.BtnFirmalar.UseVisualStyleBackColor = false;
             this.BtnFirmalar.Click += new System.EventHandler(this.BtnFirmalar_Click);
             // 
+            // EkleContainer
+            // 
+            this.EkleContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(82)))), ((int)(((byte)(84)))));
+            this.EkleContainer.Controls.Add(this.BtnEkle);
+            this.EkleContainer.Controls.Add(this.BtnEkleCerceve);
+            this.EkleContainer.Controls.Add(this.BtnEkleUrun);
+            this.EkleContainer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.EkleContainer.Location = new System.Drawing.Point(0, 285);
+            this.EkleContainer.Name = "EkleContainer";
+            this.EkleContainer.Size = new System.Drawing.Size(209, 57);
+            this.EkleContainer.TabIndex = 3;
+            // 
             // BtnEkle
             // 
             this.BtnEkle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.BtnEkle.Dock = System.Windows.Forms.DockStyle.Top;
             this.BtnEkle.FlatAppearance.BorderSize = 0;
             this.BtnEkle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnEkle.ForeColor = System.Drawing.Color.White;
-            this.BtnEkle.Location = new System.Drawing.Point(0, 285);
+            this.BtnEkle.Location = new System.Drawing.Point(0, 0);
+            this.BtnEkle.Margin = new System.Windows.Forms.Padding(0);
             this.BtnEkle.Name = "BtnEkle";
             this.BtnEkle.Size = new System.Drawing.Size(209, 57);
             this.BtnEkle.TabIndex = 1;
             this.BtnEkle.Text = "Ekle";
             this.BtnEkle.UseVisualStyleBackColor = false;
             this.BtnEkle.Click += new System.EventHandler(this.BtnEkle_Click);
+            // 
+            // BtnEkleCerceve
+            // 
+            this.BtnEkleCerceve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(82)))), ((int)(((byte)(84)))));
+            this.BtnEkleCerceve.FlatAppearance.BorderSize = 0;
+            this.BtnEkleCerceve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEkleCerceve.ForeColor = System.Drawing.Color.White;
+            this.BtnEkleCerceve.Location = new System.Drawing.Point(0, 57);
+            this.BtnEkleCerceve.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnEkleCerceve.Name = "BtnEkleCerceve";
+            this.BtnEkleCerceve.Size = new System.Drawing.Size(209, 57);
+            this.BtnEkleCerceve.TabIndex = 2;
+            this.BtnEkleCerceve.Text = "Çerçeve";
+            this.BtnEkleCerceve.UseVisualStyleBackColor = false;
+            this.BtnEkleCerceve.Click += new System.EventHandler(this.BtnEkleCerceve_Click);
+            // 
+            // BtnEkleUrun
+            // 
+            this.BtnEkleUrun.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(82)))), ((int)(((byte)(84)))));
+            this.BtnEkleUrun.FlatAppearance.BorderSize = 0;
+            this.BtnEkleUrun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEkleUrun.ForeColor = System.Drawing.Color.White;
+            this.BtnEkleUrun.Location = new System.Drawing.Point(0, 114);
+            this.BtnEkleUrun.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnEkleUrun.Name = "BtnEkleUrun";
+            this.BtnEkleUrun.Size = new System.Drawing.Size(209, 67);
+            this.BtnEkleUrun.TabIndex = 3;
+            this.BtnEkleUrun.Text = "Ürün";
+            this.BtnEkleUrun.UseVisualStyleBackColor = false;
+            this.BtnEkleUrun.Click += new System.EventHandler(this.BtnEkleUrun_Click);
             // 
             // BtnSepet
             // 
@@ -268,24 +315,26 @@ namespace AhsapSanatEvi
             this.BtnAnaMenu.Text = "Ana Menü";
             this.BtnAnaMenu.UseVisualStyleBackColor = false;
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // AnaMenuArkaPanel
             // 
             this.AnaMenuArkaPanel.BackColor = System.Drawing.Color.Silver;
             this.AnaMenuArkaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AnaMenuArkaPanel.Location = new System.Drawing.Point(209, 34);
             this.AnaMenuArkaPanel.Name = "AnaMenuArkaPanel";
-            this.AnaMenuArkaPanel.Size = new System.Drawing.Size(1021, 637);
+            this.AnaMenuArkaPanel.Size = new System.Drawing.Size(1021, 689);
             this.AnaMenuArkaPanel.TabIndex = 2;
-            // 
-            // jDragControl1
-            // 
             // 
             // FrmAnaMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1230, 671);
+            this.ClientSize = new System.Drawing.Size(1230, 723);
             this.Controls.Add(this.AnaMenuArkaPanel);
             this.Controls.Add(this.LeftPanel);
             this.Controls.Add(this.TopPanel);
@@ -298,6 +347,7 @@ namespace AhsapSanatEvi
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             this.LeftPanel.ResumeLayout(false);
+            this.EkleContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -309,17 +359,21 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button FullScreenButton;
         private System.Windows.Forms.Panel LeftPanel;
-        private System.Windows.Forms.Button BtnEkle;
-        private System.Windows.Forms.Button BtnAyarlar;
-        private System.Windows.Forms.Button BtnFirmalar;
         private System.Windows.Forms.Button BtnCerceveler;
         private System.Windows.Forms.Button BtnSatis;
         private System.Windows.Forms.Button BtnAnaMenu;
         private System.Windows.Forms.Button BtnSepet;
-        private System.Windows.Forms.Button BtnMusteriler;
-        private System.Windows.Forms.Button BtnBilanco;
-        private System.Windows.Forms.Panel AnaMenuArkaPanel;
         private System.Windows.Forms.Button BtnUrunler;
+        private System.Windows.Forms.FlowLayoutPanel EkleContainer;
+        private System.Windows.Forms.Button BtnEkle;
+        private System.Windows.Forms.Button BtnEkleCerceve;
+        private System.Windows.Forms.Button BtnEkleUrun;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button BtnFirmalar;
+        private System.Windows.Forms.Button BtnAyarlar;
+        private System.Windows.Forms.Button BtnBilanco;
+        private System.Windows.Forms.Button BtnMusteriler;
+        private System.Windows.Forms.Panel AnaMenuArkaPanel;
     }
 }
 

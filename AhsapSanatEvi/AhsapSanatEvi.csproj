@@ -70,6 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EkleFirmaListesi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EkleFirmaListesi.Designer.cs">
+      <DependentUpon>EkleFirmaListesi.cs</DependentUpon>
+    </Compile>
     <Compile Include="FirmaListesi.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EkleFirmaListesi.resx">
+      <DependentUpon>EkleFirmaListesi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FirmaListesi.resx">
       <DependentUpon>FirmaListesi.cs</DependentUpon>
     </EmbeddedResource>
