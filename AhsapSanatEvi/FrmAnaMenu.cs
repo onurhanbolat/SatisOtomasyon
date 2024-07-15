@@ -16,17 +16,17 @@ namespace AhsapSanatEvi
         bool ekleExpand = false;
         private bool isFullScreen = false;
         private Rectangle originalBounds;
+
         public FrmAnaMenu()
         {
             InitializeComponent();
             originalBounds = this.Bounds;
         }
 
-        SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True");
+        private readonly string connectionString = @"Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True";
 
-        //Babamın Db Kodu: Data Source=BOLAT\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True 
-        //Benim Db Kodum: Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True
-
+        // Babamın Db Kodu: Data Source=BOLAT\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True 
+        // Benim Db Kodum: Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
@@ -51,11 +51,12 @@ namespace AhsapSanatEvi
                 isFullScreen = true;
             }
         }
+
         private void BtnEkle_Click(object sender, EventArgs e)
         {
             timer1.Start();
-          
         }
+
         private void BtnFirmalar_Click(object sender, EventArgs e)
         {
             FrmFirmalar firmaForm = Application.OpenForms.OfType<FrmFirmalar>().FirstOrDefault();
@@ -75,25 +76,25 @@ namespace AhsapSanatEvi
 
         private void BtnCerceveler_Click(object sender, EventArgs e)
         {
-            FrmCerceveler firmaForm = Application.OpenForms.OfType<FrmCerceveler>().FirstOrDefault();
-            if (firmaForm == null)
+            FrmCerceveler cerceveForm = Application.OpenForms.OfType<FrmCerceveler>().FirstOrDefault();
+            if (cerceveForm == null)
             {
-                firmaForm = new FrmCerceveler();
-                firmaForm.TopLevel = false;
-                firmaForm.Dock = DockStyle.Fill;
-                this.AnaMenuArkaPanel.Controls.Add(firmaForm);
-                firmaForm.Show();
-                firmaForm.BringToFront(); // Formu ön plana getirir
+                cerceveForm = new FrmCerceveler();
+                cerceveForm.TopLevel = false;
+                cerceveForm.Dock = DockStyle.Fill;
+                this.AnaMenuArkaPanel.Controls.Add(cerceveForm);
+                cerceveForm.Show();
+                cerceveForm.BringToFront(); // Formu ön plana getirir
             }
             else
             {
-                firmaForm.BringToFront(); // Formu ön plana getirir
+                cerceveForm.BringToFront(); // Formu ön plana getirir
             }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (ekleExpand == false)
+            if (!ekleExpand)
             {
                 EkleContainer.Height += 10;
                 if (EkleContainer.Height >= 168)
@@ -115,27 +116,23 @@ namespace AhsapSanatEvi
 
         private void BtnEkleCerceve_Click(object sender, EventArgs e)
         {
-            FrmEkle firmaForm = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
-            if (firmaForm != null)
+            FrmEkle ekleForm = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
+            if (ekleForm != null)
             {
-                firmaForm.Close(); // Formu kapat
+                ekleForm.Close(); // Formu kapat
             }
 
-            firmaForm = new FrmEkle();
-            firmaForm.TopLevel = false;
-            firmaForm.Dock = DockStyle.Fill;
-            this.AnaMenuArkaPanel.Controls.Add(firmaForm);
-            firmaForm.Show();
-            firmaForm.BringToFront(); // Formu ön plana getir
+            ekleForm = new FrmEkle();
+            ekleForm.TopLevel = false;
+            ekleForm.Dock = DockStyle.Fill;
+            this.AnaMenuArkaPanel.Controls.Add(ekleForm);
+            ekleForm.Show();
+            ekleForm.BringToFront(); // Formu ön plana getir
         }
+
         private void BtnEkleUrun_Click(object sender, EventArgs e)
         {
-
+            // Ürün ekleme işlemleri buraya eklenecek
         }
-
-       
     }
 }
-
-
-

@@ -24,10 +24,7 @@ namespace AhsapSanatEvi
             InitializePlaceholder(TxtBxKodEkle, "Kod Ekle..");
         }
 
-        SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True");
-
-        // Babamın Db Kodu: Data Source=BOLAT\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True 
-        // Benim Db Kodum: Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True
+        private readonly string connectionString = @"Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True";
 
         private void Form_Resize(object sender, EventArgs e)
         {
@@ -36,24 +33,34 @@ namespace AhsapSanatEvi
 
         public void FirmaGetir()
         {
-            string sorgu = "select * from TBLFIRMALAR ORDER BY FIRMAAD ASC";
+            string sorgu = "SELECT * FROM TBLFIRMALAR ORDER BY FIRMAAD ASC";
             EkleFirmaListePanel.Controls.Clear();
-            connection.Open();
-            SqlCommand komut = new SqlCommand(sorgu, connection);
-            SqlDataReader oku = komut.ExecuteReader();
-            while (oku.Read())
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                EkleFirmaListesi arac = new EkleFirmaListesi();
-                arac.EkleFirmaListeLabel.Text = oku["FIRMAAD"].ToString();
-                EkleFirmaListePanel.Controls.Add(arac);
+                try
+                {
+                    connection.Open();
+                    SqlCommand komut = new SqlCommand(sorgu, connection);
+                    SqlDataReader oku = komut.ExecuteReader();
+                    while (oku.Read())
+                    {
+                        EkleFirmaListesi arac = new EkleFirmaListesi
+                        {
+                            EkleFirmaListeLabel = { Text = oku["FIRMAAD"].ToString() }
+                        };
+                        EkleFirmaListePanel.Controls.Add(arac);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Veritabanı bağlantısı sırasında bir hata oluştu: " + ex.Message);
+                }
             }
-            connection.Close();
         }
 
         private void CenterGroupBox()
         {
-            FrmAnaMenu frm = new FrmAnaMenu();
-
             if (GrpBoxGenel != null)
             {
                 int formWidth = this.ClientSize.Width;
@@ -68,14 +75,16 @@ namespace AhsapSanatEvi
 
         private void BtnYukle_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "RESIM SEÇME EKRANI";
-            ofd.Filter = "PNG | *.png | JPG-JPEG | *.jpg;*.jpeg | All Files | *.*";
-            ofd.FilterIndex = 3;
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Title = "RESIM SEÇME EKRANI",
+                Filter = "PNG | *.png | JPG-JPEG | *.jpg;*.jpeg | All Files | *.*",
+                FilterIndex = 3
+            };
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 PictureBoxImage.Image = new Bitmap(ofd.FileName);
-                MessageBox.Show(ofd.FileName.ToString());
+                MessageBox.Show(ofd.FileName);
             }
         }
 
@@ -102,6 +111,5 @@ namespace AhsapSanatEvi
                 }
             };
         }
-
     }
 }
