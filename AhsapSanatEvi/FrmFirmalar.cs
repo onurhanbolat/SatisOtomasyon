@@ -27,6 +27,7 @@ namespace AhsapSanatEvi
             catch (Exception ex)
             {
                 MessageBox.Show("Firma listesi yüklenirken bir hata oluştu: " + ex.Message);
+                MessageBox.Show("Merhaba");
             }
         }
 
