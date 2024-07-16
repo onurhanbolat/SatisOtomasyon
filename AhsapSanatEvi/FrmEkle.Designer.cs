@@ -258,6 +258,7 @@ namespace AhsapSanatEvi
             this.TxtBxFirmaAra.Name = "TxtBxFirmaAra";
             this.TxtBxFirmaAra.Size = new System.Drawing.Size(242, 25);
             this.TxtBxFirmaAra.TabIndex = 1;
+            this.TxtBxFirmaAra.TextChanged += new System.EventHandler(this.TxtBxFirmaAra_TextChanged);
             // 
             // groupBoxResim
             // 

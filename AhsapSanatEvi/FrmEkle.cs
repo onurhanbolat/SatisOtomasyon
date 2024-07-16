@@ -19,12 +19,10 @@ namespace AhsapSanatEvi
             this.Resize += new EventHandler(Form_Resize);
             FirmaGetir();
             // TxtBxFirmaAra için placeholder metni ekleyin
-            InitializePlaceholder(TxtBxFirmaAra, "Firma Ara..");
-            InitializePlaceholder(TxtBxKodAra, "Kod Ara..");
-            InitializePlaceholder(TxtBxKodEkle, "Kod Ekle..");
+            ButonPlaceholder(TxtBxFirmaAra, "Firma Ara..");
+            ButonPlaceholder(TxtBxKodAra, "Kod Ara..");
+            ButonPlaceholder(TxtBxKodEkle, "Kod Ekle..");
         }
-
-        private readonly string connectionString = @"Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True";
 
         private void Form_Resize(object sender, EventArgs e)
         {
@@ -36,7 +34,7 @@ namespace AhsapSanatEvi
             string sorgu = "SELECT * FROM TBLFIRMALAR ORDER BY FIRMAAD ASC";
             EkleFirmaListePanel.Controls.Clear();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = DataBaseControl.GetConnection())
             {
                 try
                 {
@@ -88,7 +86,7 @@ namespace AhsapSanatEvi
             }
         }
 
-        private void InitializePlaceholder(TextBox textBox, string placeholder)
+        private void ButonPlaceholder(TextBox textBox, string placeholder)
         {
             textBox.Text = placeholder;
             textBox.ForeColor = Color.Gray;
@@ -110,6 +108,11 @@ namespace AhsapSanatEvi
                     textBox.ForeColor = Color.Gray;
                 }
             };
+        }
+
+        private void TxtBxFirmaAra_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

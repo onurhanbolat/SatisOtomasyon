@@ -18,11 +18,6 @@ namespace AhsapSanatEvi
             InitializeComponent();
         }
 
-        private readonly string connectionString = @"Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True";
-
-        // Babamın Db Kodu: Data Source=BOLAT\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True 
-        // Benim Db Kodum: Data Source=DESKTOP-0MFCG1S\SQLEXPRESS;Initial Catalog=dbAhsapSanatEvi;Integrated Security=True
-
         private void FrmFirmalar_Load(object sender, EventArgs e)
         {
             try
@@ -40,17 +35,19 @@ namespace AhsapSanatEvi
             try
             {
                 FirmaListePanel.Controls.Clear();
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DataBaseControl.GetConnection())
                 {
                     connection.Open();
-                    SqlCommand komut = new SqlCommand("select * from TBLFIRMALAR", connection);
+                    SqlCommand komut = new SqlCommand("SELECT * FROM TBLFIRMALAR", connection);
                     using (SqlDataReader oku = komut.ExecuteReader())
                     {
                         while (oku.Read())
                         {
-                            FirmaListesi arac = new FirmaListesi();
-                            arac.LblListeFirmaAd.Text = oku["FIRMAAD"].ToString();
-                            arac.LblListeFirmaId.Text = "ID: " + oku["FIRMAID"].ToString();
+                            FirmaListesi arac = new FirmaListesi
+                            {
+                                LblListeFirmaAd = { Text = oku["FIRMAAD"].ToString() },
+                                LblListeFirmaId = { Text = "ID: " + oku["FIRMAID"].ToString() }
+                            };
                             FirmaListePanel.Controls.Add(arac);
                         }
                     }
@@ -73,10 +70,10 @@ namespace AhsapSanatEvi
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = DataBaseControl.GetConnection())
                 {
                     connection.Open();
-                    SqlCommand checkCmd = new SqlCommand("select count(*) from TBLFIRMALAR where FIRMAID=@p1 and FIRMAAD=@p2", connection);
+                    SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM TBLFIRMALAR WHERE FIRMAID=@p1 AND FIRMAAD=@p2", connection);
                     checkCmd.Parameters.AddWithValue("@p1", firmaId);
                     checkCmd.Parameters.AddWithValue("@p2", firmaAdi);
 
@@ -103,10 +100,10 @@ namespace AhsapSanatEvi
                 }
                 else
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = DataBaseControl.GetConnection())
                     {
                         connection.Open();
-                        SqlCommand kayit = new SqlCommand("insert into TBLFIRMALAR (FIRMAAD) values (@p1)", connection);
+                        SqlCommand kayit = new SqlCommand("INSERT INTO TBLFIRMALAR (FIRMAAD) VALUES (@p1)", connection);
                         kayit.Parameters.AddWithValue("@p1", firmaAd);
                         kayit.ExecuteNonQuery();
                     }
@@ -138,10 +135,10 @@ namespace AhsapSanatEvi
                     DialogResult result = MessageBox.Show("Bu firmayı silmek istediğinize emin misiniz?", "Silme Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        using (SqlConnection connection = new SqlConnection(connectionString))
+                        using (SqlConnection connection = DataBaseControl.GetConnection())
                         {
                             connection.Open();
-                            SqlCommand sil = new SqlCommand("delete from TBLFIRMALAR where FIRMAID=@p1 and FIRMAAD=@p2", connection);
+                            SqlCommand sil = new SqlCommand("DELETE FROM TBLFIRMALAR WHERE FIRMAID=@p1 AND FIRMAAD=@p2", connection);
                             sil.Parameters.AddWithValue("@p1", firmaId);
                             sil.Parameters.AddWithValue("@p2", firmaAd);
                             sil.ExecuteNonQuery();
@@ -164,10 +161,10 @@ namespace AhsapSanatEvi
             {
                 if (!string.IsNullOrWhiteSpace(TxtBxFirmaID.Text))
                 {
-                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    using (SqlConnection connection = DataBaseControl.GetConnection())
                     {
                         connection.Open();
-                        SqlCommand upd = new SqlCommand("update TBLFIRMALAR set FIRMAAD=@p1 where FIRMAID=@p2", connection);
+                        SqlCommand upd = new SqlCommand("UPDATE TBLFIRMALAR SET FIRMAAD=@p1 WHERE FIRMAID=@p2", connection);
                         upd.Parameters.AddWithValue("@p1", TxtBxFirmaAdı.Text);
                         upd.Parameters.AddWithValue("@p2", TxtBxFirmaID.Text);
                         upd.ExecuteNonQuery();
