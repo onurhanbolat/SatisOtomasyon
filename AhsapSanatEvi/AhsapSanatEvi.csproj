@@ -77,6 +77,12 @@
     <Compile Include="EkleFirmaListesi.Designer.cs">
       <DependentUpon>EkleFirmaListesi.cs</DependentUpon>
     </Compile>
+    <Compile Include="EkleKodListesi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EkleKodListesi.Designer.cs">
+      <DependentUpon>EkleKodListesi.cs</DependentUpon>
+    </Compile>
     <Compile Include="FirmaListesi.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EkleFirmaListesi.resx">
       <DependentUpon>EkleFirmaListesi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EkleKodListesi.resx">
+      <DependentUpon>EkleKodListesi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FirmaListesi.resx">
       <DependentUpon>FirmaListesi.cs</DependentUpon>

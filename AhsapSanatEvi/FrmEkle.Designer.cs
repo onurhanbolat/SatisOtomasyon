@@ -169,6 +169,7 @@ namespace AhsapSanatEvi
             this.BtnKodEkle.Size = new System.Drawing.Size(23, 23);
             this.BtnKodEkle.TabIndex = 7;
             this.BtnKodEkle.UseVisualStyleBackColor = false;
+            this.BtnKodEkle.Click += new System.EventHandler(this.BtnKodEkle_Click);
             // 
             // TxtBxKodEkle
             // 
@@ -185,6 +186,7 @@ namespace AhsapSanatEvi
             // 
             // EkleKodListePanel
             // 
+            this.EkleKodListePanel.AutoScroll = true;
             this.EkleKodListePanel.Location = new System.Drawing.Point(8, 28);
             this.EkleKodListePanel.Name = "EkleKodListePanel";
             this.EkleKodListePanel.Size = new System.Drawing.Size(171, 189);
@@ -212,6 +214,7 @@ namespace AhsapSanatEvi
             this.TxtBxKodAra.Name = "TxtBxKodAra";
             this.TxtBxKodAra.Size = new System.Drawing.Size(145, 25);
             this.TxtBxKodAra.TabIndex = 2;
+            this.TxtBxKodAra.TextChanged += new System.EventHandler(this.TxtBxKodAra_TextChanged);
             // 
             // groupBoxFirmalae
             // 
