@@ -17,16 +17,48 @@ namespace AhsapSanatEvi
         {
             InitializeComponent();
             this.Resize += new EventHandler(Form_Resize);
-            FirmaGetir();
             // TxtBxFirmaAra için placeholder metni ekleyin
-            ButonPlaceholder(TxtBxFirmaAra, "Firma Ara..");
-            ButonPlaceholder(TxtBxKodAra, "Kod Ara..");
-            ButonPlaceholder(TxtBxKodEkle, "Kod Ekle..");
+            TextBoxPlaceholder(TxtBxFirmaAra, "Firma Ara..");
+            TextBoxPlaceholder(TxtBxKodAra, "Kod Ara..");
+            TextBoxPlaceholder(TxtBxKodEkle, "Kod Ekle..");
+            FirmaGetir();
+
+            // TxtBxFirmaAra TextChanged olayını bağlayın
+            TxtBxFirmaAra.TextChanged += new EventHandler(TxtBxFirmaAra_TextChanged_1);
         }
 
         private void Form_Resize(object sender, EventArgs e)
         {
             CenterGroupBox();
+        }
+
+        public void FirmaAra()
+        {
+            string sorgu = "SELECT * FROM TBLFIRMALAR WHERE FIRMAAD LIKE @firmaad ORDER BY FIRMAAD ASC";
+            EkleFirmaListePanel.Controls.Clear();
+
+            using (SqlConnection connection = DataBaseControl.GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand komut = new SqlCommand(sorgu, connection);
+                    komut.Parameters.AddWithValue("@firmaad", "%" + TxtBxFirmaAra.Text + "%");
+                    SqlDataReader oku = komut.ExecuteReader();
+                    while (oku.Read())
+                    {
+                        EkleFirmaListesi arac = new EkleFirmaListesi
+                        {
+                            EkleFirmaListeLabel = { Text = oku["FIRMAAD"].ToString() }
+                        };
+                        EkleFirmaListePanel.Controls.Add(arac);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Veritabanı bağlantısı sırasında bir hata oluştu: " + ex.Message);
+                }
+            }
         }
 
         public void FirmaGetir()
@@ -86,7 +118,7 @@ namespace AhsapSanatEvi
             }
         }
 
-        private void ButonPlaceholder(TextBox textBox, string placeholder)
+        private void TextBoxPlaceholder(TextBox textBox, string placeholder)
         {
             textBox.Text = placeholder;
             textBox.ForeColor = Color.Gray;
@@ -108,11 +140,20 @@ namespace AhsapSanatEvi
                     textBox.ForeColor = Color.Gray;
                 }
             };
+
+            // Placeholder ayarlandıktan sonra TextChanged olayını tetikleyin
+            textBox.TextChanged += (s, e) =>
+            {
+                if (textBox.Text != placeholder)
+                {
+                    FirmaAra();
+                }
+            };
         }
 
-        private void TxtBxFirmaAra_TextChanged(object sender, EventArgs e)
+        private void TxtBxFirmaAra_TextChanged_1(object sender, EventArgs e)
         {
-
+            FirmaAra();
         }
     }
 }

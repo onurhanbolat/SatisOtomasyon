@@ -46,7 +46,7 @@ namespace AhsapSanatEvi
             this.BtnFirmaSec.Size = new System.Drawing.Size(23, 23);
             this.BtnFirmaSec.TabIndex = 0;
             this.BtnFirmaSec.UseVisualStyleBackColor = false;
-            this.BtnFirmaSec.Click += new System.EventHandler(this.button1_Click);
+            this.BtnFirmaSec.Click += new System.EventHandler(this.BtnFirmaSec_Click);
             // 
             // EkleFirmaListeLabel
             // 
