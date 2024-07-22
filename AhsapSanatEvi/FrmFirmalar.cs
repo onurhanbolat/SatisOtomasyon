@@ -16,6 +16,7 @@ namespace AhsapSanatEvi
         public FrmFirmalar()
         {
             InitializeComponent();
+            SetPlaceholder(TxtBxFirmaAraFrm, "Firma Ara..");
         }
 
         private void FrmFirmalar_Load(object sender, EventArgs e)
@@ -27,6 +28,66 @@ namespace AhsapSanatEvi
             catch (Exception ex)
             {
                 MessageBox.Show("Firma listesi yüklenirken bir hata oluştu: " + ex.Message);
+            }
+        }
+
+        private void SetPlaceholder(TextBox textBox, string placeholderText)
+        {
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                textBox.Text = placeholderText;
+                textBox.ForeColor = Color.Gray;
+            }
+
+            textBox.Enter += (s, e) =>
+            {
+                if (textBox.Text == placeholderText)
+                {
+                    textBox.Text = "";
+                    textBox.ForeColor = Color.Black;
+                }
+            };
+
+            textBox.Leave += (s, e) =>
+            {
+                if (string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.Text = placeholderText;
+                    textBox.ForeColor = Color.Gray;
+                    LoadFirmaListesi();
+                    
+                }
+
+            };
+        }
+
+        public void FirmaAra()
+        {
+            string sorgu = "SELECT * FROM TBLFIRMALAR WHERE FIRMAAD LIKE @firmaad";
+            FirmaListePanel.Controls.Clear();
+
+            using (SqlConnection connection = DataBaseControl.GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+                    SqlCommand komut = new SqlCommand(sorgu, connection);
+                    komut.Parameters.AddWithValue("@firmaad", "%" + TxtBxFirmaAraFrm.Text + "%");
+                    SqlDataReader oku = komut.ExecuteReader();
+                    while (oku.Read())
+                    {
+                        FirmaListesi arac = new FirmaListesi
+                        {
+                            LblListeFirmaAd = { Text = oku["FIRMAAD"].ToString() },
+                            LblListeFirmaId = { Text = "ID: " + oku["FIRMAID"].ToString() }
+                        };
+                        FirmaListePanel.Controls.Add(arac);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Veritabanı bağlantısı sırasında bir hata oluştu: " + ex.Message);
+                }
             }
         }
 
@@ -138,14 +199,35 @@ namespace AhsapSanatEvi
                         using (SqlConnection connection = DataBaseControl.GetConnection())
                         {
                             connection.Open();
-                            SqlCommand sil = new SqlCommand("DELETE FROM TBLFIRMALAR WHERE FIRMAID=@p1 AND FIRMAAD=@p2", connection);
-                            sil.Parameters.AddWithValue("@p1", firmaId);
-                            sil.Parameters.AddWithValue("@p2", firmaAd);
-                            sil.ExecuteNonQuery();
+                            SqlTransaction transaction = connection.BeginTransaction();
+
+                            try
+                            {
+                                // TBLCERCEVEKODLARI tablosundan silme
+                                SqlCommand silKodlar = new SqlCommand("DELETE FROM TBLCERCEVEKODLARI WHERE FIRMAADID=@p1", connection, transaction);
+                                silKodlar.Parameters.AddWithValue("@p1", firmaId);
+                                silKodlar.ExecuteNonQuery();
+
+                                // TBLFIRMALAR tablosundan silme
+                                SqlCommand silFirma = new SqlCommand("DELETE FROM TBLFIRMALAR WHERE FIRMAID=@p1 AND FIRMAAD=@p2", connection, transaction);
+                                silFirma.Parameters.AddWithValue("@p1", firmaId);
+                                silFirma.Parameters.AddWithValue("@p2", firmaAd);
+                                silFirma.ExecuteNonQuery();
+
+                                // Transaction başarılıysa işlemleri onayla
+                                transaction.Commit();
+
+                                MessageBox.Show("Kayıt Başarıyla Silinmiştir");
+                                TxtBxFirmaID.Text = "";
+                                LoadFirmaListesi();
+                            }
+                            catch (Exception ex)
+                            {
+                                // Hata oluşursa işlemleri geri al
+                                transaction.Rollback();
+                                MessageBox.Show("Firma silme sırasında bir hata oluştu: " + ex.Message);
+                            }
                         }
-                        MessageBox.Show("Kayıt Başarıyla Silinmiştir");
-                        TxtBxFirmaID.Text = " ";
-                        LoadFirmaListesi();
                     }
                 }
             }
@@ -182,6 +264,11 @@ namespace AhsapSanatEvi
             {
                 MessageBox.Show("Firma güncelleme sırasında bir hata oluştu: " + ex.Message);
             }
+        }
+
+        private void TxtBxFirmaAraFrm_TextChanged(object sender, EventArgs e)
+        {
+            FirmaAra();
         }
     }
 }

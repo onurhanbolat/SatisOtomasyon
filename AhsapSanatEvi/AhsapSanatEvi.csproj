@@ -70,6 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CerceveListesi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CerceveListesi.Designer.cs">
+      <DependentUpon>CerceveListesi.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataBaseControl.cs" />
     <Compile Include="EkleFirmaListesi.cs">
       <SubType>UserControl</SubType>
@@ -115,6 +121,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CerceveListesi.resx">
+      <DependentUpon>CerceveListesi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EkleFirmaListesi.resx">
       <DependentUpon>EkleFirmaListesi.cs</DependentUpon>
     </EmbeddedResource>

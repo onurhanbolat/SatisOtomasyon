@@ -29,41 +29,130 @@ namespace AhsapSanatEvi
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFirmalar));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBoxFirmalae = new System.Windows.Forms.GroupBox();
+            this.PictureBoxAra = new System.Windows.Forms.PictureBox();
+            this.TxtBxFirmaAraFrm = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.TxtBxFirmaID = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.TxtBxFirmaAdı = new System.Windows.Forms.TextBox();
             this.BtnFirmaGuncelle = new System.Windows.Forms.Button();
-            this.LblFirmaAd = new System.Windows.Forms.Label();
             this.BtnFirmaSil = new System.Windows.Forms.Button();
             this.BtnFirmaEkle = new System.Windows.Forms.Button();
-            this.TxtBxFirmaID = new System.Windows.Forms.TextBox();
-            this.LblFirmaID = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.FirmaListePanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBox1.SuspendLayout();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
+            this.groupBoxFirmalae.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // panel1
             // 
-            this.groupBox1.Controls.Add(this.TxtBxFirmaAdı);
-            this.groupBox1.Controls.Add(this.BtnFirmaGuncelle);
-            this.groupBox1.Controls.Add(this.LblFirmaAd);
-            this.groupBox1.Controls.Add(this.BtnFirmaSil);
-            this.groupBox1.Controls.Add(this.BtnFirmaEkle);
-            this.groupBox1.Controls.Add(this.TxtBxFirmaID);
-            this.groupBox1.Controls.Add(this.LblFirmaID);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.groupBox1.Location = new System.Drawing.Point(572, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(309, 537);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.groupBoxFirmalae);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(881, 76);
+            this.panel1.TabIndex = 22;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 71);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(881, 5);
+            this.panel2.TabIndex = 19;
+            // 
+            // groupBoxFirmalae
+            // 
+            this.groupBoxFirmalae.Controls.Add(this.PictureBoxAra);
+            this.groupBoxFirmalae.Controls.Add(this.TxtBxFirmaAraFrm);
+            this.groupBoxFirmalae.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxFirmalae.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.groupBoxFirmalae.Location = new System.Drawing.Point(12, 1);
+            this.groupBoxFirmalae.Name = "groupBoxFirmalae";
+            this.groupBoxFirmalae.Size = new System.Drawing.Size(256, 59);
+            this.groupBoxFirmalae.TabIndex = 16;
+            this.groupBoxFirmalae.TabStop = false;
+            // 
+            // PictureBoxAra
+            // 
+            this.PictureBoxAra.Image = ((System.Drawing.Image)(resources.GetObject("PictureBoxAra.Image")));
+            this.PictureBoxAra.Location = new System.Drawing.Point(228, 26);
+            this.PictureBoxAra.Name = "PictureBoxAra";
+            this.PictureBoxAra.Size = new System.Drawing.Size(22, 22);
+            this.PictureBoxAra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureBoxAra.TabIndex = 2;
+            this.PictureBoxAra.TabStop = false;
+            // 
+            // TxtBxFirmaAraFrm
+            // 
+            this.TxtBxFirmaAraFrm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtBxFirmaAraFrm.BackColor = System.Drawing.Color.White;
+            this.TxtBxFirmaAraFrm.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxFirmaAraFrm.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBxFirmaAraFrm.Location = new System.Drawing.Point(6, 24);
+            this.TxtBxFirmaAraFrm.Multiline = true;
+            this.TxtBxFirmaAraFrm.Name = "TxtBxFirmaAraFrm";
+            this.TxtBxFirmaAraFrm.Size = new System.Drawing.Size(216, 25);
+            this.TxtBxFirmaAraFrm.TabIndex = 1;
+            this.TxtBxFirmaAraFrm.TextChanged += new System.EventHandler(this.TxtBxFirmaAraFrm_TextChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.groupBox2.Controls.Add(this.TxtBxFirmaID);
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
+            this.groupBox2.Location = new System.Drawing.Point(27, 123);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(276, 67);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Firma ID";
+            // 
+            // TxtBxFirmaID
+            // 
+            this.TxtBxFirmaID.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TxtBxFirmaID.BackColor = System.Drawing.Color.White;
+            this.TxtBxFirmaID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxFirmaID.Cursor = System.Windows.Forms.Cursors.No;
+            this.TxtBxFirmaID.Enabled = false;
+            this.TxtBxFirmaID.Location = new System.Drawing.Point(12, 32);
+            this.TxtBxFirmaID.Name = "TxtBxFirmaID";
+            this.TxtBxFirmaID.ReadOnly = true;
+            this.TxtBxFirmaID.Size = new System.Drawing.Size(258, 26);
+            this.TxtBxFirmaID.TabIndex = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.groupBox3.Controls.Add(this.TxtBxFirmaAdı);
+            this.groupBox3.Location = new System.Drawing.Point(27, 196);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(276, 67);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Firma Adı";
             // 
             // TxtBxFirmaAdı
             // 
             this.TxtBxFirmaAdı.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.TxtBxFirmaAdı.Location = new System.Drawing.Point(18, 258);
+            this.TxtBxFirmaAdı.BackColor = System.Drawing.Color.White;
+            this.TxtBxFirmaAdı.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxFirmaAdı.Location = new System.Drawing.Point(12, 32);
             this.TxtBxFirmaAdı.Name = "TxtBxFirmaAdı";
-            this.TxtBxFirmaAdı.Size = new System.Drawing.Size(276, 33);
+            this.TxtBxFirmaAdı.Size = new System.Drawing.Size(258, 26);
             this.TxtBxFirmaAdı.TabIndex = 7;
             // 
             // BtnFirmaGuncelle
@@ -75,23 +164,12 @@ namespace AhsapSanatEvi
             this.BtnFirmaGuncelle.FlatAppearance.BorderSize = 3;
             this.BtnFirmaGuncelle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFirmaGuncelle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnFirmaGuncelle.Location = new System.Drawing.Point(100, 373);
+            this.BtnFirmaGuncelle.Location = new System.Drawing.Point(110, 337);
             this.BtnFirmaGuncelle.Name = "BtnFirmaGuncelle";
             this.BtnFirmaGuncelle.Size = new System.Drawing.Size(117, 42);
             this.BtnFirmaGuncelle.TabIndex = 4;
             this.BtnFirmaGuncelle.Text = "Güncelle";
             this.BtnFirmaGuncelle.UseVisualStyleBackColor = false;
-            this.BtnFirmaGuncelle.Click += new System.EventHandler(this.BtnFirmaGuncelle_Click);
-            // 
-            // LblFirmaAd
-            // 
-            this.LblFirmaAd.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblFirmaAd.AutoSize = true;
-            this.LblFirmaAd.Location = new System.Drawing.Point(109, 220);
-            this.LblFirmaAd.Name = "LblFirmaAd";
-            this.LblFirmaAd.Size = new System.Drawing.Size(95, 25);
-            this.LblFirmaAd.TabIndex = 6;
-            this.LblFirmaAd.Text = "Firma Adı";
             // 
             // BtnFirmaSil
             // 
@@ -102,13 +180,12 @@ namespace AhsapSanatEvi
             this.BtnFirmaSil.FlatAppearance.BorderSize = 3;
             this.BtnFirmaSil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFirmaSil.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnFirmaSil.Location = new System.Drawing.Point(175, 319);
+            this.BtnFirmaSil.Location = new System.Drawing.Point(185, 283);
             this.BtnFirmaSil.Name = "BtnFirmaSil";
             this.BtnFirmaSil.Size = new System.Drawing.Size(77, 42);
             this.BtnFirmaSil.TabIndex = 5;
             this.BtnFirmaSil.Text = "Sil";
             this.BtnFirmaSil.UseVisualStyleBackColor = false;
-            this.BtnFirmaSil.Click += new System.EventHandler(this.BtnFirmaSil_Click);
             // 
             // BtnFirmaEkle
             // 
@@ -119,73 +196,91 @@ namespace AhsapSanatEvi
             this.BtnFirmaEkle.FlatAppearance.BorderSize = 3;
             this.BtnFirmaEkle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFirmaEkle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnFirmaEkle.Location = new System.Drawing.Point(66, 319);
+            this.BtnFirmaEkle.Location = new System.Drawing.Point(76, 283);
             this.BtnFirmaEkle.Name = "BtnFirmaEkle";
             this.BtnFirmaEkle.Size = new System.Drawing.Size(77, 42);
             this.BtnFirmaEkle.TabIndex = 3;
             this.BtnFirmaEkle.Text = "Ekle";
             this.BtnFirmaEkle.UseVisualStyleBackColor = false;
-            this.BtnFirmaEkle.Click += new System.EventHandler(this.BtnFirmaEkle_Click);
             // 
-            // TxtBxFirmaID
+            // panel3
             // 
-            this.TxtBxFirmaID.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.TxtBxFirmaID.Cursor = System.Windows.Forms.Cursors.No;
-            this.TxtBxFirmaID.Enabled = false;
-            this.TxtBxFirmaID.Location = new System.Drawing.Point(18, 178);
-            this.TxtBxFirmaID.Name = "TxtBxFirmaID";
-            this.TxtBxFirmaID.ReadOnly = true;
-            this.TxtBxFirmaID.Size = new System.Drawing.Size(276, 33);
-            this.TxtBxFirmaID.TabIndex = 1;
-            // 
-            // LblFirmaID
-            // 
-            this.LblFirmaID.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.LblFirmaID.AutoSize = true;
-            this.LblFirmaID.Location = new System.Drawing.Point(115, 140);
-            this.LblFirmaID.Name = "LblFirmaID";
-            this.LblFirmaID.Size = new System.Drawing.Size(86, 25);
-            this.LblFirmaID.TabIndex = 0;
-            this.LblFirmaID.Text = "Firma ID";
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Controls.Add(this.groupBox2);
+            this.panel3.Controls.Add(this.BtnFirmaEkle);
+            this.panel3.Controls.Add(this.groupBox3);
+            this.panel3.Controls.Add(this.BtnFirmaSil);
+            this.panel3.Controls.Add(this.BtnFirmaGuncelle);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(555, 76);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(326, 461);
+            this.panel3.TabIndex = 26;
             // 
             // FirmaListePanel
             // 
             this.FirmaListePanel.AutoScroll = true;
+            this.FirmaListePanel.BackColor = System.Drawing.Color.White;
             this.FirmaListePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FirmaListePanel.Location = new System.Drawing.Point(0, 0);
+            this.FirmaListePanel.Location = new System.Drawing.Point(0, 76);
             this.FirmaListePanel.Name = "FirmaListePanel";
-            this.FirmaListePanel.Size = new System.Drawing.Size(572, 537);
-            this.FirmaListePanel.TabIndex = 1;
+            this.FirmaListePanel.Size = new System.Drawing.Size(555, 461);
+            this.FirmaListePanel.TabIndex = 27;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(5, 461);
+            this.panel4.TabIndex = 10;
             // 
             // FrmFirmalar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(881, 537);
             this.Controls.Add(this.FirmaListePanel);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FrmFirmalar";
             this.Text = "FrmFirmalar";
             this.Load += new System.EventHandler(this.FrmFirmalar_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.groupBoxFirmalae.ResumeLayout(false);
+            this.groupBoxFirmalae.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label LblFirmaID;
-        private System.Windows.Forms.Button BtnFirmaEkle;
-        private System.Windows.Forms.Button BtnFirmaSil;
-        private System.Windows.Forms.Label LblFirmaAd;
-        private System.Windows.Forms.Button BtnFirmaGuncelle;
-        private System.Windows.Forms.FlowLayoutPanel FirmaListePanel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.GroupBox groupBoxFirmalae;
+        private System.Windows.Forms.PictureBox PictureBoxAra;
+        private System.Windows.Forms.TextBox TxtBxFirmaAraFrm;
+        private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.TextBox TxtBxFirmaID;
+        private System.Windows.Forms.GroupBox groupBox3;
         public System.Windows.Forms.TextBox TxtBxFirmaAdı;
+        private System.Windows.Forms.Button BtnFirmaGuncelle;
+        private System.Windows.Forms.Button BtnFirmaSil;
+        private System.Windows.Forms.Button BtnFirmaEkle;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.FlowLayoutPanel FirmaListePanel;
+        private System.Windows.Forms.Panel panel4;
     }
 }

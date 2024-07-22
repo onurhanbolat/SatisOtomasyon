@@ -74,7 +74,7 @@ namespace AhsapSanatEvi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.Controls.Add(this.LblListeFirmaAd);
             this.Controls.Add(this.LblListeFirmaId);
             this.Controls.Add(this.panel1);

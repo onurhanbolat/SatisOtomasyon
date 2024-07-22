@@ -31,7 +31,7 @@ namespace AhsapSanatEvi
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EkleKodListesi));
             this.EkleKodListeLabel = new System.Windows.Forms.Label();
-            this.BtnFirmaSec = new System.Windows.Forms.Button();
+            this.BtnKodSec = new System.Windows.Forms.Button();
             this.BtnKodListeSil = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -46,18 +46,19 @@ namespace AhsapSanatEvi
             this.EkleKodListeLabel.TabIndex = 3;
             this.EkleKodListeLabel.Text = "LABEL";
             // 
-            // BtnFirmaSec
+            // BtnKodSec
             // 
-            this.BtnFirmaSec.BackColor = System.Drawing.Color.White;
-            this.BtnFirmaSec.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnFirmaSec.FlatAppearance.BorderSize = 0;
-            this.BtnFirmaSec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFirmaSec.Image = ((System.Drawing.Image)(resources.GetObject("BtnFirmaSec.Image")));
-            this.BtnFirmaSec.Location = new System.Drawing.Point(2, 2);
-            this.BtnFirmaSec.Name = "BtnFirmaSec";
-            this.BtnFirmaSec.Size = new System.Drawing.Size(23, 23);
-            this.BtnFirmaSec.TabIndex = 2;
-            this.BtnFirmaSec.UseVisualStyleBackColor = false;
+            this.BtnKodSec.BackColor = System.Drawing.Color.White;
+            this.BtnKodSec.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnKodSec.FlatAppearance.BorderSize = 0;
+            this.BtnKodSec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnKodSec.Image = ((System.Drawing.Image)(resources.GetObject("BtnKodSec.Image")));
+            this.BtnKodSec.Location = new System.Drawing.Point(2, 2);
+            this.BtnKodSec.Name = "BtnKodSec";
+            this.BtnKodSec.Size = new System.Drawing.Size(23, 23);
+            this.BtnKodSec.TabIndex = 2;
+            this.BtnKodSec.UseVisualStyleBackColor = false;
+            this.BtnKodSec.Click += new System.EventHandler(this.BtnKodSec_Click);
             // 
             // BtnKodListeSil
             // 
@@ -66,7 +67,7 @@ namespace AhsapSanatEvi
             this.BtnKodListeSil.FlatAppearance.BorderSize = 0;
             this.BtnKodListeSil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnKodListeSil.Image = ((System.Drawing.Image)(resources.GetObject("BtnKodListeSil.Image")));
-            this.BtnKodListeSil.Location = new System.Drawing.Point(112, 2);
+            this.BtnKodListeSil.Location = new System.Drawing.Point(94, 2);
             this.BtnKodListeSil.Name = "BtnKodListeSil";
             this.BtnKodListeSil.Size = new System.Drawing.Size(23, 23);
             this.BtnKodListeSil.TabIndex = 4;
@@ -79,9 +80,9 @@ namespace AhsapSanatEvi
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.BtnKodListeSil);
             this.Controls.Add(this.EkleKodListeLabel);
-            this.Controls.Add(this.BtnFirmaSec);
+            this.Controls.Add(this.BtnKodSec);
             this.Name = "EkleKodListesi";
-            this.Size = new System.Drawing.Size(138, 26);
+            this.Size = new System.Drawing.Size(119, 26);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -90,7 +91,7 @@ namespace AhsapSanatEvi
         #endregion
 
         public System.Windows.Forms.Label EkleKodListeLabel;
-        private System.Windows.Forms.Button BtnFirmaSec;
+        private System.Windows.Forms.Button BtnKodSec;
         private System.Windows.Forms.Button BtnKodListeSil;
     }
 }

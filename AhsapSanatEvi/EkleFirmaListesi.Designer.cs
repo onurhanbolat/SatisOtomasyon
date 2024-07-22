@@ -66,7 +66,7 @@ namespace AhsapSanatEvi
             this.Controls.Add(this.EkleFirmaListeLabel);
             this.Controls.Add(this.BtnFirmaSec);
             this.Name = "EkleFirmaListesi";
-            this.Size = new System.Drawing.Size(165, 26);
+            this.Size = new System.Drawing.Size(143, 26);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -71,10 +71,10 @@ namespace AhsapSanatEvi
 
         private void BtnCerceveler_Click(object sender, EventArgs e)
         {
-            FrmCerceveler cerceveForm = Application.OpenForms.OfType<FrmCerceveler>().FirstOrDefault();
+            formCerceveler cerceveForm = Application.OpenForms.OfType<formCerceveler>().FirstOrDefault();
             if (cerceveForm == null)
             {
-                cerceveForm = new FrmCerceveler();
+                cerceveForm = new formCerceveler();
                 cerceveForm.TopLevel = false;
                 cerceveForm.Dock = DockStyle.Fill;
                 this.AnaMenuArkaPanel.Controls.Add(cerceveForm);
