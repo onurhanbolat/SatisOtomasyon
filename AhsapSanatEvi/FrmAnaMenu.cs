@@ -141,10 +141,13 @@ namespace AhsapSanatEvi
         private void BtnCerceveler_Click(object sender, EventArgs e)
         {
             DateTime currentChangeTime = GetLastDatabaseChangeTime();
+            DateTime currentChangeTimeFirma = GetLastFirmalarDatabaseChangeTime();
+
+            DateTime lastChangeTime = new[] { currentChangeTime, currentChangeTimeFirma }.Max();
 
             formCerceveler cerceveForm = Application.OpenForms.OfType<formCerceveler>().FirstOrDefault();
 
-            if (currentChangeTime > lastCheckedTimeCerceve)
+            if (lastChangeTime > lastCheckedTimeCerceve)
             {
                 // Eğer veritabanında değişiklik olmuşsa, formu kapat ve yeniden aç
                 if (cerceveForm != null)
@@ -159,7 +162,7 @@ namespace AhsapSanatEvi
                 cerceveForm.BringToFront();
 
                 // Son kontrol zamanını güncelle
-                lastCheckedTimeCerceve = currentChangeTime;
+                lastCheckedTimeCerceve = lastChangeTime;
             }
             else
             {

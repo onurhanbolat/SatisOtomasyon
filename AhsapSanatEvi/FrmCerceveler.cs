@@ -14,15 +14,33 @@ namespace AhsapSanatEvi
 {
     public partial class formCerceveler : Form
     {
+        private Timer aramaZaman;
+
         public formCerceveler()
         {
             InitializeComponent();
             InitializePlaceholderText();
             CerceveGetir();
+            AramaZamanlayıcısı();
+        }
+        private void AramaZamanlayıcısı()
+        {
+            aramaZaman = new Timer();
+            aramaZaman.Interval = 200; // 500 ms gecikme
+            aramaZaman.Tick += Arama;
+        }
+
+        private void Arama(object sender, EventArgs e)
+        {
+            aramaZaman.Stop(); // Timer'ı durdur
+            string firmaAd = TxtBxFirmaAraCrc.Text != "Firma Adı Girin.." ? TxtBxFirmaAraCrc.Text : "";
+            string cerceveKod = TxtBxKodAraCrc.Text != "Kod Girin.." ? TxtBxKodAraCrc.Text : "";
+            string aciklama = TxtBxAnahtarKelimeAraCrc.Text != "Anahtar Kelime Girin.." ? TxtBxAnahtarKelimeAraCrc.Text : "";
+            CerceveGetir(firmaAd, cerceveKod, aciklama);
         }
 
 
-        public void CerceveGetir()
+        public void CerceveGetir(string firmaAd = "", string cerceveKod = "", string aciklama = "")
         {
             try
             {
@@ -31,20 +49,28 @@ namespace AhsapSanatEvi
                 {
                     connection.Open();
                     string sorgu = @"
-                SELECT 
-                    f.FIRMAAD AS FirmaAd, 
-                    k.CERCEVEKOD AS CerceveKod, 
-                    c.CERCEVEACIKLAMA AS Aciklama, 
-                    c.BIRIMSATISFIYATI AS BirimSatisFiyati,
-                    c.URUNRESMI AS UrunResmi
-                FROM 
-                    TBLCERCEVELER c
-                INNER JOIN 
-                    TBLFIRMALAR f ON c.FIRMAADID = f.FIRMAID
-                INNER JOIN 
-                    TBLCERCEVEKODLARI k ON c.CERCEVEKODID = k.KODID";
+                    SELECT 
+                        f.FIRMAAD AS FirmaAd, 
+                        k.CERCEVEKOD AS CerceveKod, 
+                        c.CERCEVEACIKLAMA AS Aciklama, 
+                        c.BIRIMSATISFIYATI AS BirimSatisFiyati,
+                        c.URUNRESMI AS UrunResmi
+                    FROM 
+                        TBLCERCEVELER c
+                    INNER JOIN 
+                        TBLFIRMALAR f ON c.FIRMAADID = f.FIRMAID
+                    INNER JOIN 
+                        TBLCERCEVEKODLARI k ON c.CERCEVEKODID = k.KODID
+                    WHERE 
+                        (@FirmaAd = '' OR f.FIRMAAD LIKE '%' + @FirmaAd + '%') AND
+                        (@CerceveKod = '' OR k.CERCEVEKOD LIKE '%' + @CerceveKod + '%') AND
+                        (@Aciklama = '' OR c.CERCEVEACIKLAMA LIKE '%' + @Aciklama + '%')";
 
                     SqlCommand komut = new SqlCommand(sorgu, connection);
+                    komut.Parameters.AddWithValue("@FirmaAd", firmaAd);
+                    komut.Parameters.AddWithValue("@CerceveKod", cerceveKod);
+                    komut.Parameters.AddWithValue("@Aciklama", aciklama);
+
                     using (SqlDataReader oku = komut.ExecuteReader())
                     {
                         while (oku.Read())
@@ -77,7 +103,7 @@ namespace AhsapSanatEvi
                                 }
                             }
 
-                            // Yeni `CerceveListesi` nesnesini panelin kontrol listesine ekle
+                            // Yeni CerceveListesi nesnesini panelin kontrol listesine ekle
                             CerceveListePanel.Controls.Add(arac);
                         }
                     }
@@ -95,7 +121,7 @@ namespace AhsapSanatEvi
             SetPlaceholder(TxtBxKodAraCrc, "Kod Girin..");
             SetPlaceholder(TxtBxAnahtarKelimeAraCrc, "Anahtar Kelime Girin..");
         }
-      
+
         private void SetPlaceholder(TextBox textBox, string placeholderText)
         {
             if (string.IsNullOrEmpty(textBox.Text))
@@ -121,22 +147,27 @@ namespace AhsapSanatEvi
                     textBox.ForeColor = Color.Gray;
                 }
             };
+
+            textBox.TextChanged += (s, e) =>
+            {
+                if (textBox.Text != placeholderText)
+                {
+                    aramaZaman.Stop();
+                    aramaZaman.Start();
+                }
+            };
         }
-    
+
         private void TxtBxFirmaAraCrc_TextChanged(object sender, EventArgs e)
         {
-          
         }
 
         private void TxtBxKodAraCrc_TextChanged(object sender, EventArgs e)
         {
-           
         }
 
         private void TxtBxAnahtarKelimeAraCrc_TextChanged(object sender, EventArgs e)
         {
-           
         }
-
     }
 }

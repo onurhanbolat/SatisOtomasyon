@@ -257,8 +257,8 @@ namespace AhsapSanatEvi
                     {
                         connection.Open();
                         SqlCommand upd = new SqlCommand("UPDATE TBLFIRMALAR SET FIRMAAD=@p1 WHERE FIRMAID=@p2", connection);
-                        upd.Parameters.AddWithValue("@p1", TxtBxFirmaAdı.Text);
-                        upd.Parameters.AddWithValue("@p2", TxtBxFirmaID.Text);
+                        upd.Parameters.AddWithValue("@p1", TxtBxFirmaAdı.Text.ToUpper());
+                        upd.Parameters.AddWithValue("@p2", TxtBxFirmaID.Text.ToUpper());
                         upd.ExecuteNonQuery();
                     }
                     MessageBox.Show("Kayıt Başarıyla Güncellenmiştir");
