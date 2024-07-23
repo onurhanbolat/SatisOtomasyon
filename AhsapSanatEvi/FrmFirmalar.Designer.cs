@@ -43,8 +43,8 @@ namespace AhsapSanatEvi
             this.BtnFirmaSil = new System.Windows.Forms.Button();
             this.BtnFirmaEkle = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.FirmaListePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.FirmaListePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.groupBoxFirmalae.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra)).BeginInit();
@@ -154,6 +154,7 @@ namespace AhsapSanatEvi
             this.TxtBxFirmaAdı.Name = "TxtBxFirmaAdı";
             this.TxtBxFirmaAdı.Size = new System.Drawing.Size(258, 26);
             this.TxtBxFirmaAdı.TabIndex = 7;
+            this.TxtBxFirmaAdı.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBxFirmaAdı_KeyDown_1);
             // 
             // BtnFirmaGuncelle
             // 
@@ -170,6 +171,7 @@ namespace AhsapSanatEvi
             this.BtnFirmaGuncelle.TabIndex = 4;
             this.BtnFirmaGuncelle.Text = "Güncelle";
             this.BtnFirmaGuncelle.UseVisualStyleBackColor = false;
+            this.BtnFirmaGuncelle.Click += new System.EventHandler(this.BtnFirmaGuncelle_Click);
             // 
             // BtnFirmaSil
             // 
@@ -186,6 +188,7 @@ namespace AhsapSanatEvi
             this.BtnFirmaSil.TabIndex = 5;
             this.BtnFirmaSil.Text = "Sil";
             this.BtnFirmaSil.UseVisualStyleBackColor = false;
+            this.BtnFirmaSil.Click += new System.EventHandler(this.BtnFirmaSil_Click);
             // 
             // BtnFirmaEkle
             // 
@@ -202,6 +205,7 @@ namespace AhsapSanatEvi
             this.BtnFirmaEkle.TabIndex = 3;
             this.BtnFirmaEkle.Text = "Ekle";
             this.BtnFirmaEkle.UseVisualStyleBackColor = false;
+            this.BtnFirmaEkle.Click += new System.EventHandler(this.BtnFirmaEkle_Click);
             // 
             // panel3
             // 
@@ -218,6 +222,15 @@ namespace AhsapSanatEvi
             this.panel3.Size = new System.Drawing.Size(326, 461);
             this.panel3.TabIndex = 26;
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(5, 461);
+            this.panel4.TabIndex = 10;
+            // 
             // FirmaListePanel
             // 
             this.FirmaListePanel.AutoScroll = true;
@@ -227,15 +240,6 @@ namespace AhsapSanatEvi
             this.FirmaListePanel.Name = "FirmaListePanel";
             this.FirmaListePanel.Size = new System.Drawing.Size(555, 461);
             this.FirmaListePanel.TabIndex = 27;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(5, 461);
-            this.panel4.TabIndex = 10;
             // 
             // FrmFirmalar
             // 

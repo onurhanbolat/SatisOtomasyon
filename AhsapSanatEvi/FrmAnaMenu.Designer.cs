@@ -242,7 +242,6 @@ namespace AhsapSanatEvi
             this.BtnEkleUrun.TabIndex = 3;
             this.BtnEkleUrun.Text = "Ürün";
             this.BtnEkleUrun.UseVisualStyleBackColor = false;
-            this.BtnEkleUrun.Click += new System.EventHandler(this.BtnEkleUrun_Click);
             // 
             // BtnSepet
             // 

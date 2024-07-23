@@ -17,7 +17,9 @@ namespace AhsapSanatEvi
         {
             InitializeComponent();
             SetPlaceholder(TxtBxFirmaAraFrm, "Firma Ara..");
+            TxtBxFirmaAdı.KeyDown += TxtBxFirmaAdı_KeyDown;
         }
+
 
         private void FrmFirmalar_Load(object sender, EventArgs e)
         {
@@ -55,7 +57,7 @@ namespace AhsapSanatEvi
                     textBox.Text = placeholderText;
                     textBox.ForeColor = Color.Gray;
                     LoadFirmaListesi();
-                    
+
                 }
 
             };
@@ -182,6 +184,7 @@ namespace AhsapSanatEvi
 
         private void BtnFirmaSil_Click(object sender, EventArgs e)
         {
+            FrmEkle frm = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
             try
             {
                 string firmaId = TxtBxFirmaID.Text;
@@ -220,6 +223,12 @@ namespace AhsapSanatEvi
                                 MessageBox.Show("Kayıt Başarıyla Silinmiştir");
                                 TxtBxFirmaID.Text = "";
                                 LoadFirmaListesi();
+
+                                // `FrmEkle` formu açık mı kontrol et
+                                if (frm != null)
+                                {
+                                    frm.FirmaGetir(); // `FrmEkle` formu varsa `FirmaGetir` metodunu çağır
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -236,6 +245,7 @@ namespace AhsapSanatEvi
                 MessageBox.Show("Firma silme sırasında bir hata oluştu: " + ex.Message);
             }
         }
+
 
         private void BtnFirmaGuncelle_Click(object sender, EventArgs e)
         {
@@ -269,6 +279,52 @@ namespace AhsapSanatEvi
         private void TxtBxFirmaAraFrm_TextChanged(object sender, EventArgs e)
         {
             FirmaAra();
+        }
+        private void TxtBxFirmaAdı_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Enter tuşunun varsayılan davranışını engelle
+
+                string firmaId = TxtBxFirmaID.Text.Trim();
+                string firmaAdı = TxtBxFirmaAdı.Text.Trim();
+                string placeholder = "Firma Adı";
+
+                if (firmaAdı == placeholder)
+                {
+                    firmaAdı = string.Empty;
+                }
+
+                if (!string.IsNullOrEmpty(firmaId))
+                {
+                    // Güncelleme işlemi
+                    if (!string.IsNullOrEmpty(firmaAdı))
+                    {
+                        BtnFirmaGuncelle.PerformClick(); // Güncelleme butonuna tıklama işlemi tetiklenir
+                    }
+                    else
+                    {
+                        MessageBox.Show("Firma adı boş olamaz!");
+                    }
+                }
+                else
+                {
+                    // Ekleme işlemi
+                    if (!string.IsNullOrEmpty(firmaAdı))
+                    {
+                        BtnFirmaEkle.PerformClick(); // Ekleme butonuna tıklama işlemi tetiklenir
+                    }
+                    else
+                    {
+                        MessageBox.Show("Firma adı boş olamaz!");
+                    }
+                }
+            }
+        }
+
+        private void TxtBxFirmaAdı_KeyDown_1(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

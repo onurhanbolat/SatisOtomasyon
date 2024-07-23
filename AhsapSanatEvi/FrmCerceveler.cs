@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace AhsapSanatEvi
 {
@@ -19,6 +20,7 @@ namespace AhsapSanatEvi
             InitializePlaceholderText();
             CerceveGetir();
         }
+
 
         public void CerceveGetir()
         {
@@ -33,7 +35,8 @@ namespace AhsapSanatEvi
                     f.FIRMAAD AS FirmaAd, 
                     k.CERCEVEKOD AS CerceveKod, 
                     c.CERCEVEACIKLAMA AS Aciklama, 
-                    c.BIRIMSATISFIYATI AS BirimSatisFiyati
+                    c.BIRIMSATISFIYATI AS BirimSatisFiyati,
+                    c.URUNRESMI AS UrunResmi
                 FROM 
                     TBLCERCEVELER c
                 INNER JOIN 
@@ -46,13 +49,35 @@ namespace AhsapSanatEvi
                     {
                         while (oku.Read())
                         {
+                            // Yeni CerceveListesi nesnesi oluştur
                             CerceveListesi arac = new CerceveListesi
                             {
-                                LblCerceveKod = { Text = "Kod: " + oku["CerceveKod"].ToString() },
-                                LblFirmaAd = { Text = "Firma Adı: " + oku["FirmaAd"].ToString() },
-                                LblAciklama = { Text = "Açıklama: " + oku["Aciklama"].ToString() },
-                                LblBirimSatisFiyat = { Text = "Birim Satış Fiyatı: " + oku["BirimSatisFiyati"].ToString() }
+                                LblCerceveKod = { Text = oku["CerceveKod"].ToString() },
+                                LblFirmaAd = { Text = oku["FirmaAd"].ToString() },
+                                LblAciklama = { Text = oku["Aciklama"].ToString() },
+                                LblBirimSatisFiyat = { Text = oku["BirimSatisFiyati"].ToString() }
                             };
+
+                            // Resmi base64 string'inden bitmap'e dönüştür
+                            string base64Resim = oku["UrunResmi"].ToString();
+                            if (!string.IsNullOrWhiteSpace(base64Resim))
+                            {
+                                try
+                                {
+                                    byte[] resimData = Convert.FromBase64String(base64Resim);
+                                    using (MemoryStream ms = new MemoryStream(resimData))
+                                    {
+                                        Bitmap bitmap = new Bitmap(ms);
+                                        arac.PictureBoxİmageCerceve.Image = bitmap;
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("Resim dönüştürme sırasında bir hata oluştu: " + ex.Message);
+                                }
+                            }
+
+                            // Yeni `CerceveListesi` nesnesini panelin kontrol listesine ekle
                             CerceveListePanel.Controls.Add(arac);
                         }
                     }

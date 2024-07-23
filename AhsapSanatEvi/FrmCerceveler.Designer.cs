@@ -180,6 +180,7 @@ namespace AhsapSanatEvi
             // CerceveListePanel
             // 
             this.CerceveListePanel.AutoScroll = true;
+            this.CerceveListePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CerceveListePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CerceveListePanel.Location = new System.Drawing.Point(0, 76);
             this.CerceveListePanel.Name = "CerceveListePanel";
@@ -225,7 +226,7 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.PictureBox PictureBoxAra2;
         private System.Windows.Forms.TextBox TxtBxKodAraCrc;
-        private System.Windows.Forms.FlowLayoutPanel CerceveListePanel;
         private System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.FlowLayoutPanel CerceveListePanel;
     }
 }

@@ -147,14 +147,14 @@ namespace AhsapSanatEvi
             // 
             this.groupBoxKodlar.Controls.Add(this.BtnKodEkle);
             this.groupBoxKodlar.Controls.Add(this.TxtBxKodEkle);
+            this.groupBoxKodlar.Controls.Add(this.TxtBxKodAra);
             this.groupBoxKodlar.Controls.Add(this.EkleKodListePanel);
             this.groupBoxKodlar.Controls.Add(this.PictureBoxAra2);
-            this.groupBoxKodlar.Controls.Add(this.TxtBxKodAra);
             this.groupBoxKodlar.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxKodlar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBoxKodlar.Location = new System.Drawing.Point(496, 79);
+            this.groupBoxKodlar.Location = new System.Drawing.Point(324, 79);
             this.groupBoxKodlar.Name = "groupBoxKodlar";
-            this.groupBoxKodlar.Size = new System.Drawing.Size(217, 351);
+            this.groupBoxKodlar.Size = new System.Drawing.Size(256, 351);
             this.groupBoxKodlar.TabIndex = 12;
             this.groupBoxKodlar.TabStop = false;
             this.groupBoxKodlar.Text = "Kodlar";
@@ -165,7 +165,7 @@ namespace AhsapSanatEvi
             this.BtnKodEkle.FlatAppearance.BorderSize = 0;
             this.BtnKodEkle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnKodEkle.Image = ((System.Drawing.Image)(resources.GetObject("BtnKodEkle.Image")));
-            this.BtnKodEkle.Location = new System.Drawing.Point(185, 279);
+            this.BtnKodEkle.Location = new System.Drawing.Point(224, 279);
             this.BtnKodEkle.Name = "BtnKodEkle";
             this.BtnKodEkle.Size = new System.Drawing.Size(23, 23);
             this.BtnKodEkle.TabIndex = 7;
@@ -179,10 +179,10 @@ namespace AhsapSanatEvi
             this.TxtBxKodEkle.BackColor = System.Drawing.Color.White;
             this.TxtBxKodEkle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtBxKodEkle.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtBxKodEkle.Location = new System.Drawing.Point(8, 279);
+            this.TxtBxKodEkle.Location = new System.Drawing.Point(6, 279);
             this.TxtBxKodEkle.Multiline = true;
             this.TxtBxKodEkle.Name = "TxtBxKodEkle";
-            this.TxtBxKodEkle.Size = new System.Drawing.Size(170, 25);
+            this.TxtBxKodEkle.Size = new System.Drawing.Size(209, 25);
             this.TxtBxKodEkle.TabIndex = 5;
             // 
             // EkleKodListePanel
@@ -190,13 +190,13 @@ namespace AhsapSanatEvi
             this.EkleKodListePanel.AutoScroll = true;
             this.EkleKodListePanel.Location = new System.Drawing.Point(8, 28);
             this.EkleKodListePanel.Name = "EkleKodListePanel";
-            this.EkleKodListePanel.Size = new System.Drawing.Size(203, 237);
+            this.EkleKodListePanel.Size = new System.Drawing.Size(240, 237);
             this.EkleKodListePanel.TabIndex = 4;
             // 
             // PictureBoxAra2
             // 
             this.PictureBoxAra2.Image = ((System.Drawing.Image)(resources.GetObject("PictureBoxAra2.Image")));
-            this.PictureBoxAra2.Location = new System.Drawing.Point(187, 318);
+            this.PictureBoxAra2.Location = new System.Drawing.Point(226, 321);
             this.PictureBoxAra2.Name = "PictureBoxAra2";
             this.PictureBoxAra2.Size = new System.Drawing.Size(22, 22);
             this.PictureBoxAra2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -210,21 +210,21 @@ namespace AhsapSanatEvi
             this.TxtBxKodAra.BackColor = System.Drawing.Color.White;
             this.TxtBxKodAra.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtBxKodAra.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtBxKodAra.Location = new System.Drawing.Point(8, 316);
+            this.TxtBxKodAra.Location = new System.Drawing.Point(6, 319);
             this.TxtBxKodAra.Multiline = true;
             this.TxtBxKodAra.Name = "TxtBxKodAra";
-            this.TxtBxKodAra.Size = new System.Drawing.Size(170, 25);
+            this.TxtBxKodAra.Size = new System.Drawing.Size(216, 25);
             this.TxtBxKodAra.TabIndex = 2;
             this.TxtBxKodAra.TextChanged += new System.EventHandler(this.TxtBxKodAra_TextChanged);
             // 
             // groupBoxFirmalae
             // 
-            this.groupBoxFirmalae.Controls.Add(this.EkleFirmaListePanel);
             this.groupBoxFirmalae.Controls.Add(this.PictureBoxAra);
+            this.groupBoxFirmalae.Controls.Add(this.EkleFirmaListePanel);
             this.groupBoxFirmalae.Controls.Add(this.TxtBxFirmaAra);
             this.groupBoxFirmalae.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxFirmalae.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBoxFirmalae.Location = new System.Drawing.Point(224, 79);
+            this.groupBoxFirmalae.Location = new System.Drawing.Point(56, 79);
             this.groupBoxFirmalae.Name = "groupBoxFirmalae";
             this.groupBoxFirmalae.Size = new System.Drawing.Size(256, 351);
             this.groupBoxFirmalae.TabIndex = 11;
@@ -243,7 +243,7 @@ namespace AhsapSanatEvi
             // PictureBoxAra
             // 
             this.PictureBoxAra.Image = ((System.Drawing.Image)(resources.GetObject("PictureBoxAra.Image")));
-            this.PictureBoxAra.Location = new System.Drawing.Point(227, 320);
+            this.PictureBoxAra.Location = new System.Drawing.Point(226, 321);
             this.PictureBoxAra.Name = "PictureBoxAra";
             this.PictureBoxAra.Size = new System.Drawing.Size(22, 22);
             this.PictureBoxAra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -270,9 +270,9 @@ namespace AhsapSanatEvi
             this.groupBoxResim.Controls.Add(this.PictureBoxImage);
             this.groupBoxResim.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxResim.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBoxResim.Location = new System.Drawing.Point(731, 79);
+            this.groupBoxResim.Location = new System.Drawing.Point(755, 79);
             this.groupBoxResim.Name = "groupBoxResim";
-            this.groupBoxResim.Size = new System.Drawing.Size(238, 351);
+            this.groupBoxResim.Size = new System.Drawing.Size(214, 351);
             this.groupBoxResim.TabIndex = 11;
             this.groupBoxResim.TabStop = false;
             this.groupBoxResim.Text = "Resim";
@@ -284,7 +284,7 @@ namespace AhsapSanatEvi
             this.BtnYukle.FlatAppearance.BorderSize = 3;
             this.BtnYukle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnYukle.ForeColor = System.Drawing.Color.White;
-            this.BtnYukle.Location = new System.Drawing.Point(36, 262);
+            this.BtnYukle.Location = new System.Drawing.Point(23, 262);
             this.BtnYukle.Name = "BtnYukle";
             this.BtnYukle.Size = new System.Drawing.Size(168, 41);
             this.BtnYukle.TabIndex = 15;
@@ -295,9 +295,9 @@ namespace AhsapSanatEvi
             // PictureBoxImage
             // 
             this.PictureBoxImage.Image = ((System.Drawing.Image)(resources.GetObject("PictureBoxImage.Image")));
-            this.PictureBoxImage.Location = new System.Drawing.Point(35, 54);
+            this.PictureBoxImage.Location = new System.Drawing.Point(38, 49);
             this.PictureBoxImage.Name = "PictureBoxImage";
-            this.PictureBoxImage.Size = new System.Drawing.Size(168, 189);
+            this.PictureBoxImage.Size = new System.Drawing.Size(137, 189);
             this.PictureBoxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PictureBoxImage.TabIndex = 1;
             this.PictureBoxImage.TabStop = false;
@@ -307,7 +307,7 @@ namespace AhsapSanatEvi
             this.groupBoxKalinlik.Controls.Add(this.TxtBxKalinlik);
             this.groupBoxKalinlik.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxKalinlik.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBoxKalinlik.Location = new System.Drawing.Point(56, 79);
+            this.groupBoxKalinlik.Location = new System.Drawing.Point(592, 79);
             this.groupBoxKalinlik.Name = "groupBoxKalinlik";
             this.groupBoxKalinlik.Size = new System.Drawing.Size(151, 60);
             this.groupBoxKalinlik.TabIndex = 10;
@@ -325,6 +325,7 @@ namespace AhsapSanatEvi
             this.TxtBxKalinlik.Name = "TxtBxKalinlik";
             this.TxtBxKalinlik.Size = new System.Drawing.Size(138, 25);
             this.TxtBxKalinlik.TabIndex = 0;
+            this.TxtBxKalinlik.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBxKalinlik_KeyDown);
             // 
             // groupBoxBirimSatisFiyat
             // 
@@ -332,7 +333,7 @@ namespace AhsapSanatEvi
             this.groupBoxBirimSatisFiyat.Controls.Add(this.TxtBxBirimSatisFiyat);
             this.groupBoxBirimSatisFiyat.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxBirimSatisFiyat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBoxBirimSatisFiyat.Location = new System.Drawing.Point(56, 345);
+            this.groupBoxBirimSatisFiyat.Location = new System.Drawing.Point(592, 370);
             this.groupBoxBirimSatisFiyat.Name = "groupBoxBirimSatisFiyat";
             this.groupBoxBirimSatisFiyat.Size = new System.Drawing.Size(151, 60);
             this.groupBoxBirimSatisFiyat.TabIndex = 13;
@@ -377,13 +378,14 @@ namespace AhsapSanatEvi
             this.TxtBxAciklama.Name = "TxtBxAciklama";
             this.TxtBxAciklama.Size = new System.Drawing.Size(893, 88);
             this.TxtBxAciklama.TabIndex = 0;
+            this.TxtBxAciklama.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBxAciklama_KeyDown);
             // 
             // groupBoxBirimFiyat
             // 
             this.groupBoxBirimFiyat.Controls.Add(this.TxtBxBirimFiyat);
             this.groupBoxBirimFiyat.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxBirimFiyat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBoxBirimFiyat.Location = new System.Drawing.Point(56, 166);
+            this.groupBoxBirimFiyat.Location = new System.Drawing.Point(592, 176);
             this.groupBoxBirimFiyat.Name = "groupBoxBirimFiyat";
             this.groupBoxBirimFiyat.Size = new System.Drawing.Size(151, 60);
             this.groupBoxBirimFiyat.TabIndex = 11;
@@ -401,13 +403,14 @@ namespace AhsapSanatEvi
             this.TxtBxBirimFiyat.Name = "TxtBxBirimFiyat";
             this.TxtBxBirimFiyat.Size = new System.Drawing.Size(138, 25);
             this.TxtBxBirimFiyat.TabIndex = 0;
+            this.TxtBxBirimFiyat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBxBirimFiyat_KeyDown);
             // 
             // groupBoxKarMarji
             // 
             this.groupBoxKarMarji.Controls.Add(this.TxtBxKarMarji);
             this.groupBoxKarMarji.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxKarMarji.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBoxKarMarji.Location = new System.Drawing.Point(56, 255);
+            this.groupBoxKarMarji.Location = new System.Drawing.Point(592, 275);
             this.groupBoxKarMarji.Name = "groupBoxKarMarji";
             this.groupBoxKarMarji.Size = new System.Drawing.Size(151, 60);
             this.groupBoxKarMarji.TabIndex = 12;
@@ -425,6 +428,7 @@ namespace AhsapSanatEvi
             this.TxtBxKarMarji.Name = "TxtBxKarMarji";
             this.TxtBxKarMarji.Size = new System.Drawing.Size(138, 25);
             this.TxtBxKarMarji.TabIndex = 0;
+            this.TxtBxKarMarji.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBxKarMarji_KeyDown);
             // 
             // FrmEkle
             // 

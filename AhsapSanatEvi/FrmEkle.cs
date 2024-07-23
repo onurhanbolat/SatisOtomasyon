@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace AhsapSanatEvi
 {
     public partial class FrmEkle : Form
     {
         private bool isTextBoxEmpty;
+        private DateTime lastCheckedTime = DateTime.MinValue;
 
         public FrmEkle()
         {
@@ -36,7 +38,39 @@ namespace AhsapSanatEvi
 
             TxtBxKarMarji.TextChanged += new EventHandler(TxtBxKarMarjiOrBirimFiyat_TextChanged);
             TxtBxBirimFiyat.TextChanged += new EventHandler(TxtBxKarMarjiOrBirimFiyat_TextChanged);
+
+            TxtBxKalinlik.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            TxtBxBirimFiyat.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            TxtBxKarMarji.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+            TxtBxAciklama.KeyDown += new KeyEventHandler(TextBox_KeyDown);
         }
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Enter tuşu ile yeni satır eklemeyi engelle
+                MoveToNextControl((TextBox)sender);
+            }
+        }
+        private void MoveToNextControl(TextBox currentTextBox)
+        {
+            var controls = new List<TextBox> { TxtBxKalinlik, TxtBxBirimFiyat, TxtBxKarMarji, TxtBxAciklama };
+            int index = controls.IndexOf(currentTextBox);
+
+            // Eğer index geçerli bir TextBox ise ve bir sonraki TextBox varsa
+            if (index >= 0 && index < controls.Count - 1)
+            {
+                controls[index + 1].Focus();
+            }
+            // Eğer son TextBox'taysak, herhangi bir işlem yapma
+            else if (index == controls.Count - 1)
+            {
+                // Son TextBox'ta Enter tuşuna basıldığında herhangi bir şey yapmıyoruz.
+                // Buraya, son TextBox'ta Enter tuşuna basıldığında yapılacak başka bir işlem ekleyebilirsiniz.
+            }
+        }
+
+
 
         private void Form_Resize(object sender, EventArgs e)
         {
@@ -361,6 +395,7 @@ namespace AhsapSanatEvi
             {
                 FirmaAra();
             }
+            EkleFirmaListesi.ResetSelectedFirmaID();
         }
 
         private void TxtBxKodAra_TextChanged(object sender, EventArgs e)
@@ -420,6 +455,18 @@ namespace AhsapSanatEvi
                 return;
             }
 
+            // Resmi base64 string'e dönüştür
+            string resimBase64 = null;
+            if (PictureBoxImage.Image != null)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    PictureBoxImage.Image.Save(ms, PictureBoxImage.Image.RawFormat);
+                    byte[] resimData = ms.ToArray();
+                    resimBase64 = Convert.ToBase64String(resimData);
+                }
+            }
+
             try
             {
                 using (SqlConnection connection = DataBaseControl.GetConnection())
@@ -427,8 +474,8 @@ namespace AhsapSanatEvi
                     connection.Open();
 
                     // SQL sorgusu oluştur
-                    string sorgu = "INSERT INTO TBLCERCEVELER (CERCEVEACIKLAMA, CERCEVEKALINLIK, CERCEVEBIRIMFIYAT, CERCEVEKARMARJI, BIRIMSATISFIYATI, FIRMAADID, CERCEVEKODID) " +
-                                   "VALUES (@aciklama, @kalinlik, @birimFiyat, @karMarji, @birimSatisFiyat, @firmaID, @kodID)";
+                    string sorgu = "INSERT INTO TBLCERCEVELER (CERCEVEACIKLAMA, CERCEVEKALINLIK, CERCEVEBIRIMFIYAT, CERCEVEKARMARJI, BIRIMSATISFIYATI, FIRMAADID, CERCEVEKODID, URUNRESMI) " +
+                                   "VALUES (@aciklama, @kalinlik, @birimFiyat, @karMarji, @birimSatisFiyat, @firmaID, @kodID, @urunResmi)";
 
                     // SQL komutu oluştur ve parametreleri ekle
                     SqlCommand komut = new SqlCommand(sorgu, connection);
@@ -439,6 +486,7 @@ namespace AhsapSanatEvi
                     komut.Parameters.AddWithValue("@birimSatisFiyat", birimSatisFiyat);
                     komut.Parameters.AddWithValue("@firmaID", EkleFirmaListesi.selectedFirmaID);
                     komut.Parameters.AddWithValue("@kodID", EkleKodListesi.selectedKodID);
+                    komut.Parameters.AddWithValue("@urunResmi", (object)resimBase64 ?? DBNull.Value);
 
                     // Komutu çalıştır
                     komut.ExecuteNonQuery();
@@ -452,6 +500,25 @@ namespace AhsapSanatEvi
             }
         }
 
+        private void TxtBxKalinlik_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void TxtBxBirimFiyat_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void TxtBxKarMarji_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void TxtBxAciklama_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }
 

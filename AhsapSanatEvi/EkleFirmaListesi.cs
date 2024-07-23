@@ -15,6 +15,10 @@ namespace AhsapSanatEvi
         {
             InitializeComponent();
         }
+        public static void ResetSelectedFirmaID()
+        {
+            selectedFirmaID = 0;
+        }
 
         private void BtnFirmaSec_Click(object sender, EventArgs e)
         {

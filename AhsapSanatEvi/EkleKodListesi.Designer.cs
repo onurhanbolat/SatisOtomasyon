@@ -67,7 +67,7 @@ namespace AhsapSanatEvi
             this.BtnKodListeSil.FlatAppearance.BorderSize = 0;
             this.BtnKodListeSil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnKodListeSil.Image = ((System.Drawing.Image)(resources.GetObject("BtnKodListeSil.Image")));
-            this.BtnKodListeSil.Location = new System.Drawing.Point(94, 2);
+            this.BtnKodListeSil.Location = new System.Drawing.Point(117, 2);
             this.BtnKodListeSil.Name = "BtnKodListeSil";
             this.BtnKodListeSil.Size = new System.Drawing.Size(23, 23);
             this.BtnKodListeSil.TabIndex = 4;
@@ -82,7 +82,7 @@ namespace AhsapSanatEvi
             this.Controls.Add(this.EkleKodListeLabel);
             this.Controls.Add(this.BtnKodSec);
             this.Name = "EkleKodListesi";
-            this.Size = new System.Drawing.Size(119, 26);
+            this.Size = new System.Drawing.Size(143, 26);
             this.ResumeLayout(false);
             this.PerformLayout();
 
