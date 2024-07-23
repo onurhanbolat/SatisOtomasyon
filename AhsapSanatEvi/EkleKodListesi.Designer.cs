@@ -33,6 +33,7 @@ namespace AhsapSanatEvi
             this.EkleKodListeLabel = new System.Windows.Forms.Label();
             this.BtnKodSec = new System.Windows.Forms.Button();
             this.BtnKodListeSil = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // EkleKodListeLabel
@@ -48,7 +49,7 @@ namespace AhsapSanatEvi
             // 
             // BtnKodSec
             // 
-            this.BtnKodSec.BackColor = System.Drawing.Color.White;
+            this.BtnKodSec.BackColor = System.Drawing.Color.Transparent;
             this.BtnKodSec.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnKodSec.FlatAppearance.BorderSize = 0;
             this.BtnKodSec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -62,7 +63,7 @@ namespace AhsapSanatEvi
             // 
             // BtnKodListeSil
             // 
-            this.BtnKodListeSil.BackColor = System.Drawing.Color.White;
+            this.BtnKodListeSil.BackColor = System.Drawing.Color.Transparent;
             this.BtnKodListeSil.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnKodListeSil.FlatAppearance.BorderSize = 0;
             this.BtnKodListeSil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -74,10 +75,21 @@ namespace AhsapSanatEvi
             this.BtnKodListeSil.UseVisualStyleBackColor = false;
             this.BtnKodListeSil.Click += new System.EventHandler(this.BtnKodListeSil_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(143, 2);
+            this.panel1.TabIndex = 5;
+            // 
             // EkleKodListesi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.BtnKodListeSil);
             this.Controls.Add(this.EkleKodListeLabel);
             this.Controls.Add(this.BtnKodSec);
@@ -93,5 +105,6 @@ namespace AhsapSanatEvi
         public System.Windows.Forms.Label EkleKodListeLabel;
         private System.Windows.Forms.Button BtnKodSec;
         private System.Windows.Forms.Button BtnKodListeSil;
+        private System.Windows.Forms.Panel panel1;
     }
 }

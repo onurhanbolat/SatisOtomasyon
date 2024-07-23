@@ -32,11 +32,12 @@ namespace AhsapSanatEvi
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EkleFirmaListesi));
             this.BtnFirmaSec = new System.Windows.Forms.Button();
             this.EkleFirmaListeLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // BtnFirmaSec
             // 
-            this.BtnFirmaSec.BackColor = System.Drawing.Color.White;
+            this.BtnFirmaSec.BackColor = System.Drawing.Color.Transparent;
             this.BtnFirmaSec.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnFirmaSec.FlatAppearance.BorderSize = 0;
             this.BtnFirmaSec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -59,10 +60,21 @@ namespace AhsapSanatEvi
             this.EkleFirmaListeLabel.TabIndex = 1;
             this.EkleFirmaListeLabel.Text = "LABEL";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(143, 2);
+            this.panel1.TabIndex = 2;
+            // 
             // EkleFirmaListesi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.EkleFirmaListeLabel);
             this.Controls.Add(this.BtnFirmaSec);
             this.Name = "EkleFirmaListesi";
@@ -76,5 +88,6 @@ namespace AhsapSanatEvi
 
         private System.Windows.Forms.Button BtnFirmaSec;
         public System.Windows.Forms.Label EkleFirmaListeLabel;
+        private System.Windows.Forms.Panel panel1;
     }
 }
