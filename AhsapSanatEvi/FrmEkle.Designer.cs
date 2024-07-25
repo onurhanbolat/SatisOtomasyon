@@ -38,12 +38,12 @@ namespace AhsapSanatEvi
             this.groupBoxKodlar = new System.Windows.Forms.GroupBox();
             this.BtnKodEkle = new System.Windows.Forms.Button();
             this.TxtBxKodEkle = new System.Windows.Forms.TextBox();
+            this.TxtBxKodAra = new System.Windows.Forms.TextBox();
             this.EkleKodListePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.PictureBoxAra2 = new System.Windows.Forms.PictureBox();
-            this.TxtBxKodAra = new System.Windows.Forms.TextBox();
             this.groupBoxFirmalae = new System.Windows.Forms.GroupBox();
-            this.EkleFirmaListePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.PictureBoxAra = new System.Windows.Forms.PictureBox();
+            this.EkleFirmaListePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.TxtBxFirmaAra = new System.Windows.Forms.TextBox();
             this.groupBoxResim = new System.Windows.Forms.GroupBox();
             this.BtnYukle = new System.Windows.Forms.Button();
@@ -185,6 +185,20 @@ namespace AhsapSanatEvi
             this.TxtBxKodEkle.Size = new System.Drawing.Size(209, 25);
             this.TxtBxKodEkle.TabIndex = 5;
             // 
+            // TxtBxKodAra
+            // 
+            this.TxtBxKodAra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtBxKodAra.BackColor = System.Drawing.Color.White;
+            this.TxtBxKodAra.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxKodAra.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBxKodAra.Location = new System.Drawing.Point(6, 319);
+            this.TxtBxKodAra.Multiline = true;
+            this.TxtBxKodAra.Name = "TxtBxKodAra";
+            this.TxtBxKodAra.Size = new System.Drawing.Size(216, 25);
+            this.TxtBxKodAra.TabIndex = 2;
+            this.TxtBxKodAra.TextChanged += new System.EventHandler(this.TxtBxKodAra_TextChanged);
+            // 
             // EkleKodListePanel
             // 
             this.EkleKodListePanel.AutoScroll = true;
@@ -203,20 +217,6 @@ namespace AhsapSanatEvi
             this.PictureBoxAra2.TabIndex = 3;
             this.PictureBoxAra2.TabStop = false;
             // 
-            // TxtBxKodAra
-            // 
-            this.TxtBxKodAra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtBxKodAra.BackColor = System.Drawing.Color.White;
-            this.TxtBxKodAra.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtBxKodAra.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtBxKodAra.Location = new System.Drawing.Point(6, 319);
-            this.TxtBxKodAra.Multiline = true;
-            this.TxtBxKodAra.Name = "TxtBxKodAra";
-            this.TxtBxKodAra.Size = new System.Drawing.Size(216, 25);
-            this.TxtBxKodAra.TabIndex = 2;
-            this.TxtBxKodAra.TextChanged += new System.EventHandler(this.TxtBxKodAra_TextChanged);
-            // 
             // groupBoxFirmalae
             // 
             this.groupBoxFirmalae.Controls.Add(this.PictureBoxAra);
@@ -231,15 +231,6 @@ namespace AhsapSanatEvi
             this.groupBoxFirmalae.TabStop = false;
             this.groupBoxFirmalae.Text = "Firmalar";
             // 
-            // EkleFirmaListePanel
-            // 
-            this.EkleFirmaListePanel.AutoScroll = true;
-            this.EkleFirmaListePanel.Location = new System.Drawing.Point(7, 28);
-            this.EkleFirmaListePanel.Margin = new System.Windows.Forms.Padding(1);
-            this.EkleFirmaListePanel.Name = "EkleFirmaListePanel";
-            this.EkleFirmaListePanel.Size = new System.Drawing.Size(241, 274);
-            this.EkleFirmaListePanel.TabIndex = 3;
-            // 
             // PictureBoxAra
             // 
             this.PictureBoxAra.Image = ((System.Drawing.Image)(resources.GetObject("PictureBoxAra.Image")));
@@ -249,6 +240,15 @@ namespace AhsapSanatEvi
             this.PictureBoxAra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PictureBoxAra.TabIndex = 2;
             this.PictureBoxAra.TabStop = false;
+            // 
+            // EkleFirmaListePanel
+            // 
+            this.EkleFirmaListePanel.AutoScroll = true;
+            this.EkleFirmaListePanel.Location = new System.Drawing.Point(7, 28);
+            this.EkleFirmaListePanel.Margin = new System.Windows.Forms.Padding(1);
+            this.EkleFirmaListePanel.Name = "EkleFirmaListePanel";
+            this.EkleFirmaListePanel.Size = new System.Drawing.Size(241, 274);
+            this.EkleFirmaListePanel.TabIndex = 3;
             // 
             // TxtBxFirmaAra
             // 
@@ -472,25 +472,15 @@ namespace AhsapSanatEvi
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button BtnFirmaEkle;
-        private System.Windows.Forms.Button BtnFirmaGuncelle;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox GrpBoxGenel;
         private System.Windows.Forms.GroupBox groupBoxKalinlik;
-        private System.Windows.Forms.TextBox TxtBxKalinlik;
         private System.Windows.Forms.GroupBox groupBoxBirimSatisFiyat;
-        private System.Windows.Forms.TextBox TxtBxBirimSatisFiyat;
         private System.Windows.Forms.GroupBox groupBoxAciklama;
-        private System.Windows.Forms.TextBox TxtBxAciklama;
         private System.Windows.Forms.GroupBox groupBoxBirimFiyat;
-        private System.Windows.Forms.TextBox TxtBxBirimFiyat;
         private System.Windows.Forms.GroupBox groupBoxKarMarji;
-        private System.Windows.Forms.TextBox TxtBxKarMarji;
         private System.Windows.Forms.GroupBox groupBoxResim;
-        private System.Windows.Forms.PictureBox PictureBoxImage;
         private System.Windows.Forms.Button BtnYukle;
-        private System.Windows.Forms.GroupBox groupBoxKodlar;
-        private System.Windows.Forms.GroupBox groupBoxFirmalae;
         private System.Windows.Forms.PictureBox PictureBoxAra2;
         private System.Windows.Forms.TextBox TxtBxKodAra;
         private System.Windows.Forms.PictureBox PictureBoxAra;
@@ -499,5 +489,15 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.Button BtnKodEkle;
         public System.Windows.Forms.FlowLayoutPanel EkleFirmaListePanel;
         public System.Windows.Forms.FlowLayoutPanel EkleKodListePanel;
+        public System.Windows.Forms.TextBox TxtBxKalinlik;
+        public System.Windows.Forms.TextBox TxtBxBirimSatisFiyat;
+        public System.Windows.Forms.TextBox TxtBxAciklama;
+        public System.Windows.Forms.TextBox TxtBxBirimFiyat;
+        public System.Windows.Forms.TextBox TxtBxKarMarji;
+        public System.Windows.Forms.PictureBox PictureBoxImage;
+        public System.Windows.Forms.GroupBox groupBoxKodlar;
+        public System.Windows.Forms.GroupBox groupBoxFirmalae;
+        public System.Windows.Forms.Button BtnFirmaEkle;
+        public System.Windows.Forms.Button BtnFirmaGuncelle;
     }
 }

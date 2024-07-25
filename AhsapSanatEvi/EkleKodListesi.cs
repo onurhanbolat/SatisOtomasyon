@@ -9,7 +9,7 @@ namespace AhsapSanatEvi
     public partial class EkleKodListesi : UserControl
     {
         private static EkleKodListesi selectedControl = null;
-        public static int selectedKodID { get; private set; } = 0;
+        public static int selectedKodID { get; set; } = 0;
 
         public EkleKodListesi()
         {
@@ -63,7 +63,7 @@ namespace AhsapSanatEvi
             }
         }
 
-        private void SelectKod()
+        public void SelectKod()
         {
             // Önce firma seçildi mi kontrol et
             if (EkleFirmaListesi.selectedFirmaID == 0)

@@ -85,9 +85,8 @@ namespace AhsapSanatEvi
         }
 
         #endregion
-
-        private System.Windows.Forms.Button BtnFirmaSec;
         public System.Windows.Forms.Label EkleFirmaListeLabel;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Button BtnFirmaSec;
     }
 }

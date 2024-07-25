@@ -372,7 +372,7 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.Button BtnAyarlar;
         private System.Windows.Forms.Button BtnBilanco;
         private System.Windows.Forms.Button BtnMusteriler;
-        private System.Windows.Forms.Panel AnaMenuArkaPanel;
+        public System.Windows.Forms.Panel AnaMenuArkaPanel;
     }
 }
 

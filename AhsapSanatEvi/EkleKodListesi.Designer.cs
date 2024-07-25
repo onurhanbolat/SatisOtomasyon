@@ -103,8 +103,8 @@ namespace AhsapSanatEvi
         #endregion
 
         public System.Windows.Forms.Label EkleKodListeLabel;
-        private System.Windows.Forms.Button BtnKodSec;
         private System.Windows.Forms.Button BtnKodListeSil;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Button BtnKodSec;
     }
 }

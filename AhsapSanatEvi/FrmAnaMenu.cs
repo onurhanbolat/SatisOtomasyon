@@ -17,7 +17,8 @@ namespace AhsapSanatEvi
         private bool isFullScreen = false;
         private Rectangle originalBounds;
         private DateTime lastCheckedTimeCerceve = DateTime.MinValue;
-        private DateTime lastCheckedTimeFirma = DateTime.MinValue;
+        public DateTime lastCheckedTimeFirma = DateTime.MinValue;
+
 
 
         public FrmAnaMenu()
@@ -140,19 +141,24 @@ namespace AhsapSanatEvi
 
         private void BtnCerceveler_Click(object sender, EventArgs e)
         {
+            
+
             DateTime currentChangeTime = GetLastDatabaseChangeTime();
             DateTime currentChangeTimeFirma = GetLastFirmalarDatabaseChangeTime();
 
             DateTime lastChangeTime = new[] { currentChangeTime, currentChangeTimeFirma }.Max();
 
             formCerceveler cerceveForm = Application.OpenForms.OfType<formCerceveler>().FirstOrDefault();
+            FrmEkle ekleForm = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
+
 
             if (lastChangeTime > lastCheckedTimeCerceve)
             {
                 // Eğer veritabanında değişiklik olmuşsa, formu kapat ve yeniden aç
-                if (cerceveForm != null)
+                if (cerceveForm != null && ekleForm != null)
                 {
                     cerceveForm.Close();
+                    ekleForm.Close();
                 }
                 cerceveForm = new formCerceveler();
                 cerceveForm.TopLevel = false;
@@ -160,6 +166,12 @@ namespace AhsapSanatEvi
                 this.AnaMenuArkaPanel.Controls.Add(cerceveForm);
                 cerceveForm.Show();
                 cerceveForm.BringToFront();
+                ekleForm = new FrmEkle();
+                ekleForm.TopLevel = false;
+                ekleForm.Dock = DockStyle.Fill;
+                this.AnaMenuArkaPanel.Controls.Add(ekleForm);
+                ekleForm.Show();
+
 
                 // Son kontrol zamanını güncelle
                 lastCheckedTimeCerceve = lastChangeTime;
@@ -204,22 +216,29 @@ namespace AhsapSanatEvi
                 }
             }
         }
-        private void BtnEkleCerceve_Click(object sender, EventArgs e)
+
+        public void BtnEkleCerceve_Click(object sender, EventArgs e)
         {
             // Sadece TBLFIRMALAR tablosundaki en son değişiklik zamanını al
             DateTime currentChangeTimeFirmalar = GetLastFirmalarDatabaseChangeTime();
+
+            // Debug için konsola yazdır
+            Console.WriteLine($"currentChangeTimeFirmalar: {currentChangeTimeFirmalar}");
+            Console.WriteLine($"lastCheckedTimeFirma: {lastCheckedTimeFirma}");
 
             // Açık olan formu kontrol et
             FrmEkle ekleForm = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
 
             // Eğer TBLFIRMALAR tablosunda değişiklik olmuşsa veya form açık değilse, mevcut formu kapat ve yeni bir form oluştur
-            if (currentChangeTimeFirmalar > lastCheckedTimeFirma || ekleForm == null)
+            if (currentChangeTimeFirmalar > lastCheckedTimeFirma)
             {
+                // Eğer mevcut form açıksa kapat
                 if (ekleForm != null)
                 {
                     ekleForm.Close();
                 }
 
+                // Yeni form oluştur ve ekle
                 ekleForm = new FrmEkle();
                 ekleForm.TopLevel = false;
                 ekleForm.Dock = DockStyle.Fill;
@@ -227,9 +246,26 @@ namespace AhsapSanatEvi
 
                 // Son kontrol zamanını güncelle
                 lastCheckedTimeFirma = currentChangeTimeFirmalar;
+
+                // Debug için konsola yazdır
+                Console.WriteLine($"Güncellenen lastCheckedTimeFirma: {lastCheckedTimeFirma}");
+            }
+
+            // Eğer ekleForm null ise yeniden oluştur
+            if (ekleForm == null)
+            {
+                ekleForm = new FrmEkle();
+                ekleForm.TopLevel = false;
+                ekleForm.Dock = DockStyle.Fill;
+                this.AnaMenuArkaPanel.Controls.Add(ekleForm);
             }
 
             // Formu öne getir
+            ekleForm.groupBoxFirmalae.Enabled = true;
+            ekleForm.groupBoxKodlar.Enabled = true;
+            ekleForm.BtnFirmaGuncelle.Enabled = false;
+            ekleForm.BtnFirmaEkle.Enabled = true;
+
             ekleForm.Show();
             ekleForm.BringToFront();
         }

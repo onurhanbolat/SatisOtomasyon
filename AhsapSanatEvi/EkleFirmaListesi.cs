@@ -20,7 +20,7 @@ namespace AhsapSanatEvi
             selectedFirmaID = 0;
         }
 
-        private void BtnFirmaSec_Click(object sender, EventArgs e)
+        public void BtnFirmaSec_Click(object sender, EventArgs e)
         {
             FrmEkle frmEkle = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
 

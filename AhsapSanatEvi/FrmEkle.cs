@@ -43,6 +43,7 @@ namespace AhsapSanatEvi
             TxtBxBirimFiyat.KeyDown += new KeyEventHandler(TextBox_KeyDown);
             TxtBxKarMarji.KeyDown += new KeyEventHandler(TextBox_KeyDown);
             TxtBxAciklama.KeyDown += new KeyEventHandler(TextBox_KeyDown);
+
         }
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {

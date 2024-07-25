@@ -16,6 +16,7 @@ namespace AhsapSanatEvi
     {
         private Timer aramaZaman;
 
+
         public formCerceveler()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace AhsapSanatEvi
         private void AramaZamanlayıcısı()
         {
             aramaZaman = new Timer();
-            aramaZaman.Interval = 200; // 500 ms gecikme
+            aramaZaman.Interval = 500; // 500 ms gecikme
             aramaZaman.Tick += Arama;
         }
 
@@ -53,6 +54,7 @@ namespace AhsapSanatEvi
                         f.FIRMAAD AS FirmaAd, 
                         k.CERCEVEKOD AS CerceveKod, 
                         c.CERCEVEACIKLAMA AS Aciklama, 
+                        c.CERCEVEID AS CerceveId,
                         c.BIRIMSATISFIYATI AS BirimSatisFiyati,
                         c.URUNRESMI AS UrunResmi
                     FROM 
@@ -81,7 +83,8 @@ namespace AhsapSanatEvi
                                 LblCerceveKod = { Text = oku["CerceveKod"].ToString() },
                                 LblFirmaAd = { Text = oku["FirmaAd"].ToString() },
                                 LblAciklama = { Text = oku["Aciklama"].ToString() },
-                                LblBirimSatisFiyat = { Text = oku["BirimSatisFiyati"].ToString() }
+                                LblBirimSatisFiyat = { Text = oku["BirimSatisFiyati"].ToString() + "₺" },
+                                LblCerceveID = { Text = "ID: " + oku["CerceveId"].ToString()}
                             };
 
                             // Resmi base64 string'inden bitmap'e dönüştür
@@ -152,8 +155,7 @@ namespace AhsapSanatEvi
             {
                 if (textBox.Text != placeholderText)
                 {
-                    aramaZaman.Stop();
-                    aramaZaman.Start();
+                    aramaZaman.Start(); // Zamanlayıcıyı başlat
                 }
             };
         }

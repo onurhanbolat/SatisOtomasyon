@@ -78,7 +78,7 @@ namespace AhsapSanatEvi
             this.groupBoxFirmalae.Controls.Add(this.TxtBxFirmaAraCrc);
             this.groupBoxFirmalae.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxFirmalae.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBoxFirmalae.Location = new System.Drawing.Point(12, 1);
+            this.groupBoxFirmalae.Location = new System.Drawing.Point(273, 1);
             this.groupBoxFirmalae.Name = "groupBoxFirmalae";
             this.groupBoxFirmalae.Size = new System.Drawing.Size(256, 59);
             this.groupBoxFirmalae.TabIndex = 16;
@@ -113,7 +113,7 @@ namespace AhsapSanatEvi
             this.groupBox2.Controls.Add(this.TxtBxAnahtarKelimeAraCrc);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBox2.Location = new System.Drawing.Point(536, 1);
+            this.groupBox2.Location = new System.Drawing.Point(535, 1);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(256, 59);
             this.groupBox2.TabIndex = 18;
@@ -148,7 +148,7 @@ namespace AhsapSanatEvi
             this.groupBox3.Controls.Add(this.TxtBxKodAraCrc);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBox3.Location = new System.Drawing.Point(274, 1);
+            this.groupBox3.Location = new System.Drawing.Point(11, 1);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(256, 59);
             this.groupBox3.TabIndex = 17;
