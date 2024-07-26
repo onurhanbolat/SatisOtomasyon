@@ -61,7 +61,7 @@ namespace AhsapSanatEvi
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(881, 76);
+            this.panel1.Size = new System.Drawing.Size(1021, 76);
             this.panel1.TabIndex = 22;
             // 
             // panel2
@@ -70,7 +70,7 @@ namespace AhsapSanatEvi
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 71);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(881, 5);
+            this.panel2.Size = new System.Drawing.Size(1021, 5);
             this.panel2.TabIndex = 19;
             // 
             // groupBoxFirmalae
@@ -114,7 +114,7 @@ namespace AhsapSanatEvi
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBox2.Controls.Add(this.TxtBxFirmaID);
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
-            this.groupBox2.Location = new System.Drawing.Point(27, 123);
+            this.groupBox2.Location = new System.Drawing.Point(27, 199);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(276, 67);
             this.groupBox2.TabIndex = 8;
@@ -138,7 +138,7 @@ namespace AhsapSanatEvi
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBox3.Controls.Add(this.TxtBxFirmaAdı);
-            this.groupBox3.Location = new System.Drawing.Point(27, 196);
+            this.groupBox3.Location = new System.Drawing.Point(27, 272);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(276, 67);
             this.groupBox3.TabIndex = 9;
@@ -165,7 +165,7 @@ namespace AhsapSanatEvi
             this.BtnFirmaGuncelle.FlatAppearance.BorderSize = 3;
             this.BtnFirmaGuncelle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFirmaGuncelle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnFirmaGuncelle.Location = new System.Drawing.Point(110, 337);
+            this.BtnFirmaGuncelle.Location = new System.Drawing.Point(110, 413);
             this.BtnFirmaGuncelle.Name = "BtnFirmaGuncelle";
             this.BtnFirmaGuncelle.Size = new System.Drawing.Size(117, 42);
             this.BtnFirmaGuncelle.TabIndex = 4;
@@ -182,7 +182,7 @@ namespace AhsapSanatEvi
             this.BtnFirmaSil.FlatAppearance.BorderSize = 3;
             this.BtnFirmaSil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFirmaSil.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnFirmaSil.Location = new System.Drawing.Point(185, 283);
+            this.BtnFirmaSil.Location = new System.Drawing.Point(185, 359);
             this.BtnFirmaSil.Name = "BtnFirmaSil";
             this.BtnFirmaSil.Size = new System.Drawing.Size(77, 42);
             this.BtnFirmaSil.TabIndex = 5;
@@ -199,7 +199,7 @@ namespace AhsapSanatEvi
             this.BtnFirmaEkle.FlatAppearance.BorderSize = 3;
             this.BtnFirmaEkle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFirmaEkle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnFirmaEkle.Location = new System.Drawing.Point(76, 283);
+            this.BtnFirmaEkle.Location = new System.Drawing.Point(76, 359);
             this.BtnFirmaEkle.Name = "BtnFirmaEkle";
             this.BtnFirmaEkle.Size = new System.Drawing.Size(77, 42);
             this.BtnFirmaEkle.TabIndex = 3;
@@ -217,9 +217,9 @@ namespace AhsapSanatEvi
             this.panel3.Controls.Add(this.BtnFirmaSil);
             this.panel3.Controls.Add(this.BtnFirmaGuncelle);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(555, 76);
+            this.panel3.Location = new System.Drawing.Point(695, 76);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(326, 461);
+            this.panel3.Size = new System.Drawing.Size(326, 613);
             this.panel3.TabIndex = 26;
             // 
             // panel4
@@ -228,7 +228,7 @@ namespace AhsapSanatEvi
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(5, 461);
+            this.panel4.Size = new System.Drawing.Size(5, 613);
             this.panel4.TabIndex = 10;
             // 
             // FirmaListePanel
@@ -238,7 +238,7 @@ namespace AhsapSanatEvi
             this.FirmaListePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FirmaListePanel.Location = new System.Drawing.Point(0, 76);
             this.FirmaListePanel.Name = "FirmaListePanel";
-            this.FirmaListePanel.Size = new System.Drawing.Size(555, 461);
+            this.FirmaListePanel.Size = new System.Drawing.Size(695, 613);
             this.FirmaListePanel.TabIndex = 27;
             // 
             // FrmFirmalar
@@ -246,7 +246,7 @@ namespace AhsapSanatEvi
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(881, 537);
+            this.ClientSize = new System.Drawing.Size(1021, 689);
             this.Controls.Add(this.FirmaListePanel);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);

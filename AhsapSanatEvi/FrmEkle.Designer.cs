@@ -108,6 +108,7 @@ namespace AhsapSanatEvi
             this.BtnFirmaGuncelle.TabIndex = 5;
             this.BtnFirmaGuncelle.Text = "Güncelle";
             this.BtnFirmaGuncelle.UseVisualStyleBackColor = false;
+            this.BtnFirmaGuncelle.Click += new System.EventHandler(this.BtnFirmaGuncelle_Click);
             // 
             // BtnFirmaEkle
             // 

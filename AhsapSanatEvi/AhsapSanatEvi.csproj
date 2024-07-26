@@ -119,6 +119,12 @@
     <Compile Include="FrmFirmalar.Designer.cs">
       <DependentUpon>FrmFirmalar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMusteriler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMusteriler.Designer.cs">
+      <DependentUpon>FrmMusteriler.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CerceveListesi.resx">
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFirmalar.resx">
       <DependentUpon>FrmFirmalar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMusteriler.resx">
+      <DependentUpon>FrmMusteriler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

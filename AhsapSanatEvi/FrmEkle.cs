@@ -520,6 +520,41 @@ namespace AhsapSanatEvi
         {
 
         }
+
+        private void BtnFirmaGuncelle_Click(object sender, EventArgs e)
+        {
+            if (CerceveListesi.selectedCerceveID > 0)
+            {
+                string sorgu = "UPDATE TBLCERCEVELER SET CERCEVEKALINLIK = @kalinlik, CERCEVEBIRIMFIYAT = @birimfiyat, CERCEVEKARMARJI = @karmarji, BIRIMSATISFIYATI = @birimsatisfiyat, CERCEVEACIKLAMA = @aciklama WHERE CERCEVEID = @cerceveID";
+
+                using (SqlConnection connection = DataBaseControl.GetConnection())
+                {
+                    try
+                    {
+                        connection.Open();
+                        SqlCommand komut = new SqlCommand(sorgu, connection);
+                        komut.Parameters.AddWithValue("@kalinlik", TxtBxKalinlik.Text);
+                        komut.Parameters.AddWithValue("@birimfiyat", TxtBxBirimFiyat.Text);
+                        komut.Parameters.AddWithValue("@karmarji", TxtBxKarMarji.Text);
+                        komut.Parameters.AddWithValue("@birimsatisfiyat", TxtBxBirimSatisFiyat.Text);
+                        komut.Parameters.AddWithValue("@aciklama", TxtBxAciklama.Text);
+                        komut.Parameters.AddWithValue("@cerceveID", CerceveListesi.selectedCerceveID);
+                        komut.ExecuteNonQuery();
+                        MessageBox.Show("Cerceve başarıyla güncellendi.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Kod güncellenirken bir hata oluştu: " + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Güncellenecek bir kod seçiniz.");
+            }
+        }
     }
 }
+    
+
 

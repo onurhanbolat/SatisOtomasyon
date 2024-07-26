@@ -171,6 +171,7 @@ namespace AhsapSanatEvi
             this.BtnMusteriler.TabIndex = 13;
             this.BtnMusteriler.Text = "Müşteriler";
             this.BtnMusteriler.UseVisualStyleBackColor = false;
+            this.BtnMusteriler.Click += new System.EventHandler(this.BtnMusteriler_Click);
             // 
             // BtnFirmalar
             // 

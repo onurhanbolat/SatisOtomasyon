@@ -137,6 +137,26 @@ namespace AhsapSanatEvi
             firmaForm.Show();
             firmaForm.BringToFront();
         }
+        private void BtnMusteriler_Click(object sender, EventArgs e)
+        {
+
+            // Musteriler formunun açık olup olmadığını kontrol et
+            FrmMusteriler musteriform = Application.OpenForms.OfType<FrmMusteriler>().FirstOrDefault();
+
+            if (musteriform != null)
+            {
+                musteriform.Close(); // Mevcut formu kapat
+            }
+
+            musteriform = new FrmMusteriler();
+            musteriform.TopLevel = false;
+            musteriform.Dock = DockStyle.Fill;
+            this.AnaMenuArkaPanel.Controls.Add(musteriform);
+
+            // Formu ön plana getir
+            musteriform.Show();
+            musteriform.BringToFront();
+        }
 
 
         private void BtnCerceveler_Click(object sender, EventArgs e)
