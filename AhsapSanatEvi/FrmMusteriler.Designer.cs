@@ -30,50 +30,47 @@ namespace AhsapSanatEvi
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMusteriler));
-            this.FirmaListePanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.MusteriListePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.TxtBxMusteriID = new System.Windows.Forms.TextBox();
-            this.BtnFirmaEkle = new System.Windows.Forms.Button();
+            this.BtnMusteriEkle = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.TxtBxMusteriAdı = new System.Windows.Forms.TextBox();
-            this.BtnFirmaSil = new System.Windows.Forms.Button();
-            this.BtnFirmaGuncelle = new System.Windows.Forms.Button();
+            this.TxtBxMusteriAdSoyad = new System.Windows.Forms.TextBox();
+            this.BtnMusteriSil = new System.Windows.Forms.Button();
+            this.BtnMusteriGuncelle = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBoxMusteriler = new System.Windows.Forms.GroupBox();
             this.PictureBoxAra = new System.Windows.Forms.PictureBox();
             this.TxtBxMusteriAraFrm = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TxtBxMusteriTelNo = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.TxtBxMusteriMeslek = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.TxtBxMusteriAciklama = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBoxMusteriler.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
-            // FirmaListePanel
+            // MusteriListePanel
             // 
-            this.FirmaListePanel.AutoScroll = true;
-            this.FirmaListePanel.BackColor = System.Drawing.Color.White;
-            this.FirmaListePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FirmaListePanel.Location = new System.Drawing.Point(0, 76);
-            this.FirmaListePanel.Name = "FirmaListePanel";
-            this.FirmaListePanel.Size = new System.Drawing.Size(695, 613);
-            this.FirmaListePanel.TabIndex = 30;
+            this.MusteriListePanel.AutoScroll = true;
+            this.MusteriListePanel.BackColor = System.Drawing.Color.White;
+            this.MusteriListePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MusteriListePanel.Location = new System.Drawing.Point(0, 76);
+            this.MusteriListePanel.Name = "MusteriListePanel";
+            this.MusteriListePanel.Size = new System.Drawing.Size(695, 613);
+            this.MusteriListePanel.TabIndex = 30;
             // 
             // panel3
             // 
@@ -81,13 +78,12 @@ namespace AhsapSanatEvi
             this.panel3.Controls.Add(this.groupBox6);
             this.panel3.Controls.Add(this.groupBox5);
             this.panel3.Controls.Add(this.groupBox4);
-            this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.groupBox2);
-            this.panel3.Controls.Add(this.BtnFirmaEkle);
+            this.panel3.Controls.Add(this.BtnMusteriEkle);
             this.panel3.Controls.Add(this.groupBox3);
-            this.panel3.Controls.Add(this.BtnFirmaSil);
-            this.panel3.Controls.Add(this.BtnFirmaGuncelle);
+            this.panel3.Controls.Add(this.BtnMusteriSil);
+            this.panel3.Controls.Add(this.BtnMusteriGuncelle);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(695, 76);
             this.panel3.Name = "panel3";
@@ -107,8 +103,9 @@ namespace AhsapSanatEvi
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBox2.Controls.Add(this.TxtBxMusteriID);
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
-            this.groupBox2.Location = new System.Drawing.Point(22, 62);
+            this.groupBox2.Location = new System.Drawing.Point(27, 102);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(276, 67);
             this.groupBox2.TabIndex = 8;
@@ -125,77 +122,81 @@ namespace AhsapSanatEvi
             this.TxtBxMusteriID.Location = new System.Drawing.Point(12, 32);
             this.TxtBxMusteriID.Name = "TxtBxMusteriID";
             this.TxtBxMusteriID.ReadOnly = true;
-            this.TxtBxMusteriID.Size = new System.Drawing.Size(258, 26);
+            this.TxtBxMusteriID.Size = new System.Drawing.Size(258, 23);
             this.TxtBxMusteriID.TabIndex = 1;
             // 
-            // BtnFirmaEkle
+            // BtnMusteriEkle
             // 
-            this.BtnFirmaEkle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.BtnFirmaEkle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(223)))), ((int)(((byte)(80)))));
-            this.BtnFirmaEkle.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.BtnFirmaEkle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(242)))), ((int)(((byte)(137)))));
-            this.BtnFirmaEkle.FlatAppearance.BorderSize = 3;
-            this.BtnFirmaEkle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFirmaEkle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnFirmaEkle.Location = new System.Drawing.Point(24, 559);
-            this.BtnFirmaEkle.Name = "BtnFirmaEkle";
-            this.BtnFirmaEkle.Size = new System.Drawing.Size(77, 42);
-            this.BtnFirmaEkle.TabIndex = 3;
-            this.BtnFirmaEkle.Text = "Ekle";
-            this.BtnFirmaEkle.UseVisualStyleBackColor = false;
+            this.BtnMusteriEkle.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BtnMusteriEkle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(223)))), ((int)(((byte)(80)))));
+            this.BtnMusteriEkle.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.BtnMusteriEkle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(242)))), ((int)(((byte)(137)))));
+            this.BtnMusteriEkle.FlatAppearance.BorderSize = 3;
+            this.BtnMusteriEkle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMusteriEkle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnMusteriEkle.Location = new System.Drawing.Point(24, 559);
+            this.BtnMusteriEkle.Name = "BtnMusteriEkle";
+            this.BtnMusteriEkle.Size = new System.Drawing.Size(77, 42);
+            this.BtnMusteriEkle.TabIndex = 3;
+            this.BtnMusteriEkle.Text = "Ekle";
+            this.BtnMusteriEkle.UseVisualStyleBackColor = false;
+            this.BtnMusteriEkle.Click += new System.EventHandler(this.BtnMusteriEkle_Click);
             // 
             // groupBox3
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.groupBox3.Controls.Add(this.TxtBxMusteriAdı);
-            this.groupBox3.Location = new System.Drawing.Point(22, 135);
+            this.groupBox3.Controls.Add(this.TxtBxMusteriAdSoyad);
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.groupBox3.Location = new System.Drawing.Point(27, 175);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(276, 67);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Müşteri Adı";
+            this.groupBox3.Text = "Ad Soyad";
             // 
-            // TxtBxMusteriAdı
+            // TxtBxMusteriAdSoyad
             // 
-            this.TxtBxMusteriAdı.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.TxtBxMusteriAdı.BackColor = System.Drawing.Color.White;
-            this.TxtBxMusteriAdı.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtBxMusteriAdı.Location = new System.Drawing.Point(12, 32);
-            this.TxtBxMusteriAdı.Name = "TxtBxMusteriAdı";
-            this.TxtBxMusteriAdı.Size = new System.Drawing.Size(258, 26);
-            this.TxtBxMusteriAdı.TabIndex = 7;
+            this.TxtBxMusteriAdSoyad.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TxtBxMusteriAdSoyad.BackColor = System.Drawing.Color.White;
+            this.TxtBxMusteriAdSoyad.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxMusteriAdSoyad.Location = new System.Drawing.Point(12, 32);
+            this.TxtBxMusteriAdSoyad.Name = "TxtBxMusteriAdSoyad";
+            this.TxtBxMusteriAdSoyad.Size = new System.Drawing.Size(258, 23);
+            this.TxtBxMusteriAdSoyad.TabIndex = 7;
             // 
-            // BtnFirmaSil
+            // BtnMusteriSil
             // 
-            this.BtnFirmaSil.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.BtnFirmaSil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(79)))), ((int)(((byte)(95)))));
-            this.BtnFirmaSil.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.BtnFirmaSil.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(136)))), ((int)(((byte)(148)))));
-            this.BtnFirmaSil.FlatAppearance.BorderSize = 3;
-            this.BtnFirmaSil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFirmaSil.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnFirmaSil.Location = new System.Drawing.Point(230, 559);
-            this.BtnFirmaSil.Name = "BtnFirmaSil";
-            this.BtnFirmaSil.Size = new System.Drawing.Size(77, 42);
-            this.BtnFirmaSil.TabIndex = 5;
-            this.BtnFirmaSil.Text = "Sil";
-            this.BtnFirmaSil.UseVisualStyleBackColor = false;
+            this.BtnMusteriSil.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BtnMusteriSil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(79)))), ((int)(((byte)(95)))));
+            this.BtnMusteriSil.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.BtnMusteriSil.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(136)))), ((int)(((byte)(148)))));
+            this.BtnMusteriSil.FlatAppearance.BorderSize = 3;
+            this.BtnMusteriSil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMusteriSil.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnMusteriSil.Location = new System.Drawing.Point(230, 559);
+            this.BtnMusteriSil.Name = "BtnMusteriSil";
+            this.BtnMusteriSil.Size = new System.Drawing.Size(77, 42);
+            this.BtnMusteriSil.TabIndex = 5;
+            this.BtnMusteriSil.Text = "Sil";
+            this.BtnMusteriSil.UseVisualStyleBackColor = false;
+            this.BtnMusteriSil.Click += new System.EventHandler(this.BtnMusteriSil_Click);
             // 
-            // BtnFirmaGuncelle
+            // BtnMusteriGuncelle
             // 
-            this.BtnFirmaGuncelle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.BtnFirmaGuncelle.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.BtnFirmaGuncelle.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.BtnFirmaGuncelle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(226)))), ((int)(((byte)(242)))));
-            this.BtnFirmaGuncelle.FlatAppearance.BorderSize = 3;
-            this.BtnFirmaGuncelle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFirmaGuncelle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnFirmaGuncelle.Location = new System.Drawing.Point(107, 559);
-            this.BtnFirmaGuncelle.Name = "BtnFirmaGuncelle";
-            this.BtnFirmaGuncelle.Size = new System.Drawing.Size(117, 42);
-            this.BtnFirmaGuncelle.TabIndex = 4;
-            this.BtnFirmaGuncelle.Text = "Güncelle";
-            this.BtnFirmaGuncelle.UseVisualStyleBackColor = false;
+            this.BtnMusteriGuncelle.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BtnMusteriGuncelle.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.BtnMusteriGuncelle.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.BtnMusteriGuncelle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(226)))), ((int)(((byte)(242)))));
+            this.BtnMusteriGuncelle.FlatAppearance.BorderSize = 3;
+            this.BtnMusteriGuncelle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMusteriGuncelle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnMusteriGuncelle.Location = new System.Drawing.Point(107, 559);
+            this.BtnMusteriGuncelle.Name = "BtnMusteriGuncelle";
+            this.BtnMusteriGuncelle.Size = new System.Drawing.Size(117, 42);
+            this.BtnMusteriGuncelle.TabIndex = 4;
+            this.BtnMusteriGuncelle.Text = "Güncelle";
+            this.BtnMusteriGuncelle.UseVisualStyleBackColor = false;
+            this.BtnMusteriGuncelle.Click += new System.EventHandler(this.BtnMusteriGuncelle_Click);
             // 
             // panel1
             // 
@@ -251,97 +252,80 @@ namespace AhsapSanatEvi
             this.TxtBxMusteriAraFrm.Name = "TxtBxMusteriAraFrm";
             this.TxtBxMusteriAraFrm.Size = new System.Drawing.Size(216, 25);
             this.TxtBxMusteriAraFrm.TabIndex = 1;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(22, 208);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(276, 67);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Müşteri Soyadı";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(12, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(258, 26);
-            this.textBox1.TabIndex = 7;
+            this.TxtBxMusteriAraFrm.TextChanged += new System.EventHandler(this.TxtBxMusteriAraFrm_TextChanged);
             // 
             // groupBox4
             // 
             this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.groupBox4.Controls.Add(this.textBox2);
-            this.groupBox4.Location = new System.Drawing.Point(22, 281);
+            this.groupBox4.Controls.Add(this.TxtBxMusteriTelNo);
+            this.groupBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.groupBox4.Location = new System.Drawing.Point(27, 248);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(276, 67);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Telefon Numarası";
             // 
-            // textBox2
+            // TxtBxMusteriTelNo
             // 
-            this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(12, 32);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(258, 26);
-            this.textBox2.TabIndex = 7;
+            this.TxtBxMusteriTelNo.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TxtBxMusteriTelNo.BackColor = System.Drawing.Color.White;
+            this.TxtBxMusteriTelNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxMusteriTelNo.Location = new System.Drawing.Point(12, 32);
+            this.TxtBxMusteriTelNo.Name = "TxtBxMusteriTelNo";
+            this.TxtBxMusteriTelNo.Size = new System.Drawing.Size(258, 23);
+            this.TxtBxMusteriTelNo.TabIndex = 7;
             // 
             // groupBox5
             // 
             this.groupBox5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.groupBox5.Controls.Add(this.textBox3);
-            this.groupBox5.Location = new System.Drawing.Point(22, 354);
+            this.groupBox5.Controls.Add(this.TxtBxMusteriMeslek);
+            this.groupBox5.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.groupBox5.Location = new System.Drawing.Point(27, 321);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(276, 67);
             this.groupBox5.TabIndex = 12;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Meslek";
             // 
-            // textBox3
+            // TxtBxMusteriMeslek
             // 
-            this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.textBox3.BackColor = System.Drawing.Color.White;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Location = new System.Drawing.Point(12, 32);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(258, 26);
-            this.textBox3.TabIndex = 7;
+            this.TxtBxMusteriMeslek.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TxtBxMusteriMeslek.BackColor = System.Drawing.Color.White;
+            this.TxtBxMusteriMeslek.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxMusteriMeslek.Location = new System.Drawing.Point(12, 32);
+            this.TxtBxMusteriMeslek.Name = "TxtBxMusteriMeslek";
+            this.TxtBxMusteriMeslek.Size = new System.Drawing.Size(258, 23);
+            this.TxtBxMusteriMeslek.TabIndex = 7;
             // 
             // groupBox6
             // 
             this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.groupBox6.Controls.Add(this.textBox4);
-            this.groupBox6.Location = new System.Drawing.Point(22, 427);
+            this.groupBox6.Controls.Add(this.TxtBxMusteriAciklama);
+            this.groupBox6.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.groupBox6.Location = new System.Drawing.Point(27, 394);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(276, 67);
             this.groupBox6.TabIndex = 13;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Açıklama";
             // 
-            // textBox4
+            // TxtBxMusteriAciklama
             // 
-            this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.textBox4.BackColor = System.Drawing.Color.White;
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Location = new System.Drawing.Point(12, 32);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(258, 26);
-            this.textBox4.TabIndex = 7;
+            this.TxtBxMusteriAciklama.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TxtBxMusteriAciklama.BackColor = System.Drawing.Color.White;
+            this.TxtBxMusteriAciklama.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxMusteriAciklama.Location = new System.Drawing.Point(12, 32);
+            this.TxtBxMusteriAciklama.Name = "TxtBxMusteriAciklama";
+            this.TxtBxMusteriAciklama.Size = new System.Drawing.Size(258, 23);
+            this.TxtBxMusteriAciklama.TabIndex = 7;
             // 
             // FrmMusteriler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 689);
-            this.Controls.Add(this.FirmaListePanel);
+            this.Controls.Add(this.MusteriListePanel);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -349,6 +333,7 @@ namespace AhsapSanatEvi
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "FrmMusteriler";
             this.Text = "FrmMusteriler";
+            this.Load += new System.EventHandler(this.FrmMusteriler_Load);
             this.panel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -358,8 +343,6 @@ namespace AhsapSanatEvi
             this.groupBoxMusteriler.ResumeLayout(false);
             this.groupBoxMusteriler.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -372,28 +355,26 @@ namespace AhsapSanatEvi
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel FirmaListePanel;
+        private System.Windows.Forms.FlowLayoutPanel MusteriListePanel;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.TextBox TxtBxMusteriID;
-        private System.Windows.Forms.Button BtnFirmaEkle;
+        private System.Windows.Forms.Button BtnMusteriEkle;
         private System.Windows.Forms.GroupBox groupBox3;
-        public System.Windows.Forms.TextBox TxtBxMusteriAdı;
-        private System.Windows.Forms.Button BtnFirmaSil;
-        private System.Windows.Forms.Button BtnFirmaGuncelle;
+        public System.Windows.Forms.TextBox TxtBxMusteriAdSoyad;
+        private System.Windows.Forms.Button BtnMusteriSil;
+        private System.Windows.Forms.Button BtnMusteriGuncelle;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBoxMusteriler;
         private System.Windows.Forms.PictureBox PictureBoxAra;
         private System.Windows.Forms.TextBox TxtBxMusteriAraFrm;
         private System.Windows.Forms.GroupBox groupBox5;
-        public System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.TextBox TxtBxMusteriMeslek;
         private System.Windows.Forms.GroupBox groupBox4;
-        public System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox TxtBxMusteriTelNo;
         private System.Windows.Forms.GroupBox groupBox6;
-        public System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.TextBox TxtBxMusteriAciklama;
     }
 }

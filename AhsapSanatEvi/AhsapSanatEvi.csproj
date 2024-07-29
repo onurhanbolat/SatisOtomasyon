@@ -125,6 +125,12 @@
     <Compile Include="FrmMusteriler.Designer.cs">
       <DependentUpon>FrmMusteriler.cs</DependentUpon>
     </Compile>
+    <Compile Include="MusteriListesi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MusteriListesi.Designer.cs">
+      <DependentUpon>MusteriListesi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CerceveListesi.resx">
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMusteriler.resx">
       <DependentUpon>FrmMusteriler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusteriListesi.resx">
+      <DependentUpon>MusteriListesi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

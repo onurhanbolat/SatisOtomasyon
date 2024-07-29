@@ -113,6 +113,7 @@ namespace AhsapSanatEvi
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBox2.Controls.Add(this.TxtBxFirmaID);
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
             this.groupBox2.Location = new System.Drawing.Point(27, 199);
             this.groupBox2.Name = "groupBox2";
@@ -131,13 +132,14 @@ namespace AhsapSanatEvi
             this.TxtBxFirmaID.Location = new System.Drawing.Point(12, 32);
             this.TxtBxFirmaID.Name = "TxtBxFirmaID";
             this.TxtBxFirmaID.ReadOnly = true;
-            this.TxtBxFirmaID.Size = new System.Drawing.Size(258, 26);
+            this.TxtBxFirmaID.Size = new System.Drawing.Size(258, 24);
             this.TxtBxFirmaID.TabIndex = 1;
             // 
             // groupBox3
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBox3.Controls.Add(this.TxtBxFirmaAdı);
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.groupBox3.Location = new System.Drawing.Point(27, 272);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(276, 67);
@@ -152,7 +154,7 @@ namespace AhsapSanatEvi
             this.TxtBxFirmaAdı.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtBxFirmaAdı.Location = new System.Drawing.Point(12, 32);
             this.TxtBxFirmaAdı.Name = "TxtBxFirmaAdı";
-            this.TxtBxFirmaAdı.Size = new System.Drawing.Size(258, 26);
+            this.TxtBxFirmaAdı.Size = new System.Drawing.Size(258, 24);
             this.TxtBxFirmaAdı.TabIndex = 7;
             this.TxtBxFirmaAdı.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBxFirmaAdı_KeyDown_1);
             // 

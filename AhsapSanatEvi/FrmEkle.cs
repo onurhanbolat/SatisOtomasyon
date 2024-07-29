@@ -295,8 +295,15 @@ namespace AhsapSanatEvi
             };
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                PictureBoxImage.Image = new Bitmap(ofd.FileName);
-                MessageBox.Show(ofd.FileName);
+                try
+                {
+                    PictureBoxImage.Image = new Bitmap(ofd.FileName);
+                    MessageBox.Show(ofd.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Resim yüklenirken bir hata oluştu: " + ex.Message);
+                }
             }
         }
 
@@ -430,7 +437,7 @@ namespace AhsapSanatEvi
         private void BtnFirmaEkle_Click(object sender, EventArgs e)
         {
             // TextBox'lardan veri al
-            string aciklama = TxtBxAciklama.Text.Trim();
+            string aciklama = TxtBxAciklama.Text.Trim().ToUpper();
             string kalinlikStr = TxtBxKalinlik.Text.Trim();
             string birimFiyatStr = TxtBxBirimFiyat.Text.Trim();
             string karMarjiStr = TxtBxKarMarji.Text.Trim();
@@ -462,7 +469,7 @@ namespace AhsapSanatEvi
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    PictureBoxImage.Image.Save(ms, PictureBoxImage.Image.RawFormat);
+                    PictureBoxImage.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                     byte[] resimData = ms.ToArray();
                     resimBase64 = Convert.ToBase64String(resimData);
                 }
@@ -525,7 +532,25 @@ namespace AhsapSanatEvi
         {
             if (CerceveListesi.selectedCerceveID > 0)
             {
-                string sorgu = "UPDATE TBLCERCEVELER SET CERCEVEKALINLIK = @kalinlik, CERCEVEBIRIMFIYAT = @birimfiyat, CERCEVEKARMARJI = @karmarji, BIRIMSATISFIYATI = @birimsatisfiyat, CERCEVEACIKLAMA = @aciklama WHERE CERCEVEID = @cerceveID";
+                string sorgu = "UPDATE TBLCERCEVELER SET CERCEVEKALINLIK = @kalinlik, CERCEVEBIRIMFIYAT = @birimfiyat, CERCEVEKARMARJI = @karmarji, BIRIMSATISFIYATI = @birimsatisfiyat, CERCEVEACIKLAMA = @aciklama, URUNRESMI = @urunResmi WHERE CERCEVEID = @cerceveID";
+
+                string resimBase64 = null;
+                if (PictureBoxImage.Image != null)
+                {
+                    try
+                    {
+                        using (MemoryStream ms2 = new MemoryStream())
+                        {
+                            PictureBoxImage.Image.Save(ms2, System.Drawing.Imaging.ImageFormat.Jpeg); // veya ImageFormat.Png
+                            byte[] resimData = ms2.ToArray();
+                            resimBase64 = Convert.ToBase64String(resimData);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Resim kaydedilirken bir hata oluştu: {ex.Message}");
+                    }
+                }
 
                 using (SqlConnection connection = DataBaseControl.GetConnection())
                 {
@@ -538,9 +563,10 @@ namespace AhsapSanatEvi
                         komut.Parameters.AddWithValue("@karmarji", TxtBxKarMarji.Text);
                         komut.Parameters.AddWithValue("@birimsatisfiyat", TxtBxBirimSatisFiyat.Text);
                         komut.Parameters.AddWithValue("@aciklama", TxtBxAciklama.Text);
+                        komut.Parameters.AddWithValue("@urunResmi", (object)resimBase64 ?? DBNull.Value);
                         komut.Parameters.AddWithValue("@cerceveID", CerceveListesi.selectedCerceveID);
                         komut.ExecuteNonQuery();
-                        MessageBox.Show("Cerceve başarıyla güncellendi.");
+                        MessageBox.Show("Çerçeve başarıyla güncellendi.");
                     }
                     catch (Exception ex)
                     {
@@ -553,8 +579,6 @@ namespace AhsapSanatEvi
                 MessageBox.Show("Güncellenecek bir kod seçiniz.");
             }
         }
+
     }
 }
-    
-
-

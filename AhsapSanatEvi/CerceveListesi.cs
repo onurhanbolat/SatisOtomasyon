@@ -20,7 +20,16 @@ namespace AhsapSanatEvi
         {
             InitializeComponent();
         }
-
+        private int ExtractCerceveId(string cerceveIdText)
+        {
+            // ID'nin "ID: " kısmından ayıklanması
+            string[] parts = cerceveIdText.Split(':');
+            if (parts.Length > 1 && int.TryParse(parts[1].Trim(), out int cerceveId))
+            {
+                return cerceveId;
+            }
+            throw new FormatException("Geçersiz ID formatı.");
+        }
         // Silme işlemi butonuna tıklandığında çağrılan metod
         private void BtnCerceveListeSil_Click(object sender, EventArgs e)
         {
@@ -28,7 +37,7 @@ namespace AhsapSanatEvi
             {
                 // Açık olan formCerceveler formunu bul
                 var frm = Application.OpenForms.OfType<formCerceveler>().FirstOrDefault();
-
+                int cerceveid = ExtractCerceveId(LblCerceveID.Text);
                 if (frm != null)
                 {
                     DialogResult result = MessageBox.Show("Bu çerçeveyi silmek istediğinize emin misiniz?", "Silme Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -37,8 +46,8 @@ namespace AhsapSanatEvi
                         using (var connection = DataBaseControl.GetConnection())
                         {
                             connection.Open();
-                            var sil = new SqlCommand("DELETE FROM TBLCERCEVELER WHERE BIRIMSATISFIYATI=@p1", connection);
-                            sil.Parameters.AddWithValue("@p1", LblBirimSatisFiyat.Text);
+                            var sil = new SqlCommand("DELETE FROM TBLCERCEVELER WHERE CERCEVEID=@p1", connection);
+                            sil.Parameters.AddWithValue("@p1", cerceveid);
                             sil.ExecuteNonQuery();
                         }
                         MessageBox.Show("Çerçeve Başarıyla Silinmiştir");

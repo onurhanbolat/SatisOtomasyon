@@ -50,29 +50,30 @@ namespace AhsapSanatEvi
                 {
                     connection.Open();
                     string sorgu = @"
-                    SELECT 
-                        f.FIRMAAD AS FirmaAd, 
-                        k.CERCEVEKOD AS CerceveKod, 
-                        c.CERCEVEACIKLAMA AS Aciklama, 
-                        c.CERCEVEID AS CerceveId,
-                        c.BIRIMSATISFIYATI AS BirimSatisFiyati,
-                        c.URUNRESMI AS UrunResmi
-                    FROM 
-                        TBLCERCEVELER c
-                    INNER JOIN 
-                        TBLFIRMALAR f ON c.FIRMAADID = f.FIRMAID
-                    INNER JOIN 
-                        TBLCERCEVEKODLARI k ON c.CERCEVEKODID = k.KODID
-                    WHERE 
-                        (@FirmaAd = '' OR f.FIRMAAD LIKE '%' + @FirmaAd + '%') AND
-                        (@CerceveKod = '' OR k.CERCEVEKOD LIKE '%' + @CerceveKod + '%') AND
-                        (@Aciklama = '' OR c.CERCEVEACIKLAMA LIKE '%' + @Aciklama + '%')";
+                SELECT 
+                f.FIRMAAD AS FirmaAd, 
+                k.CERCEVEKOD AS CerceveKod, 
+                c.CERCEVEACIKLAMA AS Aciklama, 
+                c.CERCEVEID AS CerceveId,
+                c.BIRIMSATISFIYATI AS BirimSatisFiyati,
+                c.URUNRESMI AS UrunResmi
+                FROM 
+                TBLCERCEVELER c
+                INNER JOIN 
+                TBLFIRMALAR f ON c.FIRMAADID = f.FIRMAID
+                INNER JOIN 
+                TBLCERCEVEKODLARI k ON c.CERCEVEKODID = k.KODID
+                WHERE 
+                (@FirmaAd = '' OR f.FIRMAAD LIKE '%' + @FirmaAd + '%') AND
+                (@CerceveKod = '' OR k.CERCEVEKOD LIKE '%' + @CerceveKod + '%') AND
+                (@Aciklama = '' OR c.CERCEVEACIKLAMA LIKE '%' + @Aciklama + '%')
+                ORDER BY 
+                f.FIRMAAD ASC";
 
                     SqlCommand komut = new SqlCommand(sorgu, connection);
                     komut.Parameters.AddWithValue("@FirmaAd", firmaAd);
                     komut.Parameters.AddWithValue("@CerceveKod", cerceveKod);
                     komut.Parameters.AddWithValue("@Aciklama", aciklama);
-
                     using (SqlDataReader oku = komut.ExecuteReader())
                     {
                         while (oku.Read())
@@ -83,8 +84,9 @@ namespace AhsapSanatEvi
                                 LblCerceveKod = { Text = oku["CerceveKod"].ToString() },
                                 LblFirmaAd = { Text = oku["FirmaAd"].ToString() },
                                 LblAciklama = { Text = oku["Aciklama"].ToString() },
-                                LblBirimSatisFiyat = { Text = oku["BirimSatisFiyati"].ToString() + "₺" },
-                                LblCerceveID = { Text = "ID: " + oku["CerceveId"].ToString()}
+                                // Fiyat bilgisini formatla
+                                LblBirimSatisFiyat = { Text = FormatFiyat(oku["BirimSatisFiyati"].ToString()) },
+                                LblCerceveID = { Text = "ID: " + oku["CerceveId"].ToString() }
                             };
 
                             // Resmi base64 string'inden bitmap'e dönüştür
@@ -158,6 +160,15 @@ namespace AhsapSanatEvi
                     aramaZaman.Start(); // Zamanlayıcıyı başlat
                 }
             };
+        }
+        private string FormatFiyat(string fiyatString)
+        {
+            if (decimal.TryParse(fiyatString, out decimal fiyat))
+            {
+                // Fiyatı para formatında düzenle
+                return fiyat.ToString("N0") + "₺";
+            }
+            return fiyatString; // Eğer dönüşüm yapılamazsa, orijinal fiyat stringini döndür
         }
 
         private void TxtBxFirmaAraCrc_TextChanged(object sender, EventArgs e)

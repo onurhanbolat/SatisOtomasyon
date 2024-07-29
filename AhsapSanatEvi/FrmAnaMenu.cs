@@ -18,6 +18,8 @@ namespace AhsapSanatEvi
         private Rectangle originalBounds;
         private DateTime lastCheckedTimeCerceve = DateTime.MinValue;
         public DateTime lastCheckedTimeFirma = DateTime.MinValue;
+        public DateTime lastCheckedTimeMusteri = DateTime.MinValue;
+
 
 
 
@@ -27,7 +29,7 @@ namespace AhsapSanatEvi
             originalBounds = this.Bounds;
         }
 
-        private DateTime GetLastDatabaseChangeTime()
+        private DateTime GetLastCercevelerDatabaseChangeTime()
         {
             DateTime lastChangeTimeCerceve = DateTime.MinValue;
 
@@ -79,7 +81,33 @@ namespace AhsapSanatEvi
 
             return lastChangeTimeFirma;
         }
-      
+        private DateTime GetLastMusterilerDatabaseChangeTime()
+        {
+            DateTime lastChangeTimeMusteriler = DateTime.MinValue;
+
+            try
+            {
+                using (SqlConnection connection = DataBaseControl.GetConnection())
+                {
+                    connection.Open();
+                    string sorgu = "SELECT MAX(SONGUNCELLEME) FROM TBLMUSTERILER";
+                    SqlCommand komut = new SqlCommand(sorgu, connection);
+                    object result = komut.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        lastChangeTimeMusteriler = Convert.ToDateTime(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Firmalar veritabanı değişiklik kontrolü sırasında bir hata oluştu: " + ex.Message);
+            }
+
+            return lastChangeTimeMusteriler;
+        }
+
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -139,20 +167,25 @@ namespace AhsapSanatEvi
         }
         private void BtnMusteriler_Click(object sender, EventArgs e)
         {
+            DateTime currentChangeTime = GetLastMusterilerDatabaseChangeTime();
+
 
             // Musteriler formunun açık olup olmadığını kontrol et
             FrmMusteriler musteriform = Application.OpenForms.OfType<FrmMusteriler>().FirstOrDefault();
-
-            if (musteriform != null)
+            if (currentChangeTime > lastCheckedTimeMusteri || musteriform == null)
             {
-                musteriform.Close(); // Mevcut formu kapat
+                if (musteriform != null)
+                {
+                    musteriform.Close(); // Mevcut formu kapat
+                }
+
+                musteriform = new FrmMusteriler();
+                musteriform.TopLevel = false;
+                musteriform.Dock = DockStyle.Fill;
+                this.AnaMenuArkaPanel.Controls.Add(musteriform);
+
+                lastCheckedTimeMusteri = currentChangeTime;
             }
-
-            musteriform = new FrmMusteriler();
-            musteriform.TopLevel = false;
-            musteriform.Dock = DockStyle.Fill;
-            this.AnaMenuArkaPanel.Controls.Add(musteriform);
-
             // Formu ön plana getir
             musteriform.Show();
             musteriform.BringToFront();
@@ -163,7 +196,7 @@ namespace AhsapSanatEvi
         {
             
 
-            DateTime currentChangeTime = GetLastDatabaseChangeTime();
+            DateTime currentChangeTime = GetLastCercevelerDatabaseChangeTime();
             DateTime currentChangeTimeFirma = GetLastFirmalarDatabaseChangeTime();
 
             DateTime lastChangeTime = new[] { currentChangeTime, currentChangeTimeFirma }.Max();
