@@ -77,7 +77,7 @@ namespace AhsapSanatEvi
             string imagePath = @"C:\Users\onurh\Desktop\OkulDbLogo\turuncu3.png";
             BtnKodSec.Image = Image.FromFile(imagePath);
 
-            // Veritabanı işlemleri
+            // Veritabanı işlemlerinn
             try
             {
                 using (SqlConnection connection = DataBaseControl.GetConnection())
@@ -107,4 +107,5 @@ namespace AhsapSanatEvi
         }
     }
 }
+
 

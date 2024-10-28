@@ -32,6 +32,12 @@ namespace AhsapSanatEvi
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMusteriler));
             this.MusteriListePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.TxtBxMusteriAciklama = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.TxtBxMusteriMeslek = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.TxtBxMusteriTelNo = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.TxtBxMusteriID = new System.Windows.Forms.TextBox();
@@ -45,21 +51,15 @@ namespace AhsapSanatEvi
             this.groupBoxMusteriler = new System.Windows.Forms.GroupBox();
             this.PictureBoxAra = new System.Windows.Forms.PictureBox();
             this.TxtBxMusteriAraFrm = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.TxtBxMusteriTelNo = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.TxtBxMusteriMeslek = new System.Windows.Forms.TextBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.TxtBxMusteriAciklama = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBoxMusteriler.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // MusteriListePanel
@@ -89,6 +89,72 @@ namespace AhsapSanatEvi
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(326, 613);
             this.panel3.TabIndex = 29;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.groupBox6.Controls.Add(this.TxtBxMusteriAciklama);
+            this.groupBox6.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.groupBox6.Location = new System.Drawing.Point(27, 394);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(276, 67);
+            this.groupBox6.TabIndex = 13;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Açıklama";
+            // 
+            // TxtBxMusteriAciklama
+            // 
+            this.TxtBxMusteriAciklama.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TxtBxMusteriAciklama.BackColor = System.Drawing.Color.White;
+            this.TxtBxMusteriAciklama.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxMusteriAciklama.Location = new System.Drawing.Point(12, 32);
+            this.TxtBxMusteriAciklama.Name = "TxtBxMusteriAciklama";
+            this.TxtBxMusteriAciklama.Size = new System.Drawing.Size(258, 23);
+            this.TxtBxMusteriAciklama.TabIndex = 7;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.groupBox5.Controls.Add(this.TxtBxMusteriMeslek);
+            this.groupBox5.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.groupBox5.Location = new System.Drawing.Point(27, 321);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(276, 67);
+            this.groupBox5.TabIndex = 12;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Meslek";
+            // 
+            // TxtBxMusteriMeslek
+            // 
+            this.TxtBxMusteriMeslek.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TxtBxMusteriMeslek.BackColor = System.Drawing.Color.White;
+            this.TxtBxMusteriMeslek.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxMusteriMeslek.Location = new System.Drawing.Point(12, 32);
+            this.TxtBxMusteriMeslek.Name = "TxtBxMusteriMeslek";
+            this.TxtBxMusteriMeslek.Size = new System.Drawing.Size(258, 23);
+            this.TxtBxMusteriMeslek.TabIndex = 7;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.groupBox4.Controls.Add(this.TxtBxMusteriTelNo);
+            this.groupBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.groupBox4.Location = new System.Drawing.Point(27, 248);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(276, 67);
+            this.groupBox4.TabIndex = 11;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Telefon Numarası";
+            // 
+            // TxtBxMusteriTelNo
+            // 
+            this.TxtBxMusteriTelNo.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TxtBxMusteriTelNo.BackColor = System.Drawing.Color.White;
+            this.TxtBxMusteriTelNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxMusteriTelNo.Location = new System.Drawing.Point(12, 32);
+            this.TxtBxMusteriTelNo.Name = "TxtBxMusteriTelNo";
+            this.TxtBxMusteriTelNo.Size = new System.Drawing.Size(258, 23);
+            this.TxtBxMusteriTelNo.TabIndex = 7;
             // 
             // panel4
             // 
@@ -254,72 +320,6 @@ namespace AhsapSanatEvi
             this.TxtBxMusteriAraFrm.TabIndex = 1;
             this.TxtBxMusteriAraFrm.TextChanged += new System.EventHandler(this.TxtBxMusteriAraFrm_TextChanged);
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.groupBox4.Controls.Add(this.TxtBxMusteriTelNo);
-            this.groupBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox4.Location = new System.Drawing.Point(27, 248);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(276, 67);
-            this.groupBox4.TabIndex = 11;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Telefon Numarası";
-            // 
-            // TxtBxMusteriTelNo
-            // 
-            this.TxtBxMusteriTelNo.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.TxtBxMusteriTelNo.BackColor = System.Drawing.Color.White;
-            this.TxtBxMusteriTelNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtBxMusteriTelNo.Location = new System.Drawing.Point(12, 32);
-            this.TxtBxMusteriTelNo.Name = "TxtBxMusteriTelNo";
-            this.TxtBxMusteriTelNo.Size = new System.Drawing.Size(258, 23);
-            this.TxtBxMusteriTelNo.TabIndex = 7;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.groupBox5.Controls.Add(this.TxtBxMusteriMeslek);
-            this.groupBox5.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox5.Location = new System.Drawing.Point(27, 321);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(276, 67);
-            this.groupBox5.TabIndex = 12;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Meslek";
-            // 
-            // TxtBxMusteriMeslek
-            // 
-            this.TxtBxMusteriMeslek.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.TxtBxMusteriMeslek.BackColor = System.Drawing.Color.White;
-            this.TxtBxMusteriMeslek.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtBxMusteriMeslek.Location = new System.Drawing.Point(12, 32);
-            this.TxtBxMusteriMeslek.Name = "TxtBxMusteriMeslek";
-            this.TxtBxMusteriMeslek.Size = new System.Drawing.Size(258, 23);
-            this.TxtBxMusteriMeslek.TabIndex = 7;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.groupBox6.Controls.Add(this.TxtBxMusteriAciklama);
-            this.groupBox6.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox6.Location = new System.Drawing.Point(27, 394);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(276, 67);
-            this.groupBox6.TabIndex = 13;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Açıklama";
-            // 
-            // TxtBxMusteriAciklama
-            // 
-            this.TxtBxMusteriAciklama.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.TxtBxMusteriAciklama.BackColor = System.Drawing.Color.White;
-            this.TxtBxMusteriAciklama.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtBxMusteriAciklama.Location = new System.Drawing.Point(12, 32);
-            this.TxtBxMusteriAciklama.Name = "TxtBxMusteriAciklama";
-            this.TxtBxMusteriAciklama.Size = new System.Drawing.Size(258, 23);
-            this.TxtBxMusteriAciklama.TabIndex = 7;
-            // 
             // FrmMusteriler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
@@ -330,11 +330,17 @@ namespace AhsapSanatEvi
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FrmMusteriler";
             this.Text = "FrmMusteriler";
             this.Load += new System.EventHandler(this.FrmMusteriler_Load);
             this.panel3.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -343,12 +349,6 @@ namespace AhsapSanatEvi
             this.groupBoxMusteriler.ResumeLayout(false);
             this.groupBoxMusteriler.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }

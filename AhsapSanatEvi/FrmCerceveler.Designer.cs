@@ -41,6 +41,13 @@ namespace AhsapSanatEvi
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.PictureBoxAra2 = new System.Windows.Forms.PictureBox();
             this.TxtBxKodAraCrc = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.LblAciklama = new System.Windows.Forms.Label();
+            this.LblFirma = new System.Windows.Forms.Label();
+            this.LblKod = new System.Windows.Forms.Label();
+            this.LblResim = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.CerceveListePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.groupBoxFirmalae.SuspendLayout();
@@ -49,6 +56,7 @@ namespace AhsapSanatEvi
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra3)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra2)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -67,9 +75,9 @@ namespace AhsapSanatEvi
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 71);
+            this.panel2.Location = new System.Drawing.Point(0, 72);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1021, 5);
+            this.panel2.Size = new System.Drawing.Size(1021, 4);
             this.panel2.TabIndex = 19;
             // 
             // groupBoxFirmalae
@@ -78,7 +86,7 @@ namespace AhsapSanatEvi
             this.groupBoxFirmalae.Controls.Add(this.TxtBxFirmaAraCrc);
             this.groupBoxFirmalae.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxFirmalae.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBoxFirmalae.Location = new System.Drawing.Point(273, 1);
+            this.groupBoxFirmalae.Location = new System.Drawing.Point(273, 2);
             this.groupBoxFirmalae.Name = "groupBoxFirmalae";
             this.groupBoxFirmalae.Size = new System.Drawing.Size(256, 59);
             this.groupBoxFirmalae.TabIndex = 16;
@@ -113,7 +121,7 @@ namespace AhsapSanatEvi
             this.groupBox2.Controls.Add(this.TxtBxAnahtarKelimeAraCrc);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBox2.Location = new System.Drawing.Point(535, 1);
+            this.groupBox2.Location = new System.Drawing.Point(535, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(256, 59);
             this.groupBox2.TabIndex = 18;
@@ -148,7 +156,7 @@ namespace AhsapSanatEvi
             this.groupBox3.Controls.Add(this.TxtBxKodAraCrc);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.groupBox3.Location = new System.Drawing.Point(11, 1);
+            this.groupBox3.Location = new System.Drawing.Point(11, 2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(256, 59);
             this.groupBox3.TabIndex = 17;
@@ -177,15 +185,103 @@ namespace AhsapSanatEvi
             this.TxtBxKodAraCrc.Size = new System.Drawing.Size(216, 25);
             this.TxtBxKodAraCrc.TabIndex = 1;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.LblAciklama);
+            this.panel3.Controls.Add(this.LblFirma);
+            this.panel3.Controls.Add(this.LblKod);
+            this.panel3.Controls.Add(this.LblResim);
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 76);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1021, 31);
+            this.panel3.TabIndex = 24;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(1224, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(121, 20);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Birim Satış Fiyatı";
+            // 
+            // LblAciklama
+            // 
+            this.LblAciklama.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.LblAciklama.AutoSize = true;
+            this.LblAciklama.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.LblAciklama.ForeColor = System.Drawing.Color.Gray;
+            this.LblAciklama.Location = new System.Drawing.Point(811, 4);
+            this.LblAciklama.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblAciklama.Name = "LblAciklama";
+            this.LblAciklama.Size = new System.Drawing.Size(71, 20);
+            this.LblAciklama.TabIndex = 24;
+            this.LblAciklama.Text = "Açıklama";
+            // 
+            // LblFirma
+            // 
+            this.LblFirma.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.LblFirma.AutoSize = true;
+            this.LblFirma.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.LblFirma.ForeColor = System.Drawing.Color.Gray;
+            this.LblFirma.Location = new System.Drawing.Point(414, 4);
+            this.LblFirma.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblFirma.Name = "LblFirma";
+            this.LblFirma.Size = new System.Drawing.Size(48, 20);
+            this.LblFirma.TabIndex = 23;
+            this.LblFirma.Text = "Firma";
+            // 
+            // LblKod
+            // 
+            this.LblKod.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.LblKod.AutoSize = true;
+            this.LblKod.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.LblKod.ForeColor = System.Drawing.Color.Gray;
+            this.LblKod.Location = new System.Drawing.Point(172, 4);
+            this.LblKod.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblKod.Name = "LblKod";
+            this.LblKod.Size = new System.Drawing.Size(36, 20);
+            this.LblKod.TabIndex = 22;
+            this.LblKod.Text = "Kod";
+            // 
+            // LblResim
+            // 
+            this.LblResim.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.LblResim.AutoSize = true;
+            this.LblResim.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.LblResim.ForeColor = System.Drawing.Color.Gray;
+            this.LblResim.Location = new System.Drawing.Point(7, 4);
+            this.LblResim.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblResim.Name = "LblResim";
+            this.LblResim.Size = new System.Drawing.Size(49, 20);
+            this.LblResim.TabIndex = 21;
+            this.LblResim.Text = "Resim";
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 27);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1021, 4);
+            this.panel4.TabIndex = 20;
+            // 
             // CerceveListePanel
             // 
             this.CerceveListePanel.AutoScroll = true;
             this.CerceveListePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CerceveListePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CerceveListePanel.Location = new System.Drawing.Point(0, 76);
+            this.CerceveListePanel.Location = new System.Drawing.Point(0, 107);
             this.CerceveListePanel.Name = "CerceveListePanel";
-            this.CerceveListePanel.Size = new System.Drawing.Size(1021, 613);
-            this.CerceveListePanel.TabIndex = 23;
+            this.CerceveListePanel.Size = new System.Drawing.Size(1021, 582);
+            this.CerceveListePanel.TabIndex = 25;
             // 
             // formCerceveler
             // 
@@ -194,6 +290,7 @@ namespace AhsapSanatEvi
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1021, 689);
             this.Controls.Add(this.CerceveListePanel);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -210,6 +307,8 @@ namespace AhsapSanatEvi
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra2)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -227,6 +326,13 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.PictureBox PictureBoxAra2;
         private System.Windows.Forms.TextBox TxtBxKodAraCrc;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
         public System.Windows.Forms.FlowLayoutPanel CerceveListePanel;
+        public System.Windows.Forms.Label LblResim;
+        public System.Windows.Forms.Label LblKod;
+        public System.Windows.Forms.Label LblFirma;
+        public System.Windows.Forms.Label LblAciklama;
+        public System.Windows.Forms.Label label1;
     }
 }

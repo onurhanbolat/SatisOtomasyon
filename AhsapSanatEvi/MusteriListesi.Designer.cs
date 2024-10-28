@@ -29,12 +29,14 @@ namespace AhsapSanatEvi
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MusteriListesi));
             this.panel1 = new System.Windows.Forms.Panel();
             this.LblListeMusteriAd = new System.Windows.Forms.Label();
             this.LblListeMusteriId = new System.Windows.Forms.Label();
             this.LblListeTelefon = new System.Windows.Forms.Label();
             this.LblListeMeslek = new System.Windows.Forms.Label();
             this.LblListeAciklama = new System.Windows.Forms.Label();
+            this.BtnMusteriSec = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panel1
@@ -109,11 +111,26 @@ namespace AhsapSanatEvi
             this.LblListeAciklama.TabIndex = 11;
             this.LblListeAciklama.Text = "Açıklama";
             // 
+            // BtnMusteriSec
+            // 
+            this.BtnMusteriSec.BackColor = System.Drawing.Color.Transparent;
+            this.BtnMusteriSec.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnMusteriSec.FlatAppearance.BorderSize = 0;
+            this.BtnMusteriSec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMusteriSec.Image = ((System.Drawing.Image)(resources.GetObject("BtnMusteriSec.Image")));
+            this.BtnMusteriSec.Location = new System.Drawing.Point(1309, 23);
+            this.BtnMusteriSec.Margin = new System.Windows.Forms.Padding(6);
+            this.BtnMusteriSec.Name = "BtnMusteriSec";
+            this.BtnMusteriSec.Size = new System.Drawing.Size(25, 25);
+            this.BtnMusteriSec.TabIndex = 21;
+            this.BtnMusteriSec.UseVisualStyleBackColor = false;
+            // 
             // MusteriListesi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
+            this.Controls.Add(this.BtnMusteriSec);
             this.Controls.Add(this.LblListeAciklama);
             this.Controls.Add(this.LblListeMeslek);
             this.Controls.Add(this.LblListeTelefon);
@@ -123,7 +140,7 @@ namespace AhsapSanatEvi
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MusteriListesi";
-            this.Size = new System.Drawing.Size(1376, 69);
+            this.Size = new System.Drawing.Size(1351, 69);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,5 +154,6 @@ namespace AhsapSanatEvi
         public System.Windows.Forms.Label LblListeTelefon;
         public System.Windows.Forms.Label LblListeMeslek;
         public System.Windows.Forms.Label LblListeAciklama;
+        public System.Windows.Forms.Button BtnMusteriSec;
     }
 }

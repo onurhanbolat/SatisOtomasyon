@@ -22,11 +22,14 @@ namespace AhsapSanatEvi
 
 
 
-
         public FrmAnaMenu()
         {
             InitializeComponent();
             originalBounds = this.Bounds;
+        }
+        private void FrmAnaMenu_Load(object sender, EventArgs e)
+        {
+            BtnAnaMenu_Click(sender, e); // Form yüklendiğinde Ana Menü butonuna tıklama işlemi çalıştırılır
         }
 
         private DateTime GetLastCercevelerDatabaseChangeTime()
@@ -132,11 +135,35 @@ namespace AhsapSanatEvi
             }
         }
 
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
         private void BtnEkle_Click(object sender, EventArgs e)
         {
             timer1.Start();
         }
 
+        private void BtnAnaMenu_Click(object sender, EventArgs e)
+        {
+            FrmAnaSayfa anaForm = Application.OpenForms.OfType<FrmAnaSayfa>().FirstOrDefault();
+
+            if (anaForm == null) // Eğer FrmAnaSayfa açık değilse yeni bir form oluştur
+            {
+                anaForm = new FrmAnaSayfa();
+                anaForm.TopLevel = false;
+                anaForm.Dock = DockStyle.Fill;
+                this.AnaMenuArkaPanel.Controls.Add(anaForm);
+                anaForm.Show();
+            }
+            else
+            {
+                // Eğer form zaten açıksa, sadece öne getir
+                anaForm.BringToFront();
+            }
+
+        }
         private void BtnFirmalar_Click(object sender, EventArgs e)
         {
             DateTime currentChangeTime = GetLastFirmalarDatabaseChangeTime();
@@ -321,6 +348,35 @@ namespace AhsapSanatEvi
 
             ekleForm.Show();
             ekleForm.BringToFront();
+        }
+
+        public void BtnSatis_Click(object sender, EventArgs e)
+        {
+            DateTime currentChangeTime = GetLastFirmalarDatabaseChangeTime();
+
+            // Firmalar formunun açık olup olmadığını kontrol et
+            FrmCerceveSatis satisForm = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
+
+            // Eğer veritabanında değişiklik olmuşsa veya form açık değilse, yeni bir form oluştur
+            if (currentChangeTime > lastCheckedTimeFirma || satisForm == null)
+            {
+                if (satisForm != null)
+                {
+                    satisForm.Close(); // Mevcut formu kapat
+                }
+
+                satisForm = new FrmCerceveSatis();
+                satisForm.TopLevel = false;
+                satisForm.Dock = DockStyle.Fill;
+                this.AnaMenuArkaPanel.Controls.Add(satisForm);
+
+                // Son kontrol zamanını güncelle
+                lastCheckedTimeFirma = currentChangeTime;
+            }
+
+            // Formu ön plana getir
+            satisForm.Show();
+            satisForm.BringToFront();
         }
 
     }

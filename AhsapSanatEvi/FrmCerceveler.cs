@@ -45,35 +45,41 @@ namespace AhsapSanatEvi
         {
             try
             {
+                // Paneli temizle
                 CerceveListePanel.Controls.Clear();
+
                 using (SqlConnection connection = DataBaseControl.GetConnection())
                 {
                     connection.Open();
+
+                    // SQL sorgusu
                     string sorgu = @"
-                SELECT 
+            SELECT 
                 f.FIRMAAD AS FirmaAd, 
                 k.CERCEVEKOD AS CerceveKod, 
                 c.CERCEVEACIKLAMA AS Aciklama, 
                 c.CERCEVEID AS CerceveId,
                 c.BIRIMSATISFIYATI AS BirimSatisFiyati,
                 c.URUNRESMI AS UrunResmi
-                FROM 
+            FROM 
                 TBLCERCEVELER c
-                INNER JOIN 
+            INNER JOIN 
                 TBLFIRMALAR f ON c.FIRMAADID = f.FIRMAID
-                INNER JOIN 
+            INNER JOIN 
                 TBLCERCEVEKODLARI k ON c.CERCEVEKODID = k.KODID
-                WHERE 
+            WHERE 
                 (@FirmaAd = '' OR f.FIRMAAD LIKE '%' + @FirmaAd + '%') AND
                 (@CerceveKod = '' OR k.CERCEVEKOD LIKE '%' + @CerceveKod + '%') AND
                 (@Aciklama = '' OR c.CERCEVEACIKLAMA LIKE '%' + @Aciklama + '%')
-                ORDER BY 
+            ORDER BY 
                 f.FIRMAAD ASC";
 
+                    // SQL Komutu oluştur
                     SqlCommand komut = new SqlCommand(sorgu, connection);
-                    komut.Parameters.AddWithValue("@FirmaAd", firmaAd);
-                    komut.Parameters.AddWithValue("@CerceveKod", cerceveKod);
-                    komut.Parameters.AddWithValue("@Aciklama", aciklama);
+                    komut.Parameters.Add("@FirmaAd", SqlDbType.NVarChar).Value = firmaAd;
+                    komut.Parameters.Add("@CerceveKod", SqlDbType.NVarChar).Value = cerceveKod;
+                    komut.Parameters.Add("@Aciklama", SqlDbType.NVarChar).Value = aciklama;
+
                     using (SqlDataReader oku = komut.ExecuteReader())
                     {
                         while (oku.Read())
@@ -84,8 +90,8 @@ namespace AhsapSanatEvi
                                 LblCerceveKod = { Text = oku["CerceveKod"].ToString() },
                                 LblFirmaAd = { Text = oku["FirmaAd"].ToString() },
                                 LblAciklama = { Text = oku["Aciklama"].ToString() },
-                                // Fiyat bilgisini formatla
-                                LblBirimSatisFiyat = { Text = FormatFiyat(oku["BirimSatisFiyati"].ToString()) },
+                                // Fiyat formatlama: decimal'e dönüştür ve para birimi formatı uygula
+                                LblBirimSatisFiyat = { Text = Convert.ToDecimal(oku["BirimSatisFiyati"]).ToString("C2") },
                                 LblCerceveID = { Text = "ID: " + oku["CerceveId"].ToString() }
                             };
 
@@ -104,15 +110,18 @@ namespace AhsapSanatEvi
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show("Resim dönüştürme sırasında bir hata oluştu: " + ex.Message);
+                                    MessageBox.Show("Resim yükleme sırasında bir hata oluştu: " + ex.Message);
                                 }
                             }
-
                             // Yeni CerceveListesi nesnesini panelin kontrol listesine ekle
                             CerceveListePanel.Controls.Add(arac);
                         }
                     }
                 }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Veritabanına bağlanırken bir hata oluştu: " + sqlEx.Message);
             }
             catch (Exception ex)
             {
@@ -182,5 +191,6 @@ namespace AhsapSanatEvi
         private void TxtBxAnahtarKelimeAraCrc_TextChanged(object sender, EventArgs e)
         {
         }
+
     }
 }

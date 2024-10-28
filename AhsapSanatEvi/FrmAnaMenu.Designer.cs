@@ -30,7 +30,9 @@ namespace AhsapSanatEvi
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAnaMenu));
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.MinimizeButton = new System.Windows.Forms.Button();
             this.FullScreenButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.CompanyText = new System.Windows.Forms.Label();
@@ -58,6 +60,7 @@ namespace AhsapSanatEvi
             // TopPanel
             // 
             this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.TopPanel.Controls.Add(this.MinimizeButton);
             this.TopPanel.Controls.Add(this.FullScreenButton);
             this.TopPanel.Controls.Add(this.ExitButton);
             this.TopPanel.Controls.Add(this.CompanyText);
@@ -68,6 +71,23 @@ namespace AhsapSanatEvi
             this.TopPanel.Size = new System.Drawing.Size(1230, 34);
             this.TopPanel.TabIndex = 0;
             // 
+            // MinimizeButton
+            // 
+            this.MinimizeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
+            this.MinimizeButton.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.MinimizeButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.MinimizeButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(209)))), ((int)(((byte)(209)))));
+            this.MinimizeButton.FlatAppearance.BorderSize = 3;
+            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinimizeButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MinimizeButton.Image = ((System.Drawing.Image)(resources.GetObject("MinimizeButton.Image")));
+            this.MinimizeButton.Location = new System.Drawing.Point(1092, 0);
+            this.MinimizeButton.Name = "MinimizeButton";
+            this.MinimizeButton.Size = new System.Drawing.Size(46, 34);
+            this.MinimizeButton.TabIndex = 3;
+            this.MinimizeButton.UseVisualStyleBackColor = false;
+            this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
+            // 
             // FullScreenButton
             // 
             this.FullScreenButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
@@ -77,6 +97,7 @@ namespace AhsapSanatEvi
             this.FullScreenButton.FlatAppearance.BorderSize = 3;
             this.FullScreenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FullScreenButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.FullScreenButton.Image = ((System.Drawing.Image)(resources.GetObject("FullScreenButton.Image")));
             this.FullScreenButton.Location = new System.Drawing.Point(1138, 0);
             this.FullScreenButton.Name = "FullScreenButton";
             this.FullScreenButton.Size = new System.Drawing.Size(46, 34);
@@ -93,6 +114,7 @@ namespace AhsapSanatEvi
             this.ExitButton.FlatAppearance.BorderSize = 3;
             this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ExitButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ExitButton.Image = ((System.Drawing.Image)(resources.GetObject("ExitButton.Image")));
             this.ExitButton.Location = new System.Drawing.Point(1184, 0);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(46, 34);
@@ -300,6 +322,7 @@ namespace AhsapSanatEvi
             this.BtnSatis.TabIndex = 6;
             this.BtnSatis.Text = "Satış";
             this.BtnSatis.UseVisualStyleBackColor = false;
+            this.BtnSatis.Click += new System.EventHandler(this.BtnSatis_Click);
             // 
             // BtnAnaMenu
             // 
@@ -314,6 +337,7 @@ namespace AhsapSanatEvi
             this.BtnAnaMenu.TabIndex = 5;
             this.BtnAnaMenu.Text = "Ana Menü";
             this.BtnAnaMenu.UseVisualStyleBackColor = false;
+            this.BtnAnaMenu.Click += new System.EventHandler(this.BtnAnaMenu_Click);
             // 
             // timer1
             // 
@@ -344,6 +368,7 @@ namespace AhsapSanatEvi
             this.Name = "FrmAnaMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ahşap Sanat Evi";
+            this.Load += new System.EventHandler(this.FrmAnaMenu_Load);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             this.LeftPanel.ResumeLayout(false);
@@ -374,6 +399,7 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.Button BtnBilanco;
         private System.Windows.Forms.Button BtnMusteriler;
         public System.Windows.Forms.Panel AnaMenuArkaPanel;
+        private System.Windows.Forms.Button MinimizeButton;
     }
 }
 
