@@ -49,7 +49,7 @@ namespace AhsapSanatEvi
             this.LblListeFirmaAd.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LblListeFirmaAd.AutoSize = true;
             this.LblListeFirmaAd.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.LblListeFirmaAd.Location = new System.Drawing.Point(146, 24);
+            this.LblListeFirmaAd.Location = new System.Drawing.Point(108, 24);
             this.LblListeFirmaAd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblListeFirmaAd.Name = "LblListeFirmaAd";
             this.LblListeFirmaAd.Size = new System.Drawing.Size(32, 20);

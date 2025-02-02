@@ -80,7 +80,7 @@ namespace AhsapSanatEvi
             this.LblListeTelefon.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LblListeTelefon.AutoSize = true;
             this.LblListeTelefon.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.LblListeTelefon.Location = new System.Drawing.Point(372, 23);
+            this.LblListeTelefon.Location = new System.Drawing.Point(417, 23);
             this.LblListeTelefon.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblListeTelefon.Name = "LblListeTelefon";
             this.LblListeTelefon.Size = new System.Drawing.Size(28, 20);
@@ -124,6 +124,7 @@ namespace AhsapSanatEvi
             this.BtnMusteriSec.Size = new System.Drawing.Size(25, 25);
             this.BtnMusteriSec.TabIndex = 21;
             this.BtnMusteriSec.UseVisualStyleBackColor = false;
+            this.BtnMusteriSec.Click += new System.EventHandler(this.BtnMusteriSec_Click);
             // 
             // MusteriListesi
             // 

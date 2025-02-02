@@ -13,11 +13,15 @@ namespace AhsapSanatEvi
 {
     public partial class FrmMusteriler : Form
     {
+        private bool isFormatting = false;
+
         public FrmMusteriler()
         {
             InitializeComponent();
-            SetPlaceholder(TxtBxMusteriAraFrm, "Müşteri Ara..");
-            TxtBxMusteriAdSoyad.KeyDown += TxtBxMusteriAdı_KeyDown;
+            TxtBxMusteriAdSoyad.KeyPress += TxtBxMusteriAdSoyad_KeyPress;
+            TxtBxMusteriTelNo.KeyPress += TxtBxMusteriTelNo_KeyPress;
+            TxtBxMusteriTelNo.TextChanged += TxtBxMusteriTelNo_TextChanged;
+            TxtBxMusteriTelNo.GotFocus += TxtBxMusteriTelNo_GotFocus;
         }
 
         private void FrmMusteriler_Load(object sender, EventArgs e)
@@ -25,6 +29,8 @@ namespace AhsapSanatEvi
             try
             {
                 LoadMusteriListesi();
+                TxtBxMusteriAdSoyad.KeyPress += TxtBxMusteriAdSoyad_KeyPress;
+                TxtBxMusteriTelNo.KeyPress += TxtBxMusteriTelNo_KeyPress;
             }
             catch (Exception ex)
             {
@@ -32,59 +38,35 @@ namespace AhsapSanatEvi
             }
         }
 
-        private void SetPlaceholder(TextBox textBox, string placeholderText)
-        {
-            if (string.IsNullOrEmpty(textBox.Text))
-            {
-                textBox.Text = placeholderText;
-                textBox.ForeColor = Color.Gray;
-            }
-
-            textBox.Enter += (s, e) =>
-            {
-                if (textBox.Text == placeholderText)
-                {
-                    textBox.Text = "";
-                    textBox.ForeColor = Color.Black;
-                }
-            };
-
-            textBox.Leave += (s, e) =>
-            {
-                if (string.IsNullOrEmpty(textBox.Text))
-                {
-                    textBox.Text = placeholderText;
-                    textBox.ForeColor = Color.Gray;
-                    LoadMusteriListesi();
-                }
-            };
-        }
-
         public void LoadMusteriListesi()
         {
             try
             {
+                MusteriListePanel.SuspendLayout();
                 MusteriListePanel.Controls.Clear();
+                MusteriListePanel.ResumeLayout();
+
                 using (SqlConnection connection = DataBaseControl.GetConnection())
                 {
                     connection.Open();
-                    SqlCommand komut = new SqlCommand("SELECT * FROM TBLMUSTERILER", connection);
+                    SqlCommand komut = new SqlCommand("SELECT * FROM TBLMUSTERILER ORDER BY MUSTERIADSOYAD ASC", connection);
                     using (SqlDataReader oku = komut.ExecuteReader())
                     {
                         while (oku.Read())
                         {
-                            MusteriListesi arac = new MusteriListesi
+                            MusteriListesi musteri = new MusteriListesi
                             {
                                 LblListeMusteriAd = { Text = oku["MUSTERIADSOYAD"].ToString() },
                                 LblListeMusteriId = { Text = "ID: " + oku["MUSTERIID"].ToString() },
-                                LblListeTelefon = { Text = string.IsNullOrEmpty(oku["MUSTERITELNO"].ToString()) ? "GİRİLMEDİ" : oku["MUSTERITELNO"].ToString() },
-                                LblListeMeslek = { Text = string.IsNullOrEmpty(oku["MUSTERIMESLEK"].ToString()) ? "GİRİLMEDİ" : oku["MUSTERIMESLEK"].ToString() },
-                                LblListeAciklama = { Text = string.IsNullOrEmpty(oku["MUSTERIACIKLAMA"].ToString()) ? "GİRİLMEDİ" : oku["MUSTERIACIKLAMA"].ToString() }
+                                LblListeTelefon = { Text = oku["MUSTERITELNO"].ToString() },
+                                LblListeMeslek = { Text = ToTitleCase(oku["MUSTERIMESLEK"].ToString()), ForeColor = string.IsNullOrEmpty(oku["MUSTERIMESLEK"].ToString()) ? Color.Gray : Color.Black },
+                                LblListeAciklama = { Text = ToTitleCase(oku["MUSTERIACIKLAMA"].ToString()), ForeColor = string.IsNullOrEmpty(oku["MUSTERIACIKLAMA"].ToString()) ? Color.Gray : Color.Black }
                             };
-                            MusteriListePanel.Controls.Add(arac);
+                            MusteriListePanel.Controls.Add(musteri);
                         }
                     }
                 }
+                MusteriListePanel.Refresh();
             }
             catch (Exception ex)
             {
@@ -156,37 +138,121 @@ namespace AhsapSanatEvi
                 return false;
             }
         }
+        private void TxtBxMusteriTelNo_TextChanged(object sender, EventArgs e)
+        {
+            if (isFormatting) return;
+            isFormatting = true;
 
+            string text = new string(TxtBxMusteriTelNo.Text.Where(char.IsDigit).ToArray());
+            if (text.StartsWith("0"))
+                text = text.Substring(1);
+            if (text.Length > 10)
+                text = text.Substring(0, 10);
+
+            string formattedText = "0 (";
+            if (text.Length > 0) formattedText += text.Substring(0, Math.Min(3, text.Length));
+            if (text.Length > 3) formattedText += ") ";
+            if (text.Length > 3) formattedText += text.Substring(3, Math.Min(3, text.Length - 3));
+            if (text.Length > 6) formattedText += " ";
+            if (text.Length > 6) formattedText += text.Substring(6, Math.Min(4, text.Length - 6));
+
+            TxtBxMusteriTelNo.TextChanged -= TxtBxMusteriTelNo_TextChanged;
+            TxtBxMusteriTelNo.Text = formattedText;
+            TxtBxMusteriTelNo.SelectionStart = formattedText.Length;
+            TxtBxMusteriTelNo.TextChanged += TxtBxMusteriTelNo_TextChanged;
+
+            isFormatting = false;
+        }
+
+        private void TxtBxMusteriTelNo_GotFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TxtBxMusteriTelNo.Text))
+            {
+                TxtBxMusteriTelNo.Text = "0 (___) ___ ____";
+                TxtBxMusteriTelNo.SelectionStart = 3;
+            }
+        }
+        private void TxtBxMusteriAdSoyad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Sadece harf ve boşluk girişine izin ver
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+        private void TxtBxMusteriTelNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Sadece rakam girişine izin ver
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private string ToTitleCase(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return "GİRİLMEDİ";
+            return char.ToUpper(text[0]) + text.Substring(1).ToLower();
+        }
+        private bool MusteriVarMi(string adSoyad, string telNo)
+        {
+            using (SqlConnection connection = DataBaseControl.GetConnection())
+            {
+                connection.Open();
+                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM TBLMUSTERILER WHERE MUSTERIADSOYAD = @p1 AND MUSTERITELNO = @p2", connection);
+                checkCmd.Parameters.AddWithValue("@p1", adSoyad);
+                checkCmd.Parameters.AddWithValue("@p2", telNo);
+                int count = (int)checkCmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
         private void BtnMusteriEkle_Click(object sender, EventArgs e)
         {
+            string musteriAdSoyad = TxtBxMusteriAdSoyad.Text.Trim().ToUpper();
+            string musteriTelNo = TxtBxMusteriTelNo.Text.Trim();
+            string musteriMeslek = string.IsNullOrWhiteSpace(TxtBxMusteriMeslek.Text) || TxtBxMusteriMeslek.Text == "GİRİLMEDİ" ? "" : ToTitleCase(TxtBxMusteriMeslek.Text.Trim());
+            string musteriAciklama = string.IsNullOrWhiteSpace(TxtBxMusteriAciklama.Text) || TxtBxMusteriAciklama.Text == "GİRİLMEDİ" ? "" : ToTitleCase(TxtBxMusteriAciklama.Text.Trim());
+
+            // Aynı isim ve telefon numarasıyla kayıtlı müşteri olup olmadığını kontrol et
+            if (MusteriVarMi(musteriAdSoyad, musteriTelNo))
+            {
+                MessageBox.Show("Bu isim ve telefon numarasıyla kayıtlı bir müşteri zaten var!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Telefon numarası formatını kontrol et
+            if (!System.Text.RegularExpressions.Regex.IsMatch(musteriTelNo, @"^0 \(\d{3}\) \d{3} \d{4}$"))
+            {
+                MessageBox.Show("Lütfen geçerli bir telefon numarası giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(musteriAdSoyad))
+            {
+                MessageBox.Show("Lütfen geçerli bir Ad Soyad giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("Müşteri eklensin mi?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
             try
             {
-                string musteriAdSoyad = TxtBxMusteriAdSoyad.Text.ToUpper();
-                string musteriTelNo = TxtBxMusteriTelNo.Text;
-                string musteriMeslek = TxtBxMusteriMeslek.Text;
-                string musteriAciklama = TxtBxMusteriAciklama.Text;
-
-                if (string.IsNullOrWhiteSpace(musteriAdSoyad))
+                using (SqlConnection connection = DataBaseControl.GetConnection())
                 {
-                    MessageBox.Show("Müşteri Adı Boş Bırakılamaz!");
+                    connection.Open();
+                    SqlCommand kayit = new SqlCommand("INSERT INTO TBLMUSTERILER (MUSTERIADSOYAD, MUSTERITELNO, MUSTERIMESLEK, MUSTERIACIKLAMA, SONGUNCELLEME) VALUES (@p1, @p2, @p3, @p4, GETDATE())", connection);
+                    kayit.Parameters.AddWithValue("@p1", musteriAdSoyad);
+                    kayit.Parameters.AddWithValue("@p2", musteriTelNo);
+                    kayit.Parameters.AddWithValue("@p3", musteriMeslek);
+                    kayit.Parameters.AddWithValue("@p4", musteriAciklama);
+                    kayit.ExecuteNonQuery();
                 }
-                else
-                {
-                    using (SqlConnection connection = DataBaseControl.GetConnection())
-                    {
-                        connection.Open();
-                        SqlCommand kayit = new SqlCommand("INSERT INTO TBLMUSTERILER (MUSTERIADSOYAD, MUSTERITELNO, MUSTERIMESLEK, MUSTERIACIKLAMA) VALUES (@p1, @p2, @p3, @p4)", connection);
-                        kayit.Parameters.AddWithValue("@p1", musteriAdSoyad);
-                        kayit.Parameters.AddWithValue("@p2", musteriTelNo);
-                        kayit.Parameters.AddWithValue("@p3", musteriMeslek);
-                        kayit.Parameters.AddWithValue("@p4", musteriAciklama);
-                        kayit.ExecuteNonQuery();
-                    }
-                    MessageBox.Show("Ekleme İşlemi Başarılı");
-                    TxtBxMusteriID.Text = " ";
-                    // Yeni eklenen müşteriyi göstermek için listeyi güncelle
-                    LoadMusteriListesi();
-                }
+                MessageBox.Show("Müşteri başarıyla eklendi.");
+                LoadMusteriListesi();
             }
             catch (Exception ex)
             {
@@ -218,25 +284,32 @@ namespace AhsapSanatEvi
 
                             try
                             {
-
-                                // TBLMUSTERILER tablosundan silme
+                                // 📌 **Müşteriyi sil**
                                 SqlCommand silMusteri = new SqlCommand("DELETE FROM TBLMUSTERILER WHERE MUSTERIID=@p1 AND MUSTERIADSOYAD=@p2", connection, transaction);
                                 silMusteri.Parameters.AddWithValue("@p1", musteriId);
                                 silMusteri.Parameters.AddWithValue("@p2", musteriAd);
                                 silMusteri.ExecuteNonQuery();
+
+                                // 📌 **SONGUNCELLEME'yi güncelle** (En son kayıt tarihini alarak tüm veritabanında güncelle)
+                                SqlCommand updateLastChange = new SqlCommand("UPDATE TBLMUSTERILER SET SONGUNCELLEME = GETDATE()", connection, transaction);
+                                updateLastChange.ExecuteNonQuery();
 
                                 // Transaction başarılıysa işlemleri onayla
                                 transaction.Commit();
 
                                 MessageBox.Show("Kayıt Başarıyla Silinmiştir");
                                 TxtBxMusteriID.Text = "";
-                                LoadMusteriListesi();
+                                LoadMusteriListesi(); // 📌 Müşteri listesini yenile
 
-                                // `FrmEkle` formu açık mı kontrol et
-                                //if (frm != null)
-                                //{
-                                //    frm.MusteriGetir(); // `FrmEkle` formu varsa `MusteriGetir` metodunu çağır
-                                //}
+                                // 📌 **Satış Formunu Güncelle**
+                                var satisForm = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
+                                if (satisForm != null)
+                                {
+                                    satisForm.MusteriGetir(); // Satıştaki müşteri listesini yenile
+                                }
+
+                                // 📌 **Ana menüde müşteri güncelleme zamanını güncelle**
+                                FrmAnaMenu.lastCheckedTimeMusteri = FrmAnaMenu.GetLastMusterilerDatabaseChangeTime();
                             }
                             catch (Exception ex)
                             {
@@ -253,6 +326,8 @@ namespace AhsapSanatEvi
                 MessageBox.Show("Müşteri silme sırasında bir hata oluştu: " + ex.Message);
             }
         }
+
+
 
         private void BtnMusteriGuncelle_Click(object sender, EventArgs e)
         {

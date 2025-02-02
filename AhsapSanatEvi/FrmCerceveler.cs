@@ -20,24 +20,23 @@ namespace AhsapSanatEvi
         public formCerceveler()
         {
             InitializeComponent();
-            InitializePlaceholderText();
             CerceveGetir();
-            AramaZamanlayıcısı();
         }
-        private void AramaZamanlayıcısı()
+        private void AramaYap()
         {
-            aramaZaman = new Timer();
-            aramaZaman.Interval = 500; // 500 ms gecikme
-            aramaZaman.Tick += Arama;
+            string firmaAd = TxtBxFirmaAraCrc.Text;
+            string cerceveKod = TxtBxKodAraCrc.Text;
+            string aciklama = TxtBxAnahtarKelimeAraCrc.Text;
+
+            CerceveGetir(firmaAd, cerceveKod, aciklama);
         }
 
-        private void Arama(object sender, EventArgs e)
+        private void formCerceveler_Load(object sender, EventArgs e)
         {
-            aramaZaman.Stop(); // Timer'ı durdur
-            string firmaAd = TxtBxFirmaAraCrc.Text != "Firma Adı Girin.." ? TxtBxFirmaAraCrc.Text : "";
-            string cerceveKod = TxtBxKodAraCrc.Text != "Kod Girin.." ? TxtBxKodAraCrc.Text : "";
-            string aciklama = TxtBxAnahtarKelimeAraCrc.Text != "Anahtar Kelime Girin.." ? TxtBxAnahtarKelimeAraCrc.Text : "";
-            CerceveGetir(firmaAd, cerceveKod, aciklama);
+            TxtBxFirmaAraCrc.KeyDown += TxtBxFirmaAraCrc_KeyDown;
+            TxtBxKodAraCrc.KeyDown += TxtBxKodAraCrc_KeyDown;
+            TxtBxAnahtarKelimeAraCrc.KeyDown += TxtBxAnahtarKelimeAraCrc_KeyDown;
+            TxtBxZam.KeyDown += TxtBxZam_KeyDown;
         }
 
 
@@ -129,67 +128,98 @@ namespace AhsapSanatEvi
             }
         }
 
-        private void InitializePlaceholderText()
+      
+        private void TxtBxFirmaAraCrc_KeyDown(object sender, KeyEventArgs e)
         {
-            SetPlaceholder(TxtBxFirmaAraCrc, "Firma Adı Girin..");
-            SetPlaceholder(TxtBxKodAraCrc, "Kod Girin..");
-            SetPlaceholder(TxtBxAnahtarKelimeAraCrc, "Anahtar Kelime Girin..");
-        }
-
-        private void SetPlaceholder(TextBox textBox, string placeholderText)
-        {
-            if (string.IsNullOrEmpty(textBox.Text))
+            if (e.KeyCode == Keys.Enter)
             {
-                textBox.Text = placeholderText;
-                textBox.ForeColor = Color.Gray;
+                AramaYap();
+                e.SuppressKeyPress = true; // Enter tuşunun başka bir işlem yapmasını engelle
             }
-
-            textBox.Enter += (s, e) =>
-            {
-                if (textBox.Text == placeholderText)
-                {
-                    textBox.Text = "";
-                    textBox.ForeColor = Color.Black;
-                }
-            };
-
-            textBox.Leave += (s, e) =>
-            {
-                if (string.IsNullOrEmpty(textBox.Text))
-                {
-                    textBox.Text = placeholderText;
-                    textBox.ForeColor = Color.Gray;
-                }
-            };
-
-            textBox.TextChanged += (s, e) =>
-            {
-                if (textBox.Text != placeholderText)
-                {
-                    aramaZaman.Start(); // Zamanlayıcıyı başlat
-                }
-            };
         }
-        private string FormatFiyat(string fiyatString)
+
+        private void TxtBxKodAraCrc_KeyDown(object sender, KeyEventArgs e)
         {
-            if (decimal.TryParse(fiyatString, out decimal fiyat))
+            if (e.KeyCode == Keys.Enter)
             {
-                // Fiyatı para formatında düzenle
-                return fiyat.ToString("N0") + "₺";
+                AramaYap();
+                e.SuppressKeyPress = true;
             }
-            return fiyatString; // Eğer dönüşüm yapılamazsa, orijinal fiyat stringini döndür
         }
 
-        private void TxtBxFirmaAraCrc_TextChanged(object sender, EventArgs e)
+        private void TxtBxAnahtarKelimeAraCrc_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AramaYap();
+                e.SuppressKeyPress = true;
+            }
         }
 
-        private void TxtBxKodAraCrc_TextChanged(object sender, EventArgs e)
+        private void BtnZamOnayla_Click(object sender, EventArgs e)
         {
+            if (decimal.TryParse(TxtBxZam.Text, out decimal zamOrani))
+            {
+                zamOrani = zamOrani / 100; // Yüzdeye çevirmek için 100'e böl
+
+                // Kullanıcıya onay mesajı göster
+                DialogResult result = MessageBox.Show(
+                    "Tüm ürünlerin birim satış fiyatını güncellemek istediğinize emin misiniz?",
+                    "Fiyat Güncelleme Onayı",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes) // Eğer kullanıcı "Evet" dediyse işlemi yap
+                {
+                    try
+                    {
+                        using (SqlConnection connection = DataBaseControl.GetConnection())
+                        {
+                            connection.Open();
+                            string sorgu = @"
+                    UPDATE TBLCERCEVELER
+                    SET BIRIMSATISFIYATI = BIRIMSATISFIYATI + (BIRIMSATISFIYATI * @ZamOrani)";
+
+                            using (SqlCommand komut = new SqlCommand(sorgu, connection))
+                            {
+                                komut.Parameters.Add("@ZamOrani", SqlDbType.Decimal).Value = zamOrani;
+                                int etkilenenSatir = komut.ExecuteNonQuery();
+
+                                MessageBox.Show($"Toplam {etkilenenSatir} ürünün fiyatı güncellendi.",
+                                    "Bilgi",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                            }
+                        }
+
+                        // Güncellenmiş verileri ekranda göstermek için tekrar çağır
+                        CerceveGetir();
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Fiyat güncellenirken bir hata oluştu: " + ex.Message,
+                            "Hata",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen geçerli bir zam oranı girin.",
+                    "Hata",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
         }
 
-        private void TxtBxAnahtarKelimeAraCrc_TextChanged(object sender, EventArgs e)
+        private void TxtBxZam_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BtnZamOnayla_Click(sender, e); // Enter tuşuna basıldığında zam onayla metodunu çağır
+                e.SuppressKeyPress = true; // Enter'ın başka bir işlem yapmasını engelle
+            }
         }
 
     }

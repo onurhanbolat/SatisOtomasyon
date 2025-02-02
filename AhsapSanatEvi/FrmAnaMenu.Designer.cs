@@ -279,6 +279,7 @@ namespace AhsapSanatEvi
             this.BtnSepet.TabIndex = 4;
             this.BtnSepet.Text = "Sepet";
             this.BtnSepet.UseVisualStyleBackColor = false;
+            this.BtnSepet.Click += new System.EventHandler(this.BtnSepet_Click);
             // 
             // BtnUrunler
             // 

@@ -38,16 +38,28 @@ namespace AhsapSanatEvi
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.TxtBxCamFiyat = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.TxtBxPaspartuFiyat = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.TxtBxKutuFiyat = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.groupBox4);
+            this.panel3.Controls.Add(this.groupBox2);
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.groupBox3);
@@ -142,6 +154,80 @@ namespace AhsapSanatEvi
             this.TxtBxCamFiyat.Enter += new System.EventHandler(this.TxtBxCamFiyat_Enter);
             this.TxtBxCamFiyat.Leave += new System.EventHandler(this.TxtBxCamFiyat_Leave);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.pictureBox2);
+            this.groupBox2.Controls.Add(this.TxtBxPaspartuFiyat);
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.groupBox2.Location = new System.Drawing.Point(30, 85);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(151, 67);
+            this.groupBox2.TabIndex = 26;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Paspartu Fiyat";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(119, 30);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(26, 26);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 25;
+            this.pictureBox2.TabStop = false;
+            // 
+            // TxtBxPaspartuFiyat
+            // 
+            this.TxtBxPaspartuFiyat.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TxtBxPaspartuFiyat.BackColor = System.Drawing.Color.White;
+            this.TxtBxPaspartuFiyat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxPaspartuFiyat.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtBxPaspartuFiyat.Location = new System.Drawing.Point(9, 32);
+            this.TxtBxPaspartuFiyat.Name = "TxtBxPaspartuFiyat";
+            this.TxtBxPaspartuFiyat.Size = new System.Drawing.Size(106, 24);
+            this.TxtBxPaspartuFiyat.TabIndex = 7;
+            this.TxtBxPaspartuFiyat.Leave += new System.EventHandler(this.TxtBxPaspartuFiyat_Leave);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.pictureBox3);
+            this.groupBox4.Controls.Add(this.TxtBxKutuFiyat);
+            this.groupBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.groupBox4.Location = new System.Drawing.Point(190, 85);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(151, 67);
+            this.groupBox4.TabIndex = 27;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Kutu Fiyat ";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(119, 30);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(26, 26);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 25;
+            this.pictureBox3.TabStop = false;
+            // 
+            // TxtBxKutuFiyat
+            // 
+            this.TxtBxKutuFiyat.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.TxtBxKutuFiyat.BackColor = System.Drawing.Color.White;
+            this.TxtBxKutuFiyat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxKutuFiyat.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.TxtBxKutuFiyat.Location = new System.Drawing.Point(9, 32);
+            this.TxtBxKutuFiyat.Name = "TxtBxKutuFiyat";
+            this.TxtBxKutuFiyat.Size = new System.Drawing.Size(106, 24);
+            this.TxtBxKutuFiyat.TabIndex = 7;
+            this.TxtBxKutuFiyat.Leave += new System.EventHandler(this.TxtBxKutuFiyat_Leave);
+            // 
             // FrmAnaSayfa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
@@ -162,6 +248,12 @@ namespace AhsapSanatEvi
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -176,5 +268,11 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         public System.Windows.Forms.TextBox TxtBxCamFiyat;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        public System.Windows.Forms.TextBox TxtBxKutuFiyat;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        public System.Windows.Forms.TextBox TxtBxPaspartuFiyat;
     }
 }

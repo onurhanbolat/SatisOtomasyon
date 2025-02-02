@@ -50,12 +50,24 @@ namespace AhsapSanatEvi.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a {
+        public string PaspartuFiyat {
             get {
-                return ((string)(this["a"]));
+                return ((string)(this["PaspartuFiyat"]));
             }
             set {
-                this["a"] = value;
+                this["PaspartuFiyat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string KutuFiyat {
+            get {
+                return ((string)(this["KutuFiyat"]));
+            }
+            set {
+                this["KutuFiyat"] = value;
             }
         }
     }

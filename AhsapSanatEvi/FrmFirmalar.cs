@@ -16,7 +16,6 @@ namespace AhsapSanatEvi
         public FrmFirmalar()
         {
             InitializeComponent();
-            SetPlaceholder(TxtBxFirmaAraFrm, "Firma Ara..");
             TxtBxFirmaAdı.KeyDown += TxtBxFirmaAdı_KeyDown;
         }
 
@@ -33,35 +32,6 @@ namespace AhsapSanatEvi
             }
         }
 
-        private void SetPlaceholder(TextBox textBox, string placeholderText)
-        {
-            if (string.IsNullOrEmpty(textBox.Text))
-            {
-                textBox.Text = placeholderText;
-                textBox.ForeColor = Color.Gray;
-            }
-
-            textBox.Enter += (s, e) =>
-            {
-                if (textBox.Text == placeholderText)
-                {
-                    textBox.Text = "";
-                    textBox.ForeColor = Color.Black;
-                }
-            };
-
-            textBox.Leave += (s, e) =>
-            {
-                if (string.IsNullOrEmpty(textBox.Text))
-                {
-                    textBox.Text = placeholderText;
-                    textBox.ForeColor = Color.Gray;
-                    LoadFirmaListesi();
-
-                }
-
-            };
-        }
 
         public void FirmaAra()
         {

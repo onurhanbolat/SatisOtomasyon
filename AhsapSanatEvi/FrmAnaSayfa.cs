@@ -19,13 +19,18 @@ namespace AhsapSanatEvi
             // Form yüklendiğinde ayarları yükle
             LoadSettings();
 
-            // TxtBxNakitOran ve TxtBxCamFiyat'ın olaylarını bağlayalım
+            // TxtBxNakitOran, TxtBxCamFiyat, TxtBxPaspartuFiyat ve TxtBxKutuFiyat'ın olaylarını bağlayalım
             TxtBxNakitOran.TextChanged += TxtBxNakitOran_TextChanged;
             TxtBxNakitOran.Leave += TxtBxNakitOran_Leave;
 
-            // TxtBxCamFiyat için olayları bağlayalım
-            TxtBxCamFiyat.Leave += TxtBxCamFiyat_Leave; 
-            TxtBxCamFiyat.Enter += TxtBxCamFiyat_Enter; // Enter olayını dinleyelim
+            TxtBxCamFiyat.Leave += TxtBxCamFiyat_Leave;
+            TxtBxCamFiyat.Enter += TxtBxCamFiyat_Enter;
+
+            TxtBxPaspartuFiyat.Leave += TxtBxPaspartuFiyat_Leave;
+            TxtBxPaspartuFiyat.Enter += TxtBxPaspartuFiyat_Enter;
+
+            TxtBxKutuFiyat.Leave += TxtBxKutuFiyat_Leave;
+            TxtBxKutuFiyat.Enter += TxtBxKutuFiyat_Enter;
         }
 
         // TxtBxNakitOran'daki değişikliklerde başına % işareti ekleyelim
@@ -37,7 +42,6 @@ namespace AhsapSanatEvi
                 TxtBxNakitOran.Text = "%" + TxtBxNakitOran.Text;
                 // İmlecin doğru yerde kalması için metnin sonuna geçelim
                 TxtBxNakitOran.SelectionStart = TxtBxNakitOran.Text.Length;
-                
             }
         }
 
@@ -95,11 +99,79 @@ namespace AhsapSanatEvi
             }
         }
 
+        // TxtBxPaspartuFiyat'tan çıkıldığında sonuna ₺ işareti ekleyelim
+        private void TxtBxPaspartuFiyat_Leave(object sender, EventArgs e)
+        {
+            var frmSatis = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
+            if (frmSatis != null)
+            {
+                frmSatis.HesaplaVeYazdir();
+            }
+            // Eğer kullanıcı metni boş bıraktıysa tekrar ₺ ekleme
+            if (string.IsNullOrWhiteSpace(TxtBxPaspartuFiyat.Text))
+            {
+                return;
+            }
+
+            // ₺ işareti zaten varsa, tekrar eklemeyelim
+            if (!TxtBxPaspartuFiyat.Text.EndsWith("₺"))
+            {
+                TxtBxPaspartuFiyat.Text = TxtBxPaspartuFiyat.Text.TrimEnd('₺').Trim() + "₺"; // Sonundaki ₺ veya boşlukları temizle
+            }
+        }
+
+        // TxtBxPaspartuFiyat'a odaklandığında ₺ işaretini kaldır
+        private void TxtBxPaspartuFiyat_Enter(object sender, EventArgs e)
+        {
+            if (TxtBxPaspartuFiyat.Text.EndsWith("₺"))
+            {
+                // ₺ işaretini kaldır
+                TxtBxPaspartuFiyat.Text = TxtBxPaspartuFiyat.Text.TrimEnd('₺').Trim(); // Boşlukları da temizle
+                // İmlecin doğru yerde kalması için metnin sonuna geçelim
+                TxtBxPaspartuFiyat.SelectionStart = TxtBxPaspartuFiyat.Text.Length;
+            }
+        }
+
+        // TxtBxKutuFiyat'tan çıkıldığında sonuna ₺ işareti ekleyelim
+        private void TxtBxKutuFiyat_Leave(object sender, EventArgs e)
+        {
+            var frmSatis = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
+            if (frmSatis != null)
+            {
+                frmSatis.HesaplaVeYazdir();
+            }
+            // Eğer kullanıcı metni boş bıraktıysa tekrar ₺ ekleme
+            if (string.IsNullOrWhiteSpace(TxtBxKutuFiyat.Text))
+            {
+                return;
+            }
+
+            // ₺ işareti zaten varsa, tekrar eklemeyelim
+            if (!TxtBxKutuFiyat.Text.EndsWith("₺"))
+            {
+                TxtBxKutuFiyat.Text = TxtBxKutuFiyat.Text.TrimEnd('₺').Trim() + "₺"; // Sonundaki ₺ veya boşlukları temizle
+            }
+        }
+
+        // TxtBxKutuFiyat'a odaklandığında ₺ işaretini kaldır
+        private void TxtBxKutuFiyat_Enter(object sender, EventArgs e)
+        {
+            if (TxtBxKutuFiyat.Text.EndsWith("₺"))
+            {
+                // ₺ işaretini kaldır
+                TxtBxKutuFiyat.Text = TxtBxKutuFiyat.Text.TrimEnd('₺').Trim(); // Boşlukları da temizle
+                // İmlecin doğru yerde kalması için metnin sonuna geçelim
+                TxtBxKutuFiyat.SelectionStart = TxtBxKutuFiyat.Text.Length;
+            }
+        }
+
         // Kullanıcının girdiği verileri sakla
         private void SaveSettings()
         {
             Properties.Settings.Default.NakitOran = TxtBxNakitOran.Text;
             Properties.Settings.Default.CamFiyat = TxtBxCamFiyat.Text;
+            Properties.Settings.Default.PaspartuFiyat = TxtBxPaspartuFiyat.Text;
+            Properties.Settings.Default.KutuFiyat = TxtBxKutuFiyat.Text;
 
             // Ayarları kaydet
             Properties.Settings.Default.Save();
@@ -110,6 +182,8 @@ namespace AhsapSanatEvi
         {
             TxtBxNakitOran.Text = Properties.Settings.Default.NakitOran;
             TxtBxCamFiyat.Text = Properties.Settings.Default.CamFiyat;
+            TxtBxPaspartuFiyat.Text = Properties.Settings.Default.PaspartuFiyat;
+            TxtBxKutuFiyat.Text = Properties.Settings.Default.KutuFiyat;
         }
 
         // Form kapatılmadan önce ayarları kaydet

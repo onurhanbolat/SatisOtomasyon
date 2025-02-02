@@ -285,7 +285,7 @@ namespace AhsapSanatEvi
             this.BtnYukle.FlatAppearance.BorderSize = 3;
             this.BtnYukle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnYukle.ForeColor = System.Drawing.Color.White;
-            this.BtnYukle.Location = new System.Drawing.Point(23, 262);
+            this.BtnYukle.Location = new System.Drawing.Point(23, 251);
             this.BtnYukle.Name = "BtnYukle";
             this.BtnYukle.Size = new System.Drawing.Size(168, 41);
             this.BtnYukle.TabIndex = 15;
@@ -296,9 +296,9 @@ namespace AhsapSanatEvi
             // PictureBoxImage
             // 
             this.PictureBoxImage.Image = ((System.Drawing.Image)(resources.GetObject("PictureBoxImage.Image")));
-            this.PictureBoxImage.Location = new System.Drawing.Point(38, 49);
+            this.PictureBoxImage.Location = new System.Drawing.Point(23, 71);
             this.PictureBoxImage.Name = "PictureBoxImage";
-            this.PictureBoxImage.Size = new System.Drawing.Size(137, 189);
+            this.PictureBoxImage.Size = new System.Drawing.Size(168, 124);
             this.PictureBoxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PictureBoxImage.TabIndex = 1;
             this.PictureBoxImage.TabStop = false;

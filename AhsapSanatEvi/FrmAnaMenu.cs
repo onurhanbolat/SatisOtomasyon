@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using AhsapSanatEvi.Models;
+
 
 namespace AhsapSanatEvi
 {
@@ -16,9 +18,12 @@ namespace AhsapSanatEvi
         bool ekleExpand = false;
         private bool isFullScreen = false;
         private Rectangle originalBounds;
-        private DateTime lastCheckedTimeCerceve = DateTime.MinValue;
+        public static DateTime lastCheckedTimeCerceve = DateTime.MinValue;
         public DateTime lastCheckedTimeFirma = DateTime.MinValue;
-        public DateTime lastCheckedTimeMusteri = DateTime.MinValue;
+        public static DateTime lastCheckedTimeMusteri = DateTime.MinValue;
+        private List<SepetItem> sepetListesi = new List<SepetItem>();
+        private FrmSepet sepetForm;
+
 
 
 
@@ -29,8 +34,10 @@ namespace AhsapSanatEvi
         }
         private void FrmAnaMenu_Load(object sender, EventArgs e)
         {
-            BtnAnaMenu_Click(sender, e); // Form yüklendiğinde Ana Menü butonuna tıklama işlemi çalıştırılır
+            BtnAnaMenu_Click(sender, e); // 📌 Ana menüyü aç
         }
+
+
 
         private DateTime GetLastCercevelerDatabaseChangeTime()
         {
@@ -84,7 +91,7 @@ namespace AhsapSanatEvi
 
             return lastChangeTimeFirma;
         }
-        private DateTime GetLastMusterilerDatabaseChangeTime()
+        public static DateTime GetLastMusterilerDatabaseChangeTime()
         {
             DateTime lastChangeTimeMusteriler = DateTime.MinValue;
 
@@ -105,11 +112,14 @@ namespace AhsapSanatEvi
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Firmalar veritabanı değişiklik kontrolü sırasında bir hata oluştu: " + ex.Message);
+                MessageBox.Show("Müşteriler veritabanı değişiklik kontrolü sırasında bir hata oluştu: " + ex.Message);
             }
 
+            Console.WriteLine($"[GetLastMusterilerDatabaseChangeTime] Son müşteri güncelleme zamanı: {lastChangeTimeMusteriler}");
             return lastChangeTimeMusteriler;
         }
+
+
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
@@ -194,77 +204,65 @@ namespace AhsapSanatEvi
         }
         private void BtnMusteriler_Click(object sender, EventArgs e)
         {
-            DateTime currentChangeTime = GetLastMusterilerDatabaseChangeTime();
+            CheckAndUpdateMusteriler(); // **Sadece müşteri verilerini kontrol et**
 
-
-            // Musteriler formunun açık olup olmadığını kontrol et
             FrmMusteriler musteriform = Application.OpenForms.OfType<FrmMusteriler>().FirstOrDefault();
-            if (currentChangeTime > lastCheckedTimeMusteri || musteriform == null)
+            if (musteriform == null)
             {
-                if (musteriform != null)
-                {
-                    musteriform.Close(); // Mevcut formu kapat
-                }
-
                 musteriform = new FrmMusteriler();
                 musteriform.TopLevel = false;
                 musteriform.Dock = DockStyle.Fill;
                 this.AnaMenuArkaPanel.Controls.Add(musteriform);
-
-                lastCheckedTimeMusteri = currentChangeTime;
+                musteriform.Show();
             }
-            // Formu ön plana getir
-            musteriform.Show();
+
             musteriform.BringToFront();
         }
 
 
-        private void BtnCerceveler_Click(object sender, EventArgs e)
-        {
-            
 
-            DateTime currentChangeTime = GetLastCercevelerDatabaseChangeTime();
+
+        private void CheckAndUpdateMusteriler()
+        {
+            DateTime currentChangeTimeMusteri = GetLastMusterilerDatabaseChangeTime();
+
+            // Eğer SONGUNCELLEME değişmemişse, yenileme yapma
+            if (currentChangeTimeMusteri <= lastCheckedTimeMusteri)
+            {
+                return;
+            }
+
+            // Eğer müşteri güncellenmişse satış formundaki listeyi yenile
+            FrmCerceveSatis satisForm = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
+            if (satisForm != null)
+            {
+                satisForm.MusteriGetir(); // **Sadece açık olan müşteri satış formunda yenile**
+            }
+
+            // 📌 Güncelleme zamanını kaydet
+            lastCheckedTimeMusteri = currentChangeTimeMusteri;
+        }
+
+
+        private void CheckAndUpdateCerceveler()
+        {
+            // 📌 Veritabanındaki son güncelleme zamanlarını al
+            DateTime currentChangeTimeCerceve = GetLastCercevelerDatabaseChangeTime();
             DateTime currentChangeTimeFirma = GetLastFirmalarDatabaseChangeTime();
 
-            DateTime lastChangeTime = new[] { currentChangeTime, currentChangeTimeFirma }.Max();
+            // 📌 En son değişeni al
+            DateTime lastChangeTime = new[] { currentChangeTimeCerceve, currentChangeTimeFirma }.Max();
 
-            formCerceveler cerceveForm = Application.OpenForms.OfType<formCerceveler>().FirstOrDefault();
-            FrmEkle ekleForm = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
-
-
+            // 📌 Eğer veritabanında güncelleme olmuşsa tüm ilgili formları yenile
             if (lastChangeTime > lastCheckedTimeCerceve)
             {
-                // Eğer veritabanında değişiklik olmuşsa, formu kapat ve yeniden aç
-                if (cerceveForm != null && ekleForm != null)
-                {
-                    cerceveForm.Close();
-                    ekleForm.Close();
-                }
-                cerceveForm = new formCerceveler();
-                cerceveForm.TopLevel = false;
-                cerceveForm.Dock = DockStyle.Fill;
-                this.AnaMenuArkaPanel.Controls.Add(cerceveForm);
-                cerceveForm.Show();
-                cerceveForm.BringToFront();
-                ekleForm = new FrmEkle();
-                ekleForm.TopLevel = false;
-                ekleForm.Dock = DockStyle.Fill;
-                this.AnaMenuArkaPanel.Controls.Add(ekleForm);
-                ekleForm.Show();
+                Console.WriteLine("[CheckAndUpdateForms] Veriler değişti! Formları güncelliyorum...");
 
-
-                // Son kontrol zamanını güncelle
-                lastCheckedTimeCerceve = lastChangeTime;
-            }
-            else
-            {
-                // Eğer değişiklik olmamışsa, formu sadece öne getir
+                // 📌 Çerçeve Formu Yenileme
+                formCerceveler cerceveForm = Application.OpenForms.OfType<formCerceveler>().FirstOrDefault();
                 if (cerceveForm != null)
                 {
-                    cerceveForm.BringToFront();
-                }
-                else
-                {
+                    cerceveForm.Close();
                     cerceveForm = new formCerceveler();
                     cerceveForm.TopLevel = false;
                     cerceveForm.Dock = DockStyle.Fill;
@@ -272,8 +270,39 @@ namespace AhsapSanatEvi
                     cerceveForm.Show();
                     cerceveForm.BringToFront();
                 }
+
+                // 📌 Satış Formu Yenileme
+                FrmCerceveSatis satisForm = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
+                if (satisForm != null)
+                {
+                    satisForm.CerceveGetir(); // 📌 Çerçeve listesini güncelle
+                }
+
+                // 📌 Global değişkeni güncelle
+                lastCheckedTimeCerceve = lastChangeTime;
             }
         }
+
+
+
+
+        private void BtnCerceveler_Click(object sender, EventArgs e)
+        {
+            CheckAndUpdateCerceveler(); // 📌 Merkezi güncelleme metodunu çağır
+
+            formCerceveler cerceveForm = Application.OpenForms.OfType<formCerceveler>().FirstOrDefault();
+            if (cerceveForm == null)
+            {
+                cerceveForm = new formCerceveler();
+                cerceveForm.TopLevel = false;
+                cerceveForm.Dock = DockStyle.Fill;
+                this.AnaMenuArkaPanel.Controls.Add(cerceveForm);
+                cerceveForm.Show();
+            }
+            cerceveForm.BringToFront();
+        }
+
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -350,34 +379,61 @@ namespace AhsapSanatEvi
             ekleForm.BringToFront();
         }
 
-        public void BtnSatis_Click(object sender, EventArgs e)
+        private void BtnSatis_Click(object sender, EventArgs e)
         {
-            DateTime currentChangeTime = GetLastFirmalarDatabaseChangeTime();
+            CheckAndUpdateCerceveler();
+            CheckAndUpdateMusteriler();
 
-            // Firmalar formunun açık olup olmadığını kontrol et
             FrmCerceveSatis satisForm = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
-
-            // Eğer veritabanında değişiklik olmuşsa veya form açık değilse, yeni bir form oluştur
-            if (currentChangeTime > lastCheckedTimeFirma || satisForm == null)
+            if (satisForm == null)
             {
-                if (satisForm != null)
-                {
-                    satisForm.Close(); // Mevcut formu kapat
-                }
+                satisForm = new FrmCerceveSatis();
+                satisForm.TopLevel = false;
+                satisForm.Dock = DockStyle.Fill;
+                this.AnaMenuArkaPanel.Controls.Add(satisForm);
+                satisForm.Show();
+            }
+            satisForm.BringToFront();
+        }
+
+
+
+        private void BtnSepet_Click(object sender, EventArgs e)
+        {
+            // 📌 Eğer FrmCerceveSatis kapalıysa, aç!
+            FrmCerceveSatis satisForm = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
+            if (satisForm == null)
+            {
+                Console.WriteLine("[BtnSepet_Click] FrmCerceveSatis bulunamadı, yeni form oluşturuluyor...");
 
                 satisForm = new FrmCerceveSatis();
                 satisForm.TopLevel = false;
                 satisForm.Dock = DockStyle.Fill;
                 this.AnaMenuArkaPanel.Controls.Add(satisForm);
-
-                // Son kontrol zamanını güncelle
-                lastCheckedTimeFirma = currentChangeTime;
+                satisForm.Show();
             }
 
-            // Formu ön plana getir
-            satisForm.Show();
-            satisForm.BringToFront();
-        }
+            // 📌 **Sepet listesini al**
+            List<SepetItem> mevcutSepetListesi = satisForm.GetSepetListesi();
 
+            // 📌 Eğer FrmSepet açık değilse oluştur ve ekle
+            sepetForm = Application.OpenForms.OfType<FrmSepet>().FirstOrDefault();
+            if (sepetForm == null)
+            {
+                Console.WriteLine("[BtnSepet_Click] FrmSepet bulunamadı, yeni form oluşturuluyor...");
+                sepetForm = new FrmSepet(mevcutSepetListesi);
+                sepetForm.TopLevel = false;
+                sepetForm.Dock = DockStyle.Fill;
+                this.AnaMenuArkaPanel.Controls.Add(sepetForm);
+            }
+            else
+            {
+                Console.WriteLine("[BtnSepet_Click] FrmSepet zaten açık, güncelleniyor...");
+                sepetForm.GuncelleSepet(mevcutSepetListesi);
+            }
+
+            sepetForm.Show();
+            sepetForm.BringToFront();
+        }
     }
 }

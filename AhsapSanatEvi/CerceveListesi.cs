@@ -37,7 +37,9 @@ namespace AhsapSanatEvi
             {
                 // Açık olan formCerceveler formunu bul
                 var frm = Application.OpenForms.OfType<formCerceveler>().FirstOrDefault();
+                var anaMenuForm = Application.OpenForms.OfType<FrmAnaMenu>().FirstOrDefault();
                 int cerceveid = ExtractCerceveId(LblCerceveID.Text);
+
                 if (frm != null)
                 {
                     DialogResult result = MessageBox.Show("Bu çerçeveyi silmek istediğinize emin misiniz?", "Silme Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -46,14 +48,34 @@ namespace AhsapSanatEvi
                         using (var connection = DataBaseControl.GetConnection())
                         {
                             connection.Open();
+
+                            // 📌 Çerçeveyi sil
                             var sil = new SqlCommand("DELETE FROM TBLCERCEVELER WHERE CERCEVEID=@p1", connection);
                             sil.Parameters.AddWithValue("@p1", cerceveid);
                             sil.ExecuteNonQuery();
+
+                            // 📌 SONGUNCELLEME alanını güncelle
+                            var update = new SqlCommand("UPDATE TBLCERCEVELER SET SONGUNCELLEME = GETDATE()", connection);
+                            update.ExecuteNonQuery();
                         }
+
                         MessageBox.Show("Çerçeve Başarıyla Silinmiştir");
 
-                        // Mevcut formdaki CerceveGetir metodunu çağır
+                        // 📌 Mevcut formdaki CerceveGetir metodunu çağırarak listeyi yenile
                         frm.CerceveGetir();
+
+                        // 📌 Satış formunu güncelle
+                        var satisForm = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
+                        if (satisForm != null)
+                        {
+                            satisForm.CerceveGetir(); // Satış listesini yenile
+                        }
+
+                        // 📌 `lastCheckedTimeCerceve` güncelle
+                        if (anaMenuForm != null)
+                        {
+                            FrmAnaMenu.lastCheckedTimeCerceve = DateTime.Now;
+                        }
                     }
                 }
                 else
@@ -63,9 +85,10 @@ namespace AhsapSanatEvi
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Kod silme sırasında bir hata oluştu: " + ex.Message);
+                MessageBox.Show("Çerçeve silme sırasında bir hata oluştu: " + ex.Message);
             }
         }
+
 
         // Belirtilen çerçeve ID'sine göre çerçeve ID'sini getiren metod
         private int GetCerceveID(int cerceveid)
@@ -85,35 +108,52 @@ namespace AhsapSanatEvi
         private void BtnCerceveListeDüzenle_Click(object sender, EventArgs e)
         {
             var anaMenuForm = Application.OpenForms.OfType<FrmAnaMenu>().FirstOrDefault();
-            var frmEkle = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
             var cerceveForm = Application.OpenForms.OfType<formCerceveler>().FirstOrDefault();
 
-            if (anaMenuForm != null && frmEkle != null)
+            // Eğer ana menü formu bulunamazsa işlemi iptal et
+            if (anaMenuForm == null)
             {
-                anaMenuForm.lastCheckedTimeFirma = DateTime.Now;
-                frmEkle.BringToFront();
-
-                frmEkle.groupBoxFirmalae.Enabled = false;
-                frmEkle.groupBoxKodlar.Enabled = false;
-                frmEkle.BtnFirmaGuncelle.Enabled = true;
-                frmEkle.BtnFirmaEkle.Enabled = false;
-
-                string idText = LblCerceveID.Text.Substring(4);
-                if (int.TryParse(idText, out int cerceveId))
-                {
-                    selectedCerceveID = GetCerceveID(cerceveId);
-                }
-
-                if (selectedCerceveID == 0)
-                {
-                    MessageBox.Show("Geçerli bir çerçeve ID'si bulunamadı.");
-                    return;
-                }
-
-                // Çerçeve bilgilerini veritabanından yükle
-                CerceveAta(frmEkle);
+                MessageBox.Show("Ana menü formu bulunamadı.");
+                return;
             }
+
+            // 📌 Eğer FrmEkle açık değilse yeni bir tane oluştur
+            var frmEkle = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
+            if (frmEkle == null)
+            {
+                frmEkle = new FrmEkle();
+                frmEkle.TopLevel = false;
+                frmEkle.Dock = DockStyle.Fill;
+                anaMenuForm.AnaMenuArkaPanel.Controls.Add(frmEkle); // 📌 Ana panele ekle
+                frmEkle.Show();
+            }
+
+            // 📌 FrmEkle'yi öne getir
+            frmEkle.BringToFront();
+
+            // 📌 Buton ve textbox durumlarını düzenle
+            frmEkle.groupBoxFirmalae.Enabled = false;
+            frmEkle.groupBoxKodlar.Enabled = false;
+            frmEkle.BtnFirmaGuncelle.Enabled = true;
+            frmEkle.BtnFirmaEkle.Enabled = false;
+
+            // 📌 Çerçeve ID'yi al
+            string idText = LblCerceveID.Text.Substring(4);
+            if (int.TryParse(idText, out int cerceveId))
+            {
+                selectedCerceveID = GetCerceveID(cerceveId);
+            }
+
+            if (selectedCerceveID == 0)
+            {
+                MessageBox.Show("Geçerli bir çerçeve ID'si bulunamadı.");
+                return;
+            }
+
+            // 📌 Çerçeve bilgilerini yükle
+            CerceveAta(frmEkle);
         }
+
 
         // Çerçeve bilgilerini yükleyen metod
         private void CerceveAta(FrmEkle frmEkle)

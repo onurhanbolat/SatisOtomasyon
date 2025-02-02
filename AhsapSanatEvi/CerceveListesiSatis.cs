@@ -150,7 +150,7 @@ namespace AhsapSanatEvi
         private (int, int) GetKalinlikBirim(string cerceveId)
         {
             const string query = @"
-                SELECT CERCEVEKALINLIK, CERCEVEBIRIMFIYAT
+                SELECT CERCEVEKALINLIK, BIRIMSATISFIYATI
                 FROM TBLCERCEVELER
                 WHERE CERCEVEID = @CerceveId";
 
