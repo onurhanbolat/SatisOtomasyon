@@ -67,6 +67,7 @@ namespace AhsapSanatEvi
                     }
                 }
                 MusteriListePanel.Refresh();
+
             }
             catch (Exception ex)
             {
@@ -262,7 +263,6 @@ namespace AhsapSanatEvi
 
         private void BtnMusteriSil_Click(object sender, EventArgs e)
         {
-            FrmEkle frm = Application.OpenForms.OfType<FrmEkle>().FirstOrDefault();
             try
             {
                 string musteriId = TxtBxMusteriID.Text;
@@ -270,7 +270,7 @@ namespace AhsapSanatEvi
 
                 if (!CheckMusteriExists(musteriId, musteriAd))
                 {
-                    MessageBox.Show("ID ve Ad Eşleşmiyor Veya Böyle Bir Müşteri Yok!");
+                    MessageBox.Show("ID ve Ad Eşleşmiyor Veya Böyle Bir Müşteri Yok!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -285,37 +285,44 @@ namespace AhsapSanatEvi
                             try
                             {
                                 // 📌 **Müşteriyi sil**
-                                SqlCommand silMusteri = new SqlCommand("DELETE FROM TBLMUSTERILER WHERE MUSTERIID=@p1 AND MUSTERIADSOYAD=@p2", connection, transaction);
+                                SqlCommand silMusteri = new SqlCommand("DELETE FROM TBLMUSTERILER WHERE MUSTERIID=@p1", connection, transaction);
                                 silMusteri.Parameters.AddWithValue("@p1", musteriId);
-                                silMusteri.Parameters.AddWithValue("@p2", musteriAd);
                                 silMusteri.ExecuteNonQuery();
 
-                                // 📌 **SONGUNCELLEME'yi güncelle** (En son kayıt tarihini alarak tüm veritabanında güncelle)
-                                SqlCommand updateLastChange = new SqlCommand("UPDATE TBLMUSTERILER SET SONGUNCELLEME = GETDATE()", connection, transaction);
-                                updateLastChange.ExecuteNonQuery();
+                                // 📌 **SONGUNCELLEME değerini güncelle**
+                                SqlCommand updateTime = new SqlCommand("UPDATE TBLMUSTERILER SET SONGUNCELLEME = GETDATE()", connection, transaction);
+                                updateTime.ExecuteNonQuery();
 
-                                // Transaction başarılıysa işlemleri onayla
                                 transaction.Commit();
 
-                                MessageBox.Show("Kayıt Başarıyla Silinmiştir");
+                                MessageBox.Show("Müşteri başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // 📌 **TextBoxları temizle**
                                 TxtBxMusteriID.Text = "";
-                                LoadMusteriListesi(); // 📌 Müşteri listesini yenile
+                                TxtBxMusteriAdSoyad.Text = "";
 
-                                // 📌 **Satış Formunu Güncelle**
-                                var satisForm = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
-                                if (satisForm != null)
+                                // 📌 **Müşteri listesini güncelle**
+                                LoadMusteriListesi();
+
+                                // 📌 **Sepet listesini güncelle**
+                                FrmSepet sepetForm = Application.OpenForms.OfType<FrmSepet>().FirstOrDefault();
+                                if (sepetForm != null)
                                 {
-                                    satisForm.MusteriGetir(); // Satıştaki müşteri listesini yenile
+                                    sepetForm.MusteriGetir();
                                 }
-
-                                // 📌 **Ana menüde müşteri güncelleme zamanını güncelle**
-                                FrmAnaMenu.lastCheckedTimeMusteri = FrmAnaMenu.GetLastMusterilerDatabaseChangeTime();
                             }
-                            catch (Exception ex)
+                            catch (SqlException ex)
                             {
-                                // Hata oluşursa işlemleri geri al
                                 transaction.Rollback();
-                                MessageBox.Show("Müşteri silme sırasında bir hata oluştu: " + ex.Message);
+
+                                if (ex.Number == 547) // 📌 **Foreign key constraint (Bağlantılı tablo hatası)**
+                                {
+                                    MessageBox.Show("Bu müşteri geçmiş satışlara sahip olduğu için silinemiyor!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Müşteri silme sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                     }
@@ -323,9 +330,10 @@ namespace AhsapSanatEvi
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Müşteri silme sırasında bir hata oluştu: " + ex.Message);
+                MessageBox.Show("Müşteri silme sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 

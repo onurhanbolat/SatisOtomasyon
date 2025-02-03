@@ -26,12 +26,18 @@ namespace AhsapSanatEvi
 
         public void SetData(SepetItem item)
         {
-            LblMusteriAdi.Text = $"Müşteri: {item.MusteriAdi}"; // **Müşteri Adını Göster**
-            LblSepetKod.Text = $"Kod: {item.CerceveKodAdi}";
-            LblSepetFirma.Text = $"Firma Adı: {item.FirmaAdi}";
-            LblSepetYG.Text = $"Y/G: {item.Yukseklik} x {item.Genislik} cm";
-            LblSepetAdet.Text = $"Adet: {item.Adet}";
+            LblSepetKod.Text = $"{item.CerceveKodAdi}";
+            LblSepetFirma.Text = $"{item.FirmaAdi}";
+            LblSepetYG.Text = $"{item.Yukseklik} x {item.Genislik}";
+            LblSepetAdet.Text = $"{item.Adet}";
             LblSepetFiyat.Text = $"{item.ToplamFiyat:C}";
+
+            // 📌 Cam, Paspartu ve Kutu Fiyatlarını Başlıklarıyla Göster
+            LblSepetCamFiyat.Text = $"C: ₺{item.CamFiyat:0.00}";
+            LblSepetPaspartuFiyat.Text = $"P: ₺{item.PaspartuFiyat:0.00}";
+            LblSepetKutuFiyat.Text = $"K: ₺{item.KutuFiyat:0.00}";
+            LblSepetCerceveFiyat.Text = $"Ç: ₺{item.CerceveSatisFiyat:0.00}"; // 📌 Çerçeve fiyatı eklendi
+
 
             if (!string.IsNullOrWhiteSpace(item.UrunResmiBase64))
             {

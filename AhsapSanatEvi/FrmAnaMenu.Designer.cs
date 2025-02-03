@@ -52,9 +52,12 @@ namespace AhsapSanatEvi
             this.BtnAnaMenu = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.AnaMenuArkaPanel = new System.Windows.Forms.Panel();
+            this.virtualServerModeSource1 = new DevExpress.Data.VirtualServerModeSource(this.components);
+            this.jDragControl1 = new JDragControl.JDragControl(this.components);
             this.TopPanel.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.EkleContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // TopPanel
@@ -354,6 +357,11 @@ namespace AhsapSanatEvi
             this.AnaMenuArkaPanel.Size = new System.Drawing.Size(1021, 689);
             this.AnaMenuArkaPanel.TabIndex = 2;
             // 
+            // jDragControl1
+            // 
+            this.jDragControl1.GetForm = this;
+            this.jDragControl1.TargetControl = this.TopPanel;
+            // 
             // FrmAnaMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
@@ -374,6 +382,7 @@ namespace AhsapSanatEvi
             this.TopPanel.PerformLayout();
             this.LeftPanel.ResumeLayout(false);
             this.EkleContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.virtualServerModeSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -401,6 +410,8 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.Button BtnMusteriler;
         public System.Windows.Forms.Panel AnaMenuArkaPanel;
         private System.Windows.Forms.Button MinimizeButton;
+        private DevExpress.Data.VirtualServerModeSource virtualServerModeSource1;
+        private JDragControl.JDragControl jDragControl1;
     }
 }
 

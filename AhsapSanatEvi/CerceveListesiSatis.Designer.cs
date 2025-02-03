@@ -66,7 +66,7 @@ namespace AhsapSanatEvi
             this.panel2.Controls.Add(this.LblListeSatisCerceveFirmaAd);
             this.panel2.Location = new System.Drawing.Point(139, 23);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(743, 53);
+            this.panel2.Size = new System.Drawing.Size(1160, 53);
             this.panel2.TabIndex = 17;
             // 
             // BtnCerceveSec
@@ -76,7 +76,7 @@ namespace AhsapSanatEvi
             this.BtnCerceveSec.FlatAppearance.BorderSize = 0;
             this.BtnCerceveSec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCerceveSec.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerceveSec.Image")));
-            this.BtnCerceveSec.Location = new System.Drawing.Point(705, 14);
+            this.BtnCerceveSec.Location = new System.Drawing.Point(1120, 14);
             this.BtnCerceveSec.Margin = new System.Windows.Forms.Padding(6);
             this.BtnCerceveSec.Name = "BtnCerceveSec";
             this.BtnCerceveSec.Size = new System.Drawing.Size(25, 25);
@@ -90,7 +90,7 @@ namespace AhsapSanatEvi
             this.LblListeSatisCerceveKod.AutoSize = true;
             this.LblListeSatisCerceveKod.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.LblListeSatisCerceveKod.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
-            this.LblListeSatisCerceveKod.Location = new System.Drawing.Point(79, 17);
+            this.LblListeSatisCerceveKod.Location = new System.Drawing.Point(95, 17);
             this.LblListeSatisCerceveKod.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblListeSatisCerceveKod.Name = "LblListeSatisCerceveKod";
             this.LblListeSatisCerceveKod.Size = new System.Drawing.Size(44, 20);
@@ -103,7 +103,7 @@ namespace AhsapSanatEvi
             this.LblListeSatisCerceveAciklama.AutoSize = true;
             this.LblListeSatisCerceveAciklama.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.LblListeSatisCerceveAciklama.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
-            this.LblListeSatisCerceveAciklama.Location = new System.Drawing.Point(437, 17);
+            this.LblListeSatisCerceveAciklama.Location = new System.Drawing.Point(596, 17);
             this.LblListeSatisCerceveAciklama.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblListeSatisCerceveAciklama.Name = "LblListeSatisCerceveAciklama";
             this.LblListeSatisCerceveAciklama.Size = new System.Drawing.Size(75, 20);
@@ -117,7 +117,7 @@ namespace AhsapSanatEvi
             this.LblListeSatisCerceveFirmaAd.AutoSize = true;
             this.LblListeSatisCerceveFirmaAd.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.LblListeSatisCerceveFirmaAd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
-            this.LblListeSatisCerceveFirmaAd.Location = new System.Drawing.Point(211, 17);
+            this.LblListeSatisCerceveFirmaAd.Location = new System.Drawing.Point(311, 17);
             this.LblListeSatisCerceveFirmaAd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblListeSatisCerceveFirmaAd.Name = "LblListeSatisCerceveFirmaAd";
             this.LblListeSatisCerceveFirmaAd.Size = new System.Drawing.Size(79, 20);
@@ -150,12 +150,13 @@ namespace AhsapSanatEvi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "CerceveListesiSatis";
-            this.Size = new System.Drawing.Size(887, 99);
+            this.Size = new System.Drawing.Size(1311, 99);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);

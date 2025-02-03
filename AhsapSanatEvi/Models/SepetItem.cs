@@ -8,7 +8,6 @@ namespace AhsapSanatEvi.Models
 {
     public class SepetItem
     {
-        public int MusteriID { get; set; }
         public int UrunResmiID { get; set; }
         public int CerceveAdID { get; set; }
         public int CerceveKodID { get; set; }

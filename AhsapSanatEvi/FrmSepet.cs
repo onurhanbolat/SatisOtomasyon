@@ -21,7 +21,7 @@ namespace AhsapSanatEvi
         public FrmSepet(List<SepetItem> sepet)
         {
             InitializeComponent();
-            sepetListesi = sepet;
+            sepetListesi = sepet ?? new List<SepetItem>(); // 📌 **Eğer null ise boş liste ata**
         }
 
         private void FrmSepet_Load(object sender, EventArgs e)
@@ -33,6 +33,8 @@ namespace AhsapSanatEvi
                 SepetCerceveler sepetItem = new SepetCerceveler();
                 sepetItem.SetData(item);
                 flowLayoutPanelSepet.Controls.Add(sepetItem);
+                MusteriListesiSatis.ResetSelectedMusteriID();
+
             }
 
             // 📌 **Kart ödeme türünü varsayılan olarak seç**
@@ -45,7 +47,13 @@ namespace AhsapSanatEvi
 
             // 📌 **Kart varsayılan olduğundan UygulaNakitIndirimi değil, ToplamFiyatHesapla çağır**
             ToplamFiyatHesapla();
+            MusteriGetir();
+
+            // 📌 **Müşteri arama kutusunu dinlemeye başla**
+            TxtBxMusteriAra.TextChanged += TxtBxMusteriAra_TextChanged;
+
         }
+
 
 
         private void RadioButtonOdemeTuru_CheckedChanged(object sender, EventArgs e)
@@ -57,7 +65,7 @@ namespace AhsapSanatEvi
             else
             {
                 ToplamFiyatHesapla();  // 📌 **Kart seçiliyse normal fiyatı göster**
-                TxtBxSepetIndirim.Text = "₺0";  // 📌 **Kart seçiliyse indirimi sıfırla**
+                TxtBxSepetIndirim.Text = "₺0,00";
             }
         }
         private decimal HesaplaNakitIndirimi(decimal toplamFiyat)
@@ -128,53 +136,6 @@ namespace AhsapSanatEvi
         }
 
 
-
-
-
-        private void BtnSepetSatis_Click(object sender, EventArgs e)
-        {
-            using (SqlConnection connection = DataBaseControl.GetConnection())
-            {
-                connection.Open();
-
-                foreach (var item in sepetListesi)
-                {
-                    string sorgu = @"
-                INSERT INTO TBLCERCEVESATIS (MUSTERIADSOYADID, URUNRESMIID, CERCEVEADID, CERCEVEKODID, BIRIMSATISFIYATID, 
-                CAMFIYAT, PASPARTUFIYAT, KUTUFIYAT, CERCEVEEN, CERCEVEBOY, CERCEVESATISFIYAT, CERCEVEADET, TOPLAMADETFIYAT, 
-                GENELTOPLAM, INDIRIM, ODEMETURU, ACIKLAMA)
-                VALUES (@MusteriID, @UrunResmiID, @CerceveAdID, @CerceveKodID, @BirimSatisFiyatID, @CamFiyat, @PaspartuFiyat, 
-                @KutuFiyat, @Genislik, @Yukseklik, @CerceveSatisFiyat, @Adet, @ToplamFiyat, @GenelToplam, @Indirim, @OdemeTuru, @Aciklama)";
-
-                    using (SqlCommand komut = new SqlCommand(sorgu, connection))
-                    {
-                        komut.Parameters.AddWithValue("@MusteriID", item.MusteriID);
-                        komut.Parameters.AddWithValue("@UrunResmiID", item.UrunResmiBase64);
-                        komut.Parameters.AddWithValue("@CerceveAdID", item.CerceveAdID);
-                        komut.Parameters.AddWithValue("@CerceveKodID", item.CerceveKodID);
-                        komut.Parameters.AddWithValue("@BirimSatisFiyatID", item.BirimSatisFiyatID);
-                        komut.Parameters.AddWithValue("@CamFiyat", item.CamFiyat);
-                        komut.Parameters.AddWithValue("@PaspartuFiyat", item.PaspartuFiyat);
-                        komut.Parameters.AddWithValue("@KutuFiyat", item.KutuFiyat);
-                        komut.Parameters.AddWithValue("@Genislik", item.Genislik);
-                        komut.Parameters.AddWithValue("@Yukseklik", item.Yukseklik);
-                        komut.Parameters.AddWithValue("@CerceveSatisFiyat", item.CerceveSatisFiyat);
-                        komut.Parameters.AddWithValue("@Adet", item.Adet);
-                        komut.Parameters.AddWithValue("@ToplamFiyat", item.ToplamFiyat);
-                        komut.Parameters.AddWithValue("@GenelToplam", item.ToplamFiyat);
-                        komut.Parameters.AddWithValue("@Indirim", item.Indirim);
-                        komut.Parameters.AddWithValue("@OdemeTuru", item.OdemeTuru);
-                        komut.Parameters.AddWithValue("@Aciklama", item.Aciklama);
-                        komut.ExecuteNonQuery();
-                    }
-                }
-            }
-
-            MessageBox.Show("Satış tamamlandı!");
-            sepetListesi.Clear();
-            flowLayoutPanelSepet.Controls.Clear();
-        }
-
         private void BtnSepetSat_Click(object sender, EventArgs e)
         {
             if (sepetListesi.Count == 0)
@@ -183,6 +144,12 @@ namespace AhsapSanatEvi
                 return;  // 📌 Satış işlemini durdur
             }
 
+            // 📌 **Müşteri seçilmiş mi kontrol et**
+            if (MusteriListesiSatis.selectedMusteriID == 0)
+            {
+                MessageBox.Show("Lütfen bir müşteri seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             // 📌 Kullanıcıya satış onayı sor
             DialogResult result = MessageBox.Show("Satışı onaylamak istiyor musunuz?", "Satış Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -205,6 +172,8 @@ namespace AhsapSanatEvi
 
                 // 📌 **FrmAnaSayfa`dan güncel fiyatları çekiyoruz**
                 decimal camMetrekareFiyat = 0, paspartuMetrekareFiyat = 0, kutuBirimFiyat = 0;
+                int musteriID = MusteriListesiSatis.selectedMusteriID;
+
 
                 decimal.TryParse(frmAnaSayfa.TxtBxCamFiyat.Text.Replace("₺", "").Replace("%", "").Trim(), out camMetrekareFiyat);
                 decimal.TryParse(frmAnaSayfa.TxtBxPaspartuFiyat.Text.Replace("₺", "").Replace("%", "").Trim(), out paspartuMetrekareFiyat);
@@ -244,7 +213,7 @@ namespace AhsapSanatEvi
 
                     using (SqlCommand komut = new SqlCommand(sorgu, connection))
                     {
-                        komut.Parameters.AddWithValue("@MusteriID", item.MusteriID);
+                        komut.Parameters.AddWithValue("@MusteriID", musteriID); // 📌 **Müşteri ID eklendi**
                         komut.Parameters.AddWithValue("@UrunResmiID", item.UrunResmiBase64 ?? (object)DBNull.Value);
                         komut.Parameters.AddWithValue("@CerceveAdID", item.CerceveAdID);
                         komut.Parameters.AddWithValue("@CerceveKodID", item.CerceveKodID);
@@ -337,6 +306,62 @@ namespace AhsapSanatEvi
         public List<SepetItem> GetSepetListesi()
         {
             return sepetListesi; // 📌 Sepet içindeki ürünleri döndür
+        }
+        private void TxtBxMusteriAra_TextChanged(object sender, EventArgs e)
+        {
+            MusteriGetir(TxtBxMusteriAra.Text.Trim()); // 📌 Girilen metne göre filtreleme yap
+        }
+        public void MusteriGetir(string musteriAra = "")
+        {
+            try
+            {
+                MusteriSatisListePanel.Controls.Clear(); // 📌 Önce listeyi temizle
+
+                using (SqlConnection connection = DataBaseControl.GetConnection())
+                {
+                    connection.Open();
+                    string sorgu = @"
+            SELECT 
+                MUSTERIADSOYAD AS MusteriAdSoyad, 
+                MUSTERIID AS MusteriId
+            FROM 
+                TBLMUSTERILER
+            WHERE 
+                (@MusteriAra = '' OR MUSTERIADSOYAD LIKE '%' + @MusteriAra + '%')
+            ORDER BY 
+                MUSTERIADSOYAD ASC";
+
+                    using (SqlCommand komut = new SqlCommand(sorgu, connection))
+                    {
+                        komut.Parameters.Add("@MusteriAra", SqlDbType.NVarChar).Value = musteriAra;
+
+                        using (SqlDataReader oku = komut.ExecuteReader())
+                        {
+                            while (oku.Read())
+                            {
+                                MusteriListesiSatis arac = new MusteriListesiSatis
+                                {
+                                    LblListeSatisMusteriAd = { Text = oku["MusteriAdSoyad"].ToString() },
+                                    LblListeSatisMusteriId = { Text = "ID: " + oku["MusteriId"].ToString() }
+                                };
+
+                                MusteriSatisListePanel.Controls.Add(arac);
+                            }
+                        }
+                    }
+                }
+
+                // 📌 Eğer müşteri değiştiyse, güncelleme zamanını kaydet
+                DateTime currentChangeTimeMusteri = FrmAnaMenu.GetLastMusterilerDatabaseChangeTime();
+                if (currentChangeTimeMusteri > FrmAnaMenu.lastCheckedTimeMusteri)
+                {
+                    FrmAnaMenu.lastCheckedTimeMusteri = currentChangeTimeMusteri;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Müşteri listesi yüklenirken bir hata oluştu: " + ex.Message);
+            }
         }
 
 

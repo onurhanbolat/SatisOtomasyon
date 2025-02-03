@@ -104,7 +104,7 @@ namespace AhsapSanatEvi
                     SqlCommand komut = new SqlCommand(sorgu, connection);
                     object result = komut.ExecuteScalar();
 
-                    if (result != DBNull.Value)
+                    if (result != DBNull.Value && result != null)
                     {
                         lastChangeTimeMusteriler = Convert.ToDateTime(result);
                     }
@@ -115,16 +115,37 @@ namespace AhsapSanatEvi
                 MessageBox.Show("Müşteriler veritabanı değişiklik kontrolü sırasında bir hata oluştu: " + ex.Message);
             }
 
-            Console.WriteLine($"[GetLastMusterilerDatabaseChangeTime] Son müşteri güncelleme zamanı: {lastChangeTimeMusteriler}");
             return lastChangeTimeMusteriler;
         }
 
-
-
         private void ExitButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            // 📌 Açık olan sepet formunu kontrol et
+            FrmSepet sepetForm = Application.OpenForms.OfType<FrmSepet>().FirstOrDefault();
+
+            if (sepetForm != null)
+            {
+                List<SepetItem> sepetListesi = sepetForm.GetSepetListesi();
+
+                if (sepetListesi.Count > 0) // 📌 Eğer sepette ürün varsa uyarı ver
+                {
+                    DialogResult result = MessageBox.Show(
+                        "Sepette ürün var, yine de çıkmak istiyor musunuz?",
+                        "Çıkış Onayı",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result != DialogResult.Yes) // 📌 Kullanıcı "Hayır" derse işlemi iptal et
+                    {
+                        return;
+                    }
+                }
+            }
+
+            Application.Exit(); // 📌 Eğer sepette ürün yoksa veya kullanıcı "Evet" derse uygulamayı kapat
         }
+
 
         private void FullScreenButton_Click(object sender, EventArgs e)
         {
@@ -234,10 +255,7 @@ namespace AhsapSanatEvi
 
             // Eğer müşteri güncellenmişse satış formundaki listeyi yenile
             FrmCerceveSatis satisForm = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
-            if (satisForm != null)
-            {
-                satisForm.MusteriGetir(); // **Sadece açık olan müşteri satış formunda yenile**
-            }
+            
 
             // 📌 Güncelleme zamanını kaydet
             lastCheckedTimeMusteri = currentChangeTimeMusteri;
@@ -400,12 +418,10 @@ namespace AhsapSanatEvi
 
         private void BtnSepet_Click(object sender, EventArgs e)
         {
-            // 📌 Eğer FrmCerceveSatis kapalıysa, aç!
             FrmCerceveSatis satisForm = Application.OpenForms.OfType<FrmCerceveSatis>().FirstOrDefault();
+
             if (satisForm == null)
             {
-                Console.WriteLine("[BtnSepet_Click] FrmCerceveSatis bulunamadı, yeni form oluşturuluyor...");
-
                 satisForm = new FrmCerceveSatis();
                 satisForm.TopLevel = false;
                 satisForm.Dock = DockStyle.Fill;
@@ -413,27 +429,36 @@ namespace AhsapSanatEvi
                 satisForm.Show();
             }
 
-            // 📌 **Sepet listesini al**
+            // 📌 **Mevcut sepet listesini al**
             List<SepetItem> mevcutSepetListesi = satisForm.GetSepetListesi();
 
-            // 📌 Eğer FrmSepet açık değilse oluştur ve ekle
-            sepetForm = Application.OpenForms.OfType<FrmSepet>().FirstOrDefault();
+            FrmSepet sepetForm = Application.OpenForms.OfType<FrmSepet>().FirstOrDefault();
             if (sepetForm == null)
             {
-                Console.WriteLine("[BtnSepet_Click] FrmSepet bulunamadı, yeni form oluşturuluyor...");
+                // 📌 **Mevcut sepet listesini göndererek FrmSepet oluştur**
                 sepetForm = new FrmSepet(mevcutSepetListesi);
                 sepetForm.TopLevel = false;
                 sepetForm.Dock = DockStyle.Fill;
                 this.AnaMenuArkaPanel.Controls.Add(sepetForm);
+                sepetForm.Show();
             }
             else
             {
-                Console.WriteLine("[BtnSepet_Click] FrmSepet zaten açık, güncelleniyor...");
+                // 📌 **Eğer açık olan FrmSepet varsa, sadece sepet listesini güncelle**
                 sepetForm.GuncelleSepet(mevcutSepetListesi);
             }
 
-            sepetForm.Show();
             sepetForm.BringToFront();
+
+            // 📌 **Müşteri listesini güncelle (Eğer yeni müşteri eklenmişse)**
+            DateTime currentChangeTimeMusteri = GetLastMusterilerDatabaseChangeTime();
+            if (currentChangeTimeMusteri > lastCheckedTimeMusteri)
+            {
+                sepetForm.MusteriGetir();
+                lastCheckedTimeMusteri = currentChangeTimeMusteri;
+            }
         }
+
+
     }
 }

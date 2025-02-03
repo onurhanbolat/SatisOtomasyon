@@ -32,6 +32,7 @@ namespace AhsapSanatEvi
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSepet));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.BtnSepetBosalt = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.TxtBxSepetIndirim = new System.Windows.Forms.TextBox();
             this.BtnSepetSat = new System.Windows.Forms.Button();
@@ -43,14 +44,22 @@ namespace AhsapSanatEvi
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.TxtBxSepetToplamFiyat = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBoxFirmalae = new System.Windows.Forms.GroupBox();
+            this.PictureBoxAra = new System.Windows.Forms.PictureBox();
+            this.TxtBxMusteriAra = new System.Windows.Forms.TextBox();
+            this.MusteriSatisListePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelSepet = new System.Windows.Forms.FlowLayoutPanel();
-            this.BtnSepetBosalt = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox6.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupBoxFirmalae.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -67,6 +76,23 @@ namespace AhsapSanatEvi
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(364, 689);
             this.panel3.TabIndex = 32;
+            // 
+            // BtnSepetBosalt
+            // 
+            this.BtnSepetBosalt.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.BtnSepetBosalt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(0)))));
+            this.BtnSepetBosalt.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.BtnSepetBosalt.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(227)))), ((int)(((byte)(115)))));
+            this.BtnSepetBosalt.FlatAppearance.BorderSize = 3;
+            this.BtnSepetBosalt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSepetBosalt.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnSepetBosalt.Image = ((System.Drawing.Image)(resources.GetObject("BtnSepetBosalt.Image")));
+            this.BtnSepetBosalt.Location = new System.Drawing.Point(189, 403);
+            this.BtnSepetBosalt.Name = "BtnSepetBosalt";
+            this.BtnSepetBosalt.Size = new System.Drawing.Size(151, 55);
+            this.BtnSepetBosalt.TabIndex = 26;
+            this.BtnSepetBosalt.UseVisualStyleBackColor = false;
+            this.BtnSepetBosalt.Click += new System.EventHandler(this.BtnSepetBosalt_Click);
             // 
             // groupBox10
             // 
@@ -211,31 +237,79 @@ namespace AhsapSanatEvi
             this.panel4.Size = new System.Drawing.Size(5, 689);
             this.panel4.TabIndex = 10;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.groupBoxFirmalae);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(657, 76);
+            this.panel1.TabIndex = 36;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 71);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(657, 5);
+            this.panel2.TabIndex = 19;
+            // 
+            // groupBoxFirmalae
+            // 
+            this.groupBoxFirmalae.Controls.Add(this.PictureBoxAra);
+            this.groupBoxFirmalae.Controls.Add(this.TxtBxMusteriAra);
+            this.groupBoxFirmalae.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxFirmalae.ForeColor = System.Drawing.Color.Gray;
+            this.groupBoxFirmalae.Location = new System.Drawing.Point(11, 3);
+            this.groupBoxFirmalae.Name = "groupBoxFirmalae";
+            this.groupBoxFirmalae.Size = new System.Drawing.Size(256, 59);
+            this.groupBoxFirmalae.TabIndex = 16;
+            this.groupBoxFirmalae.TabStop = false;
+            this.groupBoxFirmalae.Text = "Müşteri Ara";
+            // 
+            // PictureBoxAra
+            // 
+            this.PictureBoxAra.Image = ((System.Drawing.Image)(resources.GetObject("PictureBoxAra.Image")));
+            this.PictureBoxAra.Location = new System.Drawing.Point(228, 28);
+            this.PictureBoxAra.Name = "PictureBoxAra";
+            this.PictureBoxAra.Size = new System.Drawing.Size(22, 22);
+            this.PictureBoxAra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureBoxAra.TabIndex = 2;
+            this.PictureBoxAra.TabStop = false;
+            // 
+            // TxtBxMusteriAra
+            // 
+            this.TxtBxMusteriAra.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtBxMusteriAra.BackColor = System.Drawing.Color.White;
+            this.TxtBxMusteriAra.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtBxMusteriAra.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBxMusteriAra.Location = new System.Drawing.Point(6, 26);
+            this.TxtBxMusteriAra.Multiline = true;
+            this.TxtBxMusteriAra.Name = "TxtBxMusteriAra";
+            this.TxtBxMusteriAra.Size = new System.Drawing.Size(216, 25);
+            this.TxtBxMusteriAra.TabIndex = 1;
+            // 
+            // MusteriSatisListePanel
+            // 
+            this.MusteriSatisListePanel.AutoScroll = true;
+            this.MusteriSatisListePanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.MusteriSatisListePanel.Location = new System.Drawing.Point(0, 76);
+            this.MusteriSatisListePanel.Name = "MusteriSatisListePanel";
+            this.MusteriSatisListePanel.Size = new System.Drawing.Size(424, 613);
+            this.MusteriSatisListePanel.TabIndex = 37;
+            // 
             // flowLayoutPanelSepet
             // 
             this.flowLayoutPanelSepet.AutoScroll = true;
             this.flowLayoutPanelSepet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelSepet.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanelSepet.Location = new System.Drawing.Point(424, 76);
             this.flowLayoutPanelSepet.Name = "flowLayoutPanelSepet";
-            this.flowLayoutPanelSepet.Size = new System.Drawing.Size(657, 689);
-            this.flowLayoutPanelSepet.TabIndex = 33;
-            // 
-            // BtnSepetBosalt
-            // 
-            this.BtnSepetBosalt.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.BtnSepetBosalt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(0)))));
-            this.BtnSepetBosalt.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.BtnSepetBosalt.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(227)))), ((int)(((byte)(115)))));
-            this.BtnSepetBosalt.FlatAppearance.BorderSize = 3;
-            this.BtnSepetBosalt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSepetBosalt.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnSepetBosalt.Image = ((System.Drawing.Image)(resources.GetObject("BtnSepetBosalt.Image")));
-            this.BtnSepetBosalt.Location = new System.Drawing.Point(189, 403);
-            this.BtnSepetBosalt.Name = "BtnSepetBosalt";
-            this.BtnSepetBosalt.Size = new System.Drawing.Size(151, 55);
-            this.BtnSepetBosalt.TabIndex = 26;
-            this.BtnSepetBosalt.UseVisualStyleBackColor = false;
-            this.BtnSepetBosalt.Click += new System.EventHandler(this.BtnSepetBosalt_Click);
+            this.flowLayoutPanelSepet.Size = new System.Drawing.Size(233, 613);
+            this.flowLayoutPanelSepet.TabIndex = 38;
             // 
             // FrmSepet
             // 
@@ -244,6 +318,8 @@ namespace AhsapSanatEvi
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1021, 689);
             this.Controls.Add(this.flowLayoutPanelSepet);
+            this.Controls.Add(this.MusteriSatisListePanel);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -260,6 +336,10 @@ namespace AhsapSanatEvi
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.groupBoxFirmalae.ResumeLayout(false);
+            this.groupBoxFirmalae.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxAra)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -278,8 +358,14 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.GroupBox groupBox6;
         public System.Windows.Forms.TextBox TxtBxSepetToplamFiyat;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelSepet;
         private System.Windows.Forms.Button BtnSepetBosalt;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.GroupBox groupBoxFirmalae;
+        private System.Windows.Forms.PictureBox PictureBoxAra;
+        private System.Windows.Forms.TextBox TxtBxMusteriAra;
+        private System.Windows.Forms.FlowLayoutPanel MusteriSatisListePanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelSepet;
     }
 
 }
