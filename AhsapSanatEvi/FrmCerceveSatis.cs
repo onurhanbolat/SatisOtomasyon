@@ -310,7 +310,7 @@ namespace AhsapSanatEvi
         {
             try
             {
-                CerceveSatisListePanel.Controls.Clear(); // Önce listeyi temizle
+                CerceveSatisListePanel.Controls.Clear(); // 📌 Önce listeyi temizle
 
                 using (SqlConnection connection = DataBaseControl.GetConnection())
                 {
@@ -321,7 +321,8 @@ namespace AhsapSanatEvi
                     k.CERCEVEKOD AS CerceveKod, 
                     c.CERCEVEACIKLAMA AS Aciklama, 
                     c.CERCEVEID AS CerceveId,
-                    c.URUNRESMI AS UrunResmi
+                    c.URUNRESMI AS UrunResmi,
+                    c.BIRIMSATISFIYATI AS BirimSatisFiyat
                 FROM 
                     TBLCERCEVELER c
                 INNER JOIN 
@@ -345,15 +346,15 @@ namespace AhsapSanatEvi
                         {
                             while (oku.Read())
                             {
-                                CerceveListesiSatis arac = new CerceveListesiSatis
-                                {
-                                    LblListeSatisCerceveKod = { Text = oku["CerceveKod"].ToString() },
-                                    LblListeSatisCerceveFirmaAd = { Text = oku["FirmaAd"].ToString() },
-                                    LblListeSatisCerceveAciklama = { Text = oku["Aciklama"].ToString() },
-                                    LblListeSatisCerceveId = { Text = "ID: " + oku["CerceveId"].ToString() }
-                                };
+                                CerceveListesiSatis cerceveItem = new CerceveListesiSatis();
 
-                                // Resmi yükleme
+                                cerceveItem.LblListeSatisCerceveKod.Text = $"Kod: {oku["CerceveKod"].ToString()}";
+                                cerceveItem.LblListeSatisCerceveFirmaAd.Text = $"Firma: {oku["FirmaAd"].ToString()}";
+                                cerceveItem.LblListeSatisCerceveAciklama.Text = $"Açıklama: {oku["Aciklama"].ToString()}";
+                                cerceveItem.LblListeSatisCerceveId.Text = $"ID: {oku["CerceveId"].ToString()}";
+                                cerceveItem.LblListeSatisCerceveBirimFiyat.Text = $"{Convert.ToDecimal(oku["BirimSatisFiyat"]):C}"; // 📌 **TL formatında gösteriliyor**
+
+                                // 📌 **Resmi yükleme işlemi**
                                 string base64Resim = oku["UrunResmi"].ToString();
                                 if (!string.IsNullOrWhiteSpace(base64Resim))
                                 {
@@ -362,7 +363,7 @@ namespace AhsapSanatEvi
                                         byte[] resimData = Convert.FromBase64String(base64Resim);
                                         using (MemoryStream ms = new MemoryStream(resimData))
                                         {
-                                            arac.PictureBoxİmageCerceve.Image = new Bitmap(ms);
+                                            cerceveItem.PictureBoxİmageCerceve.Image = new Bitmap(ms);
                                         }
                                     }
                                     catch (Exception ex)
@@ -371,7 +372,7 @@ namespace AhsapSanatEvi
                                     }
                                 }
 
-                                CerceveSatisListePanel.Controls.Add(arac);
+                                CerceveSatisListePanel.Controls.Add(cerceveItem);
                             }
                         }
                     }
@@ -384,7 +385,8 @@ namespace AhsapSanatEvi
         }
 
 
-      
+
+
         private string GetCerceveKodAdi(int cerceveKodID)
         {
             using (SqlConnection connection = DataBaseControl.GetConnection())

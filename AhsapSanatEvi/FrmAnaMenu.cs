@@ -130,7 +130,7 @@ namespace AhsapSanatEvi
                 if (sepetListesi.Count > 0) // 📌 Eğer sepette ürün varsa uyarı ver
                 {
                     DialogResult result = MessageBox.Show(
-                        "Sepette ürün var, yine de çıkmak istiyor musunuz?",
+                        "SEPETTE ÜRÜN VAR, YİNE DE KAPATMAK İSTİYOR MUSUNUZ?",
                         "Çıkış Onayı",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning

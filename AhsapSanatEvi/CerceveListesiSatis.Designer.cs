@@ -38,6 +38,7 @@ namespace AhsapSanatEvi
             this.LblListeSatisCerceveFirmaAd = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PictureBoxİmageCerceve = new System.Windows.Forms.PictureBox();
+            this.LblListeSatisCerceveBirimFiyat = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxİmageCerceve)).BeginInit();
@@ -59,6 +60,7 @@ namespace AhsapSanatEvi
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.Controls.Add(this.LblListeSatisCerceveBirimFiyat);
             this.panel2.Controls.Add(this.BtnCerceveSec);
             this.panel2.Controls.Add(this.LblListeSatisCerceveId);
             this.panel2.Controls.Add(this.LblListeSatisCerceveKod);
@@ -76,7 +78,7 @@ namespace AhsapSanatEvi
             this.BtnCerceveSec.FlatAppearance.BorderSize = 0;
             this.BtnCerceveSec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCerceveSec.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerceveSec.Image")));
-            this.BtnCerceveSec.Location = new System.Drawing.Point(1120, 14);
+            this.BtnCerceveSec.Location = new System.Drawing.Point(1120, 13);
             this.BtnCerceveSec.Margin = new System.Windows.Forms.Padding(6);
             this.BtnCerceveSec.Name = "BtnCerceveSec";
             this.BtnCerceveSec.Size = new System.Drawing.Size(25, 25);
@@ -146,6 +148,20 @@ namespace AhsapSanatEvi
             this.PictureBoxİmageCerceve.TabIndex = 12;
             this.PictureBoxİmageCerceve.TabStop = false;
             // 
+            // LblListeSatisCerceveBirimFiyat
+            // 
+            this.LblListeSatisCerceveBirimFiyat.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.LblListeSatisCerceveBirimFiyat.AutoSize = true;
+            this.LblListeSatisCerceveBirimFiyat.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.LblListeSatisCerceveBirimFiyat.ForeColor = System.Drawing.Color.ForestGreen;
+            this.LblListeSatisCerceveBirimFiyat.Location = new System.Drawing.Point(1008, 17);
+            this.LblListeSatisCerceveBirimFiyat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblListeSatisCerceveBirimFiyat.Name = "LblListeSatisCerceveBirimFiyat";
+            this.LblListeSatisCerceveBirimFiyat.Size = new System.Drawing.Size(39, 20);
+            this.LblListeSatisCerceveBirimFiyat.TabIndex = 21;
+            this.LblListeSatisCerceveBirimFiyat.Text = "1000";
+            this.LblListeSatisCerceveBirimFiyat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // CerceveListesiSatis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -175,5 +191,6 @@ namespace AhsapSanatEvi
         public System.Windows.Forms.Label LblListeSatisCerceveFirmaAd;
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.PictureBox PictureBoxİmageCerceve;
+        public System.Windows.Forms.Label LblListeSatisCerceveBirimFiyat;
     }
 }
