@@ -35,6 +35,7 @@ namespace AhsapSanatEvi
         private void FrmAnaMenu_Load(object sender, EventArgs e)
         {
             BtnAnaMenu_Click(sender, e); // 📌 Ana menüyü aç
+            FullScreenButton_Click(sender,e);
         }
 
 

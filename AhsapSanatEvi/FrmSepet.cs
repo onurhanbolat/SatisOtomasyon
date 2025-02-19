@@ -246,6 +246,7 @@ namespace AhsapSanatEvi
             flowLayoutPanelSepet.Controls.Clear();
             TxtBxSepetIndirim.Text = "₺0"; // 📌 **İndirim alanını sıfırla**
             TxtBxSepetToplamFiyat.Text = "₺0"; // 📌 **Toplam fiyatı sıfırla**
+            TxtBxMusteriAra.Text = "";
         }
 
 

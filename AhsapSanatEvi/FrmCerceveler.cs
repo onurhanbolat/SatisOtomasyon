@@ -178,7 +178,7 @@ namespace AhsapSanatEvi
                             connection.Open();
                             string sorgu = @"
                     UPDATE TBLCERCEVELER
-                    SET BIRIMSATISFIYATI = BIRIMSATISFIYATI + (BIRIMSATISFIYATI * @ZamOrani)";
+                    SET CERCEVEBIRIMFIYAT = CERCEVEBIRIMFIYAT + (CERCEVEBIRIMFIYAT * @ZamOrani)";
 
                             using (SqlCommand komut = new SqlCommand(sorgu, connection))
                             {

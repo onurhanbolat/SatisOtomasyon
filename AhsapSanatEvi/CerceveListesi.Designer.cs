@@ -44,17 +44,12 @@ namespace AhsapSanatEvi
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.LblCerceveID = new System.Windows.Forms.Label();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxİmageCerceve)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblFirmaAd
@@ -88,7 +83,7 @@ namespace AhsapSanatEvi
             this.panel1.Controls.Add(this.PictureBoxİmageCerceve);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.panel1.Margin = new System.Windows.Forms.Padding(7);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(188, 137);
             this.panel1.TabIndex = 7;
@@ -98,7 +93,7 @@ namespace AhsapSanatEvi
             this.PictureBoxİmageCerceve.BackColor = System.Drawing.Color.Transparent;
             this.PictureBoxİmageCerceve.Image = ((System.Drawing.Image)(resources.GetObject("PictureBoxİmageCerceve.Image")));
             this.PictureBoxİmageCerceve.Location = new System.Drawing.Point(6, 5);
-            this.PictureBoxİmageCerceve.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PictureBoxİmageCerceve.Margin = new System.Windows.Forms.Padding(6);
             this.PictureBoxİmageCerceve.Name = "PictureBoxİmageCerceve";
             this.PictureBoxİmageCerceve.Size = new System.Drawing.Size(177, 129);
             this.PictureBoxİmageCerceve.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -144,8 +139,8 @@ namespace AhsapSanatEvi
             this.panel2.Controls.Add(this.LblCerceveKod);
             this.panel2.Controls.Add(this.LblAciklama);
             this.panel2.Controls.Add(this.LblFirmaAd);
-            this.panel2.Location = new System.Drawing.Point(188, 25);
-            this.panel2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel2.Location = new System.Drawing.Point(188, 28);
+            this.panel2.Margin = new System.Windows.Forms.Padding(6);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1470, 81);
             this.panel2.TabIndex = 12;
@@ -155,7 +150,7 @@ namespace AhsapSanatEvi
             this.panel7.BackColor = System.Drawing.Color.Silver;
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel7.Location = new System.Drawing.Point(1464, 6);
-            this.panel7.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel7.Margin = new System.Windows.Forms.Padding(6);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(6, 69);
             this.panel7.TabIndex = 17;
@@ -169,7 +164,7 @@ namespace AhsapSanatEvi
             this.BtnCerceveListeDüzenle.ForeColor = System.Drawing.Color.Transparent;
             this.BtnCerceveListeDüzenle.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerceveListeDüzenle.Image")));
             this.BtnCerceveListeDüzenle.Location = new System.Drawing.Point(1341, 26);
-            this.BtnCerceveListeDüzenle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BtnCerceveListeDüzenle.Margin = new System.Windows.Forms.Padding(6);
             this.BtnCerceveListeDüzenle.Name = "BtnCerceveListeDüzenle";
             this.BtnCerceveListeDüzenle.Size = new System.Drawing.Size(30, 30);
             this.BtnCerceveListeDüzenle.TabIndex = 16;
@@ -184,7 +179,7 @@ namespace AhsapSanatEvi
             this.BtnCerceveListeSil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCerceveListeSil.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerceveListeSil.Image")));
             this.BtnCerceveListeSil.Location = new System.Drawing.Point(1413, 27);
-            this.BtnCerceveListeSil.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.BtnCerceveListeSil.Margin = new System.Windows.Forms.Padding(6);
             this.BtnCerceveListeSil.Name = "BtnCerceveListeSil";
             this.BtnCerceveListeSil.Size = new System.Drawing.Size(30, 30);
             this.BtnCerceveListeSil.TabIndex = 15;
@@ -197,7 +192,7 @@ namespace AhsapSanatEvi
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 75);
-            this.panel5.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel5.Margin = new System.Windows.Forms.Padding(6);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1470, 6);
             this.panel5.TabIndex = 14;
@@ -207,7 +202,7 @@ namespace AhsapSanatEvi
             this.panel6.BackColor = System.Drawing.Color.Silver;
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel6.Margin = new System.Windows.Forms.Padding(6);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1470, 4);
             this.panel6.TabIndex = 13;
@@ -218,7 +213,7 @@ namespace AhsapSanatEvi
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel3.Margin = new System.Windows.Forms.Padding(6);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1470, 6);
             this.panel3.TabIndex = 12;
@@ -228,77 +223,34 @@ namespace AhsapSanatEvi
             this.panel4.BackColor = System.Drawing.Color.Silver;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel4.Margin = new System.Windows.Forms.Padding(6);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1470, 4);
             this.panel4.TabIndex = 13;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel8.Controls.Add(this.LblCerceveID);
-            this.panel8.Controls.Add(this.panel11);
-            this.panel8.Controls.Add(this.panel10);
-            this.panel8.Controls.Add(this.panel9);
-            this.panel8.Location = new System.Drawing.Point(1540, 105);
-            this.panel8.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(78, 30);
-            this.panel8.TabIndex = 13;
             // 
             // LblCerceveID
             // 
             this.LblCerceveID.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LblCerceveID.AutoSize = true;
             this.LblCerceveID.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.LblCerceveID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(81)))), ((int)(((byte)(81)))));
-            this.LblCerceveID.Location = new System.Drawing.Point(11, 1);
+            this.LblCerceveID.ForeColor = System.Drawing.Color.White;
+            this.LblCerceveID.Location = new System.Drawing.Point(1597, 116);
             this.LblCerceveID.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.LblCerceveID.Name = "LblCerceveID";
             this.LblCerceveID.Size = new System.Drawing.Size(30, 21);
             this.LblCerceveID.TabIndex = 18;
             this.LblCerceveID.Text = "ID:";
             // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.Silver;
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(6, 24);
-            this.panel11.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(66, 6);
-            this.panel11.TabIndex = 2;
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.Silver;
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel10.Location = new System.Drawing.Point(72, 0);
-            this.panel10.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(6, 30);
-            this.panel10.TabIndex = 1;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.Silver;
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(6, 30);
-            this.panel9.TabIndex = 0;
-            // 
             // CerceveListesi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.panel8);
+            this.Controls.Add(this.LblCerceveID);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "CerceveListesi";
             this.Size = new System.Drawing.Size(1664, 137);
             this.panel1.ResumeLayout(false);
@@ -307,9 +259,8 @@ namespace AhsapSanatEvi
             this.panel2.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -329,10 +280,6 @@ namespace AhsapSanatEvi
         private System.Windows.Forms.Button BtnCerceveListeSil;
         private System.Windows.Forms.Button BtnCerceveListeDüzenle;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel9;
         public System.Windows.Forms.Label LblCerceveID;
     }
 }

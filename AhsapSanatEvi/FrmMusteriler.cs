@@ -59,8 +59,9 @@ namespace AhsapSanatEvi
                                 LblListeMusteriAd = { Text = oku["MUSTERIADSOYAD"].ToString() },
                                 LblListeMusteriId = { Text = "ID: " + oku["MUSTERIID"].ToString() },
                                 LblListeTelefon = { Text = oku["MUSTERITELNO"].ToString() },
-                                LblListeMeslek = { Text = ToTitleCase(oku["MUSTERIMESLEK"].ToString()), ForeColor = string.IsNullOrEmpty(oku["MUSTERIMESLEK"].ToString()) ? Color.Gray : Color.Black },
-                                LblListeAciklama = { Text = ToTitleCase(oku["MUSTERIACIKLAMA"].ToString()), ForeColor = string.IsNullOrEmpty(oku["MUSTERIACIKLAMA"].ToString()) ? Color.Gray : Color.Black }
+                                LblListeMeslek = { Text = ToTitleCase(oku["MUSTERIMESLEK"].ToString()) },
+                                LblListeAciklama = { Text = ToTitleCase(oku["MUSTERIACIKLAMA"].ToString()) }
+
                             };
                             MusteriListePanel.Controls.Add(musteri);
                         }
@@ -94,9 +95,10 @@ namespace AhsapSanatEvi
                         {
                             LblListeMusteriAd = { Text = oku["MUSTERIADSOYAD"].ToString() },
                             LblListeMusteriId = { Text = "ID: " + oku["MUSTERIID"].ToString() },
-                            LblListeTelefon = { Text = string.IsNullOrEmpty(oku["MUSTERITELNO"].ToString()) ? "GİRİLMEDİ" : oku["MUSTERITELNO"].ToString() },
-                            LblListeMeslek = { Text = string.IsNullOrEmpty(oku["MUSTERIMESLEK"].ToString()) ? "GİRİLMEDİ" : oku["MUSTERIMESLEK"].ToString() },
-                            LblListeAciklama = { Text = string.IsNullOrEmpty(oku["MUSTERIACIKLAMA"].ToString()) ? "GİRİLMEDİ" : oku["MUSTERIACIKLAMA"].ToString() }
+                            LblListeTelefon = { Text = oku["MUSTERITELNO"].ToString() },
+                            LblListeMeslek = { Text = oku["MUSTERIMESLEK"].ToString() },
+                            LblListeAciklama = { Text = oku["MUSTERIACIKLAMA"].ToString() }
+
                         };
                         MusteriListePanel.Controls.Add(arac);
                     }
@@ -192,9 +194,10 @@ namespace AhsapSanatEvi
         private string ToTitleCase(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
-                return "GİRİLMEDİ";
+                return "";
             return char.ToUpper(text[0]) + text.Substring(1).ToLower();
         }
+
         private bool MusteriVarMi(string adSoyad, string telNo)
         {
             using (SqlConnection connection = DataBaseControl.GetConnection())
@@ -210,21 +213,14 @@ namespace AhsapSanatEvi
         private void BtnMusteriEkle_Click(object sender, EventArgs e)
         {
             string musteriAdSoyad = TxtBxMusteriAdSoyad.Text.Trim().ToUpper();
-            string musteriTelNo = TxtBxMusteriTelNo.Text.Trim();
-            string musteriMeslek = string.IsNullOrWhiteSpace(TxtBxMusteriMeslek.Text) || TxtBxMusteriMeslek.Text == "GİRİLMEDİ" ? "" : ToTitleCase(TxtBxMusteriMeslek.Text.Trim());
-            string musteriAciklama = string.IsNullOrWhiteSpace(TxtBxMusteriAciklama.Text) || TxtBxMusteriAciklama.Text == "GİRİLMEDİ" ? "" : ToTitleCase(TxtBxMusteriAciklama.Text.Trim());
+            string musteriTelNo = TxtBxMusteriTelNo.Text.Trim(); // Boş olabilir
+            string musteriMeslek = TxtBxMusteriMeslek.Text.Trim();
+            string musteriAciklama = TxtBxMusteriAciklama.Text.Trim();
 
-            // Aynı isim ve telefon numarasıyla kayıtlı müşteri olup olmadığını kontrol et
+            // Aynı isimle kayıtlı müşteri olup olmadığını kontrol et
             if (MusteriVarMi(musteriAdSoyad, musteriTelNo))
             {
                 MessageBox.Show("Bu isim ve telefon numarasıyla kayıtlı bir müşteri zaten var!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Telefon numarası formatını kontrol et
-            if (!System.Text.RegularExpressions.Regex.IsMatch(musteriTelNo, @"^0 \(\d{3}\) \d{3} \d{4}$"))
-            {
-                MessageBox.Show("Lütfen geçerli bir telefon numarası giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -245,14 +241,23 @@ namespace AhsapSanatEvi
                 using (SqlConnection connection = DataBaseControl.GetConnection())
                 {
                     connection.Open();
-                    SqlCommand kayit = new SqlCommand("INSERT INTO TBLMUSTERILER (MUSTERIADSOYAD, MUSTERITELNO, MUSTERIMESLEK, MUSTERIACIKLAMA, SONGUNCELLEME) VALUES (@p1, @p2, @p3, @p4, GETDATE())", connection);
+                    SqlCommand kayit = new SqlCommand(@"
+                INSERT INTO TBLMUSTERILER (MUSTERIADSOYAD, MUSTERITELNO, MUSTERIMESLEK, MUSTERIACIKLAMA, SONGUNCELLEME) 
+                VALUES (@p1, @p2, @p3, @p4, GETDATE())", connection);
+
                     kayit.Parameters.AddWithValue("@p1", musteriAdSoyad);
-                    kayit.Parameters.AddWithValue("@p2", musteriTelNo);
+                    kayit.Parameters.AddWithValue("@p2", string.IsNullOrEmpty(musteriTelNo) ? (object)DBNull.Value : musteriTelNo);
                     kayit.Parameters.AddWithValue("@p3", musteriMeslek);
                     kayit.Parameters.AddWithValue("@p4", musteriAciklama);
+
                     kayit.ExecuteNonQuery();
                 }
+
                 MessageBox.Show("Müşteri başarıyla eklendi.");
+
+                // 📌 **TextBox'ları sıfırla**
+                TemizleMusteriTextBoxlari();
+
                 LoadMusteriListesi();
             }
             catch (Exception ex)
@@ -419,6 +424,14 @@ namespace AhsapSanatEvi
         private void TxtBxMusteriAdı_KeyDown_1(object sender, KeyEventArgs e)
         {
             // Boş bırakabilirsiniz
+        }
+        private void TemizleMusteriTextBoxlari()
+        {
+            TxtBxMusteriID.Text = "";
+            TxtBxMusteriAdSoyad.Text = "";
+            TxtBxMusteriTelNo.Clear(); 
+            TxtBxMusteriMeslek.Text = "";
+            TxtBxMusteriAciklama.Text = "";
         }
     }
 }
